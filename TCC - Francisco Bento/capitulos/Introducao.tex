@@ -15,15 +15,14 @@ datasets, is very common to have a lot of points with attributes very distant fr
 the rest of the dataset. This happens because when more huge is your dataset, more
 easily you can find anormal points that will be more distant from the normal
 distribution. This kind of behavior is important to the analyst study and discover
-more informations about the dataset and with this he could take more accurate
-decisions and propose better statement. Usually, this concern about the around
+more informations about the dataset itself and with this he could take more accurate
+decisions and propose better statements. Usually, this concern about the around
 data is not too relevant for the most researches, but recently it has appeared
-more frequently researches focused in this kind of data. For these specific spatial
-data which have attributes extremely distant from the rest, we call \textit{Outliers}
-
-% finalizar problema
-% objetivo geral e especifico
-% organização do trabalho
+more frequently researches focused in this kind of data. These specific data 
+with those characteristics is called \textit{Outliers} and is very important that
+the current data analists pay more attention to those data, because important
+informations may be hidden inside these \textit{"anormal"} data.  
+% citar artigo sobre nyc taxi & velocidade do vento
 
 % caso de estudo...
 % outliers + algoritmos
@@ -71,8 +70,19 @@ Nesta seção são definidos os objetivos gerais e específicos do trabalho.
 \subsection{Objetivos Gerais}
 
 \begin{itemize}
-  \item Objetivo geral 1\ldots
-  \item Objetivo geral 2\ldots  
+  \item 
+    Introduce the problem of data analysis and visualization in large spatio-temporal
+    datasets nowadays.
+  \ldots  
+  \item 
+    Explain our proposed approach to detect spatial outliers in large datasets using
+    the concept of IDR and capturing user's feedback.
+  \ldots
+  \item 
+    Present our results using the given approach to detect outliers in our spatial-temporal
+    environment and the benefits of these experiments.
+  \ldots
+
 \end{itemize}
 
 \subsection{Objetivos Específicos} 
@@ -80,8 +90,35 @@ Nesta seção são definidos os objetivos gerais e específicos do trabalho.
 Lista de objetivos específicos do trabalho\ldots
 
 \begin{itemize}
-  \item Objetivo específico 1\ldots
-  \item Objetivo específico 2\ldots  
+  \item
+    Analyze the latests researches in the field of outlier detection in spatial-temporal
+    datasets.
+  \ldots
+  \item
+    Present our proposed tool for spatial-temporal data analysis and visualization. 
+  \ldots
+  \item
+    Compare the presented researches showing the pros and cons of each work.
+  \ldots
+  \item
+    Describe the concept of IDR used in our tool to mapping the user preference in a
+    spatial-temporal environment.
+  \ldots
+  \item
+    Summarize the most known existing outlier detection algorithms for generic and spatial
+    data.
+  \ldots
+  \item
+    Display our chosen outlier detection algorithm and explain the reasons for this choice.
+  \ldots
+  \item
+    Apply our IDR concept and our chosen outlier detection algorithm in a spatial-temporal
+    data environment.
+  \ldots
+  \item
+    Present the results of our application and indicate our future work.
+  \ldots
+  
 \end{itemize}
 
 \section{Metodologia}
@@ -91,5 +128,12 @@ desenvolvimento e implementação do trabalho que está sendo proposto.
 
 \section{Organização do trabalho}
 
-Nesta seção deve ser apresentado como está organizado o trabalho, sendo
-descrito, portanto, do que trata cada capítulo.
+The rest of the document is organized as follows. Section 2 summaries the existing
+researches in data analysis and visualization field comparing with our proposed tool.
+Section 3 describes the concepts of IDRs (Interesting Dense Region) and Outliers with
+the existing algorithms for their detection and our choosed algorithm to detect outliers
+in our platform. Section 4 explains how we apply the IDRs and outliers detection in the
+GeoGuide tool. Section 5 presents two applications using distinct datasets to demonstrate
+the applicability of it to real world problems and the advantages in this approach. It
+shows and discusses the outlier detection results. Finally, a conclusion and some 
+directions for future works are given in Section 6.
