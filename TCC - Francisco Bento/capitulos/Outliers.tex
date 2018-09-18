@@ -2,25 +2,25 @@
 \chapter{Outliers}
 
 
-Outliers in the statistics area are when one finds "aberrant values" in a given 
-series of data, that is when one finds an atypical value or with a great distance 
-from the normal distribution in that set. For example, when a researcher wants to 
-monitor the temperature of his CPU during a certain time interval and it has been 
+Outliers in the statistics area are when one finds "aberrant values" in a given
+series of data, that is when one finds an atypical value or with a great distance
+from the normal distribution in that set. For example, when a researcher wants to
+monitor the temperature of his CPU during a certain time interval and it has been
 realized that the average temperature range is between 34 ºC and 48 ºC degrees
-being 45 ºC the maximum temperature and 27 ºC the minimum temperature and in the 
+being 45 ºC the maximum temperature and 27 ºC the minimum temperature and in the
 middle of this sample are some punctual registers of 0 ºC, this can be characterized
 as an outlier and, most likely, will be understood as a malfunction of the equipment
 that performed the collection of these CPU temperatures.
 
-However, there are several ways to interpret an Outlier (not only as a collection 
-error), but also as: data that belong to a different population of the sample, a 
-damaged data, areas in which a certain theory is not valid or even, when the sample 
+However, there are several ways to interpret an Outlier (not only as a collection
+error), but also as: data that belong to a different population of the sample, a
+damaged data, areas in which a certain theory is not valid or even, when the sample
 is too large, it is normal to have some small amounts of outliers in that group.
-In cases where it is proven that it is not the fault of a collection equipment 
-malfunction or that it was not a human mistake, it is extremely important to know 
-the why of that outlier and try to understand it, because it is not interesting for 
-a research simply remove it from the sample or re-signify it by assigning a new 
-value. This change may compromise the validity of the research, and if this is 
+In cases where it is proven that it is not the fault of a collection equipment
+malfunction or that it was not a human mistake, it is extremely important to know
+the why of that outlier and try to understand it, because it is not interesting for
+a research simply remove it from the sample or re-signify it by assigning a new
+value. This change may compromise the validity of the research, and if this is
 done, it is extremely important to document and record those changes.
 
 
@@ -28,7 +28,7 @@ done, it is extremely important to document and record those changes.
 
 \subsection{Z-Score}
 
-Z-Score is one of the simplest methods for detecting outliers in a dataset. It is a 
+Z-Score is one of the simplest methods for detecting outliers in a dataset. It is a
 parametric method and takes into account only one attribute per execution. It is also
 necessary the input of a threshold (usually is a value between 2.5 to 3.5) to be able
 to define if a given data can be considered an outlier or not. This method is suitable
@@ -51,14 +51,14 @@ No need to climb your values and a very robust algorithm for large datasets.
 
 \subsection{ISODEPTH}
 
-...
+TODO
 
 \subsection{FDC}
 
 It is a depth-based algorithm approach for detection of outliers in 2D datasets based on
 the concept of ISODEPTH algorithm. The FDC computes the first k 2D depth contours (the
-points that can be considered outliers) by restricting to a small part of the complete 
-dataset. In this way, it is more efficient by not having to calculate in the complete 
+points that can be considered outliers) by restricting to a small part of the complete
+dataset. In this way, it is more efficient by not having to calculate in the complete
 dataset and thus scaling more easily for large datasets of two dimensions.
 
 \subsection{HOD}
@@ -67,63 +67,69 @@ It is a distance-based outlier detection method that emerges to overcome the sta
 concept because in the vast majority of datasets the probability distribution is not known.
 In this way, the method search for outliers based on their distance from their neighbors
 and if that point has a distance greater than a predefined parameter, then that point is
-considered an outlier. However, if there is a cluster of outliers in the dataset, this 
+considered an outlier. However, if there is a cluster of outliers in the dataset, this
 can affect its detection by distance-based algorithms, with this comes the concept of HOD
 (Hidden Outlier Detection) algorithms that aim to find outliers even when they are grouped
 and in enough quantity to form a cluster.
 
 \subsection{Nested Loop}
 
-...
+TODO
 
 \subsection{ORCA}
 
 It is a distance-based algorithm that optimizes a simple nested loop algorithm (which are
-logarithmic algorithms and extremely inefficient when dealing with large datasets) by 
+logarithmic algorithms and extremely inefficient when dealing with large datasets) by
 removing possible non-outliers during their execution. This way, instead of processing
-the complete dataset by calculating all possible distances, it removes unnecessary 
+the complete dataset by calculating all possible distances, it removes unnecessary
 calculations that would be executed if a non-outlier point were taken to the end. From him,
 new researches have emerged further refining this concept.
 
 \subsection{Linearization}
 
-It is a distance-based algorithm that detects outliers by calculating the sum of the 
-distances of a point in relation to its neighbor, calling it weight, and setting an 
-outlier as the points with the greatest weights in the dataset. In this way, it is an 
-efficient algorithm and it is linearly scaled both in the number of points and in the 
-number of dimensions. To calculate these outliers more efficiently the algorithm uses 
-the concept of the Hilbert space filling curve.
+It is a distance-based algorithm that detects outliers by calculating the sum of the distances
+of a point in relation to its neighbor, calling it weight, and setting an outlier as the points
+with the greatest weights in the dataset. In this way, it is an efficient algorithm and it is
+linearly scaled both in the number of points and in the number of dimensions. To calculate these
+outliers more efficiently the algorithm uses the concept of the Hilbert space-filling curve.
 
 \subsection{RBRP}
 
-It is an algorithm for high performance multidimensional datasets that is based on 
+It is an algorithm for high-performance multidimensional datasets that is based on
 distances between the points to be able to define what the outliers are. Its difference
-to the other distance-based algorithms is that it is more efficient for datasets with 
-multiple dimensions and in comparisons with others, its scalability is approximately 
-linear for the number of dimensions and logarithmic for the number of points in the 
+to the other distance-based algorithms is that it is more efficient for datasets with
+multiple dimensions and in comparisons with others, its scalability is approximately
+linear for the number of dimensions and logarithmic for the number of points in the
 dataset.
 
 \subsection{LOF}
 
-It is a Density-based algorithm that adds a new concept in the search for outliers: the 
-Local Outlier Factor (LOF), which is a degree of propensity to be an outlier so that the 
-process of outlier definition is not more binary, but something gradual. With this, the 
+It is a Density-based algorithm that adds a new concept in the search for outliers: the
+Local Outlier Factor (LOF), which is a degree of propensity to be an outlier so that the
+process of outlier definition is not more binary, but something gradual. With this, the
 approach is not to define whether a point is an outlier or not, but rather the "how outlier"
 that point is in that dataset. The outlier factor is local in the sense that only a neighborhood
 of that point is taken into account to define its factor.
 
 \subsection{INFLO}
+
+TODO
+
 \subsection{LOCI}
+
+TODO
+
 \subsection{ABOD}
 
 It is an angle-based algorithm for detection of outliers that is focused on high-dimensional
-datasets, different from other distance-based algorithms that end up damaged when one has 
-many dimensions. Your approach is based on the calculation of a degree of angle between the 
-different vectors of a point with its neighbors. With this, more centralized points within 
-the cluster will have this degree calculated with a high value, the points more on the edge 
-of the clusters will have this degree a little smaller and the possible outliers will have 
-that degree with a very small value, since they will generally be far from the cluster in a 
+datasets, different from other distance-based algorithms that end up damaged when one has
+many dimensions. Your approach is based on the calculation of a degree of angle between the
+different vectors of a point with its neighbors. With this, more centralized points within
+the cluster will have this degree calculated with a high value, the points more on the edge
+of the clusters will have this degree a little smaller and the possible outliers will have
+that degree with a very small value, since they will generally be far from the cluster in a
 particular direction.
 
 \subsection{SOD}
 
+TODO

@@ -4,136 +4,122 @@
 
 In the last ten years, the search for terms such as big data, data analysis, and
 data visualization has increased enormously. One of the reasons is that with the
-advancement of technology and computers, we have been able to generate huge masses 
+advancement of technology and computers, we have been able to generate huge masses
 of data from different sources in various formats and in an incredibly small time.
 Along with this came also new difficulties in the field of data analysis which is:
 How to process these immense quantities quickly and efficiently? How to visualize
-this amount of data? How to clean the dataset without lose important points?
+this amount of data? How to clean the dataset without losing important points?
 
-When it comes to the data analysis field and the analyst is working with large 
+When it comes to the data analysis field and the analyst is working with large
 datasets, is very common to have a lot of points with attributes very distant from
 the rest of the dataset. This happens because when more huge is your dataset, more
-easily you can find anormal points that will be more distant from the normal
+easily you can find abnormal points that will be more distant from the normal
 distribution. This kind of behavior is important to the analyst study and discover
-more informations about the dataset itself and with this he could take more accurate
-decisions and propose better statements. Usually, this concern about the around
-data is not too relevant for the most researches, but recently it has appeared
-more frequently researches focused in this kind of data. These specific data 
-with those characteristics is called \textit{Outliers} and is very important that
-the current data analists pay more attention to those data, because important
-informations may be hidden inside these \textit{"anormal"} data.  
-% citar artigo sobre nyc taxi & velocidade do vento
+more information about the dataset itself and with this, he could take more accurate
+decisions and propose better statements. Usually, this concern about the around data
+is not too relevant for the most researches, but recently it has appeared more
+frequently researches focused on this kind of data. These specific data with those
+characteristics is called \textit{Outliers} and is very important that the current
+data analysts pay more attention to those data, because important information may
+be hidden inside these abnormal data.
+% TODO: citar artigo sobre nyc taxi & velocidade do vento
 
-% caso de estudo...
-% outliers + algoritmos
+\section{Context}
+
+% TODO: caso de estudo...
 
 Aiming at this problem, several types of research and tools have appeared trying to
-solve or improve it in some way, either by proposing techniques to increase 
-the performance of the analyzes or to perform the data cleaning or to improve the 
-structure of how to save these data. Among these researches there is a part focused 
-on how to visualize these large amounts of data and even more when it comes to 
-spatial data, as it turns out to be a serious problem the more the amount of data 
-grows, since the researcher could end up getting "lost "in the middle of so much 
+solve or improve it in some way, either by proposing techniques to increase
+the performance of the analyzes or to perform the data cleaning or to improve the
+structure of how to save these data. Among these researches there is a part focused
+on how to visualize these large amounts of data and even more when it comes to
+spatial data, as it turns out to be a serious problem the more the amount of data
+grows, since the researcher could end up getting "lost "in the middle of so much
 information leaving their analysis greatly damaged.
 
-In this context, one of these researches produced a new proposal that aims to 
-improve the visualization and analysis of huge amounts of spatial data, the 
-GeoGuide: a tool in which it is possible to load a generic dataset with spatial 
-data (latitude and longitude attributes) and metadata and then visualize it on a 
-global map to better navigate between them. Along with this there is also the 
+In this context, one of these researches produced a new proposal that aims to
+improve the visualization and analysis of huge amounts of spatial data, the
+GeoGuide: a tool in which it is possible to load a generic dataset with spatial
+data (latitude and longitude attributes) and metadata and then visualize it on a
+global map to better navigate between them. Along with this there is also the
 concept of diversity and similarity that serves for an approach in which the
-researcher expands its area of research through highlights of similar points in 
+researcher expands its area of research through highlights of similar points in
 distinct areas of a single point chosen by him. for example: Joana is a culinary
 enthusiast and wants to find new restaurants in neighborhoods that serve Brazilian
-food at a price range from $20 to $100. In a few clicks, you can find these 
+food at a price range from $20 to $100. In a few clicks, you can find these
 suggestions in GeoGuide.
 
-However, a new problem arises that is the availability of Joana to be able to 
-reach certain neighborhoods because she does not have a car and needs public 
-transportation to transit in her city. Aiming at this new feature, GeoGuide is 
-adding the concepts of regions of interest (neighborhoods, in the case of Joana) 
-so that the researcher can, implicitly (using the mouse movement), demonstrate 
-which region is more interesting for him and thus avoid one more step that would 
+However, a new problem arises that is the availability of Joana to be able to
+reach certain neighborhoods because she does not have a car and needs public
+transportation to transit in her city. Aiming at this new feature, GeoGuide is
+adding the concepts of regions of interest (neighborhoods, in the case of Joana)
+so that the researcher can, implicitly (using the mouse movement), demonstrate
+which region is more interesting for him and thus avoid one more step that would
 be the process to exclude the suggestions of the GeoGuide that would be in unavailable
 places for Joana to access. With this concept it is also possible to solve another
 problem that would be the case of Marcos, who is passionate about travel and wants
-to redo a trip to Italy, however, he decided that he does not want to visit the 
-same sights. So to avoid a new process, Mark would get suggestions outside his 
-region of interest (which would be his last places visited in Italy), and then 
+to redo a trip to Italy, however, he decided that he does not want to visit the
+same sights. So to avoid a new process, Mark would get suggestions outside his
+region of interest (which would be his last places visited in Italy), and then
 enjoy his trip.
 
 
-\section{Objetivos}
+\section{Objectives}
 
-Nesta seção são definidos os objetivos gerais e específicos do trabalho.
+In this section are defined the general and specific objectives of the work.
 
-\subsection{Objetivos Gerais}
+\subsection{General Objectives}
 
 \begin{itemize}
-  \item 
-    Introduce the problem of data analysis and visualization in large spatio-temporal
-    datasets nowadays.
-  \ldots  
-  \item 
-    Explain our proposed approach to detect spatial outliers in large datasets using
-    the concept of IDR and capturing user's feedback.
-  \ldots
-  \item 
-    Present our results using the given approach to detect outliers in our spatial-temporal
-    environment and the benefits of these experiments.
-  \ldots
+	\item
+	      Introduce the problem of data analysis and visualization in large spatiotemporal
+	      datasets nowadays.
+	\item
+	      Explain our proposed approach to detect spatial outliers in large datasets using
+	      the concept of IDR and capturing user's feedback.
+	\item
+	      Present our results using the given approach to detect outliers in our spatial-temporal
+	      environment and the benefits of these experiments.
 
 \end{itemize}
 
-\subsection{Objetivos Específicos} 
-
-Lista de objetivos específicos do trabalho\ldots
+\subsection{Specific Objectives}
 
 \begin{itemize}
-  \item
-    Analyze the latests researches in the field of outlier detection in spatial-temporal
-    datasets.
-  \ldots
-  \item
-    Present our proposed tool for spatial-temporal data analysis and visualization. 
-  \ldots
-  \item
-    Compare the presented researches showing the pros and cons of each work.
-  \ldots
-  \item
-    Describe the concept of IDR used in our tool to mapping the user preference in a
-    spatial-temporal environment.
-  \ldots
-  \item
-    Summarize the most known existing outlier detection algorithms for generic and spatial
-    data.
-  \ldots
-  \item
-    Display our chosen outlier detection algorithm and explain the reasons for this choice.
-  \ldots
-  \item
-    Apply our IDR concept and our chosen outlier detection algorithm in a spatial-temporal
-    data environment.
-  \ldots
-  \item
-    Present the results of our application and indicate our future work.
-  \ldots
-  
+	\item
+	      Analyze the latest researches in the field of outlier detection in spatial-temporal
+	      datasets.
+	\item
+	      Present our proposed tool for spatial-temporal data analysis and visualization.
+	\item
+	      Compare the presented researches showing the pros and cons of each work.
+	\item
+	      Describe the concept of IDR used in our tool to mapping the user preference in a
+	      spatial-temporal environment.
+	\item
+	      Summarize the most known existing outlier detection algorithms for generic and spatial
+	      data.
+	\item
+	      Display our chosen outlier detection algorithm and explain the reasons for this choice.
+	\item
+	      Apply our IDR concept and our chosen outlier detection algorithm in a spatial-temporal
+	      data environment.
+	\item
+	      Present the results of our application and indicate our future work.
+
 \end{itemize}
 
-\section{Metodologia}
+\section{Methodology}
 
-Na metodologia é descrito o método de investigação e pesquisa para o
-desenvolvimento e implementação do trabalho que está sendo proposto.
+TODO
 
-\section{Organização do trabalho}
+\section{Work Organization}
 
-The rest of the document is organized as follows. Section 2 summaries the existing
-researches in data analysis and visualization field comparing with our proposed tool.
-Section 3 describes the concepts of IDRs (Interesting Dense Region) and Outliers with
-the existing algorithms for their detection and our choosed algorithm to detect outliers
-in our platform. Section 4 explains how we apply the IDRs and outliers detection in the
-GeoGuide tool. Section 5 presents two applications using distinct datasets to demonstrate
-the applicability of it to real world problems and the advantages in this approach. It
-shows and discusses the outlier detection results. Finally, a conclusion and some 
-directions for future works are given in Section 6.
+The rest of the document is organized as follows. Section 2 summaries the existing researches
+in data analysis and visualization field comparing with our proposed tool. Section 3 describes
+the concepts of IDRs (Interesting Dense Region) and Outliers with the existing algorithms for
+their detection and our chosen algorithm to detect outliers in our platform. Section 4 explains
+how we apply the IDRs and outliers detection in the GeoGuide tool. Section 5 presents two
+applications using distinct datasets to demonstrate the applicability of it to real-world
+problems and the advantages of this approach. It shows and discusses the outlier detection
+results. Finally, a conclusion and some directions for future works are given in Section 6.
