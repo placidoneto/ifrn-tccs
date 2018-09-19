@@ -17,16 +17,59 @@ easily you can find abnormal points that will be more distant from the normal
 distribution. This kind of behavior is important to the analyst study and discover
 more information about the dataset itself and with this, he could take more accurate
 decisions and propose better statements. Usually, this concern about the around data
-is not too relevant for the most researches, but recently it has appeared more
-frequently researches focused on this kind of data. These specific data with those
-characteristics is called \textit{Outliers} and is very important that the current
-data analysts pay more attention to those data, because important information may
-be hidden inside these abnormal data.
-% TODO: citar artigo sobre nyc taxi & velocidade do vento
+is not too relevant for the most researches, but recently it has appeared more frequently
+researches focused on this kind of data. These specific data with those characteristics
+is called \textit{Outliers} and is very important that the current data analysts
+pay more attention to those data, because important information may be hidden inside
+these abnormal data. For example, if we get an isolated dataset about NYC taxis from
+20XX and analyze the frequency of requests at the entire year, it will appear a lot
+of points very distant from the average curve and this will indicate an unusual behavior
+in this collection. Usually, the first step to take in this situation is to remove the
+irregular points and continue the processing with the rest of the dataset, but if we get
+another isolated dataset about the wind speed from the same NYC region and compare this
+exactly space of time, we will perceive few peaks of high speed indicating hurricane at
+the same time \cite{DBLP:journals/debu/FreireCVZ16}. Analyses like this prove the
+importance of detect, study and interpret those outliers to increase the knowledge
+obtained from this dataset.
 
 \section{Context}
 
-% TODO: caso de estudo...
+% TODO: grandes dados espaço temporal, mapas, google, geoloc
+Nowadays we are more and more connected with multiple applications that access a huge
+amount of our existing data and even generate more to improve their analyses about
+us for diverses proposals. Tools like Google Maps, Uber, Waze has a lot of realtime
+spatial data about our traffic behavior (private cars, public transportation, taxis,
+etc.), work place, travel location, etc.
+
+% TODO: usuário perdido em muitos dados e sem poucas opções
+When it comes to regular users, it is very common that he will be lost in such masses
+of spatial data and this will damage your possible analyse, even the simplest one.
+This commom problem still does not have an definitively solution, so existing researches
+trying to indicate possible approaches for mitigate this problem and be close to a
+working solution. These approaches are based on: agroup a large amount of data by specific
+attributes and summarize the commom attributes between those data for give simple
+insights about these groups, filter the dataset to reduce the showing possibilities and
+focus on specific data for a more detailed (but not wide) analysis, and a lot of others
+strategies to reduce the complexity of the analysis.
+
+% TODO: outliers existem ainda mais hoje em dia e não são estudados
+Together with those most commom problems, exists an important one that can happen before
+the first step of analysis that is: What do when parts of the dataset seems to be irregular
+or with corrupted data? There are techniques that helps to clean those parts and not compromise
+the analysis,
+% citar algum artigo sobre limpeza de dados
+but recently studies points the importance of these \textit{"abnormal"} data and how much
+the analyst can learn just studying more precisely this set. \cite{DBLP:journals/debu/FreireCVZ16}
+
+% TODO: detectar destaques baseados na preferência do usuário
+In this complex environment of spatial data analyses with a lot of variables and possibilities,
+an user can easily fail in some of these step compromising severely the results of his analysis.
+Combining all these details, we suggest an approach that take as relevant the user feedback
+(capturing the mouse track) and based on those feedback, we will be able to analyse the user
+interest and inside this we can detect, study and propose actions to perform when an data considered
+outlier appears in this region of user interest.
+
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
 
 Aiming at this problem, several types of research and tools have appeared trying to
 solve or improve it in some way, either by proposing techniques to increase
@@ -46,7 +89,7 @@ concept of diversity and similarity that serves for an approach in which the
 researcher expands its area of research through highlights of similar points in
 distinct areas of a single point chosen by him. for example: Joana is a culinary
 enthusiast and wants to find new restaurants in neighborhoods that serve Brazilian
-food at a price range from $20 to $100. In a few clicks, you can find these
+food at a price range from \$20 to \$100. In a few clicks, you can find these
 suggestions in GeoGuide.
 
 However, a new problem arises that is the availability of Joana to be able to
@@ -111,7 +154,7 @@ In this section are defined the general and specific objectives of the work.
 
 \section{Methodology}
 
-TODO
+TODO: Methodology
 
 \section{Work Organization}
 
