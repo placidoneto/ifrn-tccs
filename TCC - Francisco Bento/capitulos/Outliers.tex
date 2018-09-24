@@ -9,7 +9,7 @@ information that you can retrieve from your datasets.
 
 \subsection{GeoGuide}
 
-Pursuing improve the spatial data analysis and the guidance approach for this kind of data, the GeoGuide \cite{omidvarTehrani2017} is a interactive framework that aims to highlight to the analyst a subset of $k$ interesting spatial points, based on the analyst \textit{implicit} (e.g. mouse tracking) and \textit{explicit} (e.g. points clicked) feedbacks, that he may not seem because of the huge amount of information on his screen. This framework considers two metrics to give the subset highlight. The first one is the \textbf{relevance} of each point to the point selected by the analyst considering the attributes of those points. The second one is the geographically \textbf{diversity} to expand the analyst area in chase of possible new interesting regions. All this process can be used in generic spatial datasets, as long as each point have two characteristics: geographical attributes (i.e. latitude and longitude) and metadata attributes about its own domain. For instance, the Airbnb platform \footnote{\it http://www.airbnb.com} has open datasets about the available home-stays to rent and each one has the geographical attributes and \textit{price, hostname, availability} as their metadata attributes that are specific for each dataset type. Using this approach, the GeoGuide is the first efficient interactive highlighting framework for spatial data, combining analyst feedbacks with relevance and diversity metrics to display to the analyst a set of interesting points that he may be not focused during his analysis.
+Pursuing improve the spatial data analysis and the guidance approach for this kind of data, the GeoGuide \cite{omidvarTehrani2017} is a interactive framework that aims to highlight to the analyst a subset of $k$ interesting spatial points, based on the analyst \textit{implicit} (e.g. mouse tracking) and \textit{explicit} (e.g. points clicked) feedbacks, that he may not seem because of the huge amount of information on his screen. This framework considers two metrics to give the subset highlight. The first one is the \textbf{relevance} of each point to the point selected by the analyst considering the attributes of those points. The second one is the geographically \textbf{diversity} to expand the analyst area in chase of possible new interesting regions. All this process can be used in generic spatial datasets, as long as each point have two characteristics: geographical attributes (i.e. latitude and longitude) and metadata attributes about its own domain. For instance, the Airbnb\footnote{\it http://www.airbnb.com} platform has open datasets about the available home-stays to rent and each one has the geographical attributes and \textit{price, hostname, availability} as their metadata attributes that are specific for each dataset type. Using this approach, the GeoGuide is the first efficient interactive highlighting framework for spatial data, combining analyst feedbacks with relevance and diversity metrics to display to the analyst a set of interesting points that he may be not focused during his analysis.
 
 \begin{figure*}[t]
 	\centering
@@ -95,7 +95,7 @@ It is an algorithm for high-performance multidimensional datasets that is based 
 It is a density-based algorithm that adds a new concept in the search for outliers: the
 Local Outlier Factor (LOF) \cite{Breunig:2000:LID:335191.335388}, which is a degree of propensity to be an outlier so that the
 process of outlier definition is not more binary, but something gradual. With this, the
-approach is not to define whether a point is an outlier or not, but rather the "how outlier"
+approach is not to define whether a point is an outlier or not, but rather the ``how outlier''
 that point is in that dataset. The outlier factor is local in the sense that only a neighborhood
 of that point is taken into account to define its factor.
 
@@ -115,5 +115,28 @@ It is an angle-based algorithm \cite{Kriegel:2008:AOD:1401890.1401946} for detec
 
 % TODO: SOD
 
-% mostrar tabela de comparação e explicar a tabela
-% ....
+\vspace{25pt}
+
+Based on the algorithms presented, we organize each one according the answer of proposed questions about outlier detection algorithms in general. The proposed questions are: \textbf{I} \textit{Is it parametric?}; \textbf{II} \textit{Which is the approach?}; \textbf{III} \textit{Is it scalable in performance terms?}; \textbf{IV} \textit{Is it multidimensional scalable?} and \textbf{V} \textit{Does it receive any argument?}. The result is presented in the Table \ref{table:algorithms-comparison}.
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		\textbf{Algorithms}               & \textbf{I} & \textbf{II}      & \textbf{III} & \textbf{IV} & \textbf{V} \\ \hline
+		\textbf{Z-Score}                  & Yes        & Model Based      & No           & No          & Yes        \\ \hline
+		\textbf{DBSCAN}                   & No         & Density Based    & No           & Yes         & Yes        \\ \hline
+		\textbf{Isolation Forests}        & No         & Depth Based      & No           & No          & No         \\ \hline
+		\textbf{FDC}                      & No         & Depth Based      & Yes          & No          & No         \\ \hline
+		\textbf{Hidden Outlier Detection} & No         & Distance Based   & Yes          & Yes         & Yes        \\ \hline
+		\textbf{ORCA}                     & No         & Distance Based   & No           & Yes         & Yes        \\ \hline
+		\textbf{Linearization}            & No         & Distance Based   & Yes          & Yes         & Yes        \\ \hline
+		\textbf{RBRP}                     & No         & Distance Based   & Yes          & Yes         & Yes        \\ \hline
+		\textbf{LOF}                      & No         & Density Based    & No           & Yes         & Yes        \\ \hline
+		\textbf{ABOD}                     & No         & High Dimensional & No           & Yes         & No         \\ \hline
+	\end{tabular}
+	\caption{Comparison of the presented Outlier Detection Algorithms}
+	\label{table:algorithms-comparison}
+\end{table}
+
+Each question has a specific reason to be in the Table \ref{table:algorithms-comparison}. The question \textbf{I} is about the probability distribution of the dataset. If the algorithm is parametric, so we can assume a probability distribution based on a fixed set of parameters. The question \textbf{II} serves to classify each algorithm based on his approach for detect a data as an outlier or not, the options are: \textit{Model Based}, \textit{Density Based}, \textit{Depth Based}, \textit{Distance Based}, \textit{High Dimensional}. The question \textbf{III} is relative to the performance of each algorithm, if the algorithm execution time is not compromised as the input data increase, it means the algorithm is scalable in perfomance terms. The question \textbf{IV} is about the performance of each algorithm too, but in this case is related to the perfomance when the dimension of the data increase. At least, the question \textbf{V} indicates if the algorithm require any input argument to process the dataset, this is important because if it requires many arguments, this can be a accuraccy problem when the dataset increase.
