@@ -1,13 +1,56 @@
-% Introdu��o
-\chapter{Outliers}
+\chapter{Background}
 
+% falar sobre o capítulo
 
-Outliers in the statistics area are when one finds "aberrant values" in a given
+In this chapter will be presented the existing researches about data analysis and
+outlier detection with algorithms and strategies of how use this approach to improve
+the analysis of your data and the ammount and the quality of the informations that
+you can retrieve from your datasets.
+
+\section{Related Work}
+
+\subsection{GeoGuide}
+
+% falar sobre o geoguide, citar artigo, e dar uma base sobre
+
+Pursuing improve the spatio data analysis and the guidance approach for this kind of
+data, the GeoGuide \cite{omidvarTehrani2017} is a interactive framework that aims to
+highlight to the analyst a subset of $k$ interesting spatial points, based on the analyst 
+\textit{implicit} (e.g. mouse tracking) and \textit{explicit} (e.g. points clicked) 
+feedbacks, that he may be not seem because of the huge amount of information on his 
+screen. This framework considers two metrics to give the subset highlight. The first 
+one is the \textbf{relevance} of each point to the point selected by the analyst 
+considering the attributes of those points. The second one is the geographically 
+\textbf{diversity} to expand the analyst area in chase of possible new interesting 
+regions. All this process can be used in generic spatial datasets, as long as each 
+point have two caracteristics: geographical attributes (i.e. latitude and longitude) 
+and metadata attributes about it own domain. For instance, the Airbnb platform 
+\footnote{\it http://www.airbnb.com} has open datasets about the available home-stays 
+to rent and each one has the geographical attributes and \textit{price, host name, 
+availability} as their metadata attributes that are specific for each dataset type. 
+Using this approach, the GeoGuide is the first efficient interactive highlighting 
+framework for spatial data, combining analyst feedbacks with relevance and diversity 
+metrics to display to the analyst a set of interesting points that he may be not 
+focused during his analysis.
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{images/geoguide-example-airbnb}
+	\caption{GeoGuide Image on Airbnb Dataset - Paris City}
+	\label{fig:geoguide-example-airbnb}
+	\vspace{-10pt}
+\end{figure*}
+
+\subsection{Outliers}
+
+% falar sobre outliers, a importação da detecção e os algoritmos
+
+Outliers in the statistics area are when one finds ``aberrant values'' in a given
 series of data, that is when one finds an atypical value or with a great distance
 from the normal distribution in that set. For example, when a researcher wants to
 monitor the temperature of his CPU during a certain time interval and it has been
-realized that the average temperature range is between 34 ºC and 48 ºC degrees
-being 45 ºC the maximum temperature and 27 ºC the minimum temperature and in the
+realized that the temperature range is between 34 ºC and 45 ºC degrees
+being 48 ºC the maximum temperature and 27 ºC the minimum temperature and in the
 middle of this sample are some punctual registers of 0 ºC, this can be characterized
 as an outlier and, most likely, will be understood as a malfunction of the equipment
 that performed the collection of these CPU temperatures.
@@ -23,6 +66,13 @@ a research simply remove it from the sample or re-signify it by assigning a new
 value. This change may compromise the validity of the research, and if this is
 done, it is extremely important to document and record those changes.
 
+As the information techonologies improves and continuously increase their computational 
+power, a great variety of algorithms for outlier detection has been surging and 
+applied in different contexts with diverses caracteristics and the choose for one 
+of those algorithms is based on the problem domain. Next section will present some 
+of those algorithms with a breaverly explanation about each one.
+
+% lista de algoritmos
 
 \section{Algorithms}
 
@@ -49,9 +99,9 @@ is the decision tree. It is one-dimensional (only takes one attribute at a time)
 required few parameters (this facilitates the configuration and use of the algorithm).
 No need to climb your values and a very robust algorithm for large datasets.
 
-\subsection{ISODEPTH}
+% \subsection{ISODEPTH}
 
-TODO: IDSODEPTH
+% TODO: IDSODEPTH
 
 \subsection{FDC}
 
@@ -72,9 +122,9 @@ can affect its detection by distance-based algorithms, with this comes the conce
 (Hidden Outlier Detection) algorithms that aim to find outliers even when they are grouped
 and in enough quantity to form a cluster.
 
-\subsection{Nested Loop}
+% \subsection{Nested Loop}
 
-TODO: Nested Loop
+% TODO: Nested Loop
 
 \subsection{ORCA}
 
@@ -111,13 +161,13 @@ approach is not to define whether a point is an outlier or not, but rather the "
 that point is in that dataset. The outlier factor is local in the sense that only a neighborhood
 of that point is taken into account to define its factor.
 
-\subsection{INFLO}
+% \subsection{INFLO}
 
-TODO: INFLO
+% TODO: INFLO
 
-\subsection{LOCI}
+% \subsection{LOCI}
 
-TODO: LOCI
+% TODO: LOCI
 
 \subsection{ABOD}
 
@@ -130,6 +180,9 @@ of the clusters will have this degree a little smaller and the possible outliers
 that degree with a very small value, since they will generally be far from the cluster in a
 particular direction.
 
-\subsection{SOD}
+% \subsection{SOD}
 
-TODO: SOD
+% TODO: SOD
+
+% mostrar tabela de comparação e explicar a tabela
+% ....
