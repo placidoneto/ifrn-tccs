@@ -2,46 +2,26 @@
 \chapter{Introduction}
 
 
-In the last ten years, the search for terms such as big data, data analysis, and
-data visualization has increased enormously. One of the reasons is that with the
-advancement of technology and computers, we have been able to generate huge masses
-of data from different sources in various formats and in an incredibly small time.
-Along with this came also new difficulties in the field of data analysis which is:
-How to process these immense quantities quickly and efficiently? How to visualize
-this amount of data? How to clean the dataset without losing important points?
+In the last ten years, the search for terms such as big data, data analysis, and data visualization has increased enormously. There is a lot of reasons for this phenomenon, one of them is that with the computing power advancement we now have to deal with huge masses of data, which grows daily, from different sources in several formats in an incredibly short time. Therefore new challenges are rising in the data analysis field: How to process these immense quantities quickly and efficiently? How to visualize this amount of data? How to clean the dataset without losing important points?
 
-When it comes to the data analysis field and the analyst is working with large
-datasets, is very common to have a lot of points with attributes very distant from
-the rest of the dataset. This happens because when more huge is your dataset, more
-easily you can find abnormal points that will be more distant from the normal
-distribution. This kind of behavior is important to the analyst study and discover
-more information about the dataset itself and with this, he could take more accurate
-decisions and propose better statements. Usually, this concern about the around data
-is not too relevant for the most researches, but recently it has appeared more frequently
-researches focused on this kind of data. These specific data with those characteristics
-is called \textit{Outliers} and is very important that the current data analysts
-pay more attention to those data, because important information may be hidden inside
-these abnormal data. For example, if we get an isolated dataset about NYC taxis from
-20XX and analyze the frequency of requests at the entire year, it will appear a lot
-of points very distant from the average curve and this will indicate an unusual behavior
-in this collection. Usually, the first step to take in this situation is to remove the
-irregular points and continue the processing with the rest of the dataset, but if we get
-another isolated dataset about the wind speed from the same NYC region and compare this
-exactly space of time, we will perceive few peaks of high speed indicating hurricane at
-the same time \cite{DBLP:journals/debu/FreireCVZ16}. Analyses like this prove the
-importance of detect, study and interpret those outliers to increase the knowledge
-obtained from this dataset.
+When it comes to the data analysis field and the analyst is working with large datasets, is very common to have a lot of points with attributes very distant from the rest of the dataset. This happens because when more huge is your dataset, more easily you can find abnormal points that will be more distant from the normal distribution. This kind of behavior is important to the analyst study and discover more information about the dataset itself and with this, he could take more accurate decisions and propose better statements. Usually, this concern about anomalous data was not too relevant for the most researches, but this behavior is changing since significant information can be discovered analyzing those uncommon points. These specific data with those characteristics is called \textit{Outliers} and is very decisive that the current data analysts pay more attention to those data, because important information may be hidden inside these peculiar data. For example, if we get an isolated dataset about NYC taxis from 2011 and analyze the frequency of requests at the entire year, it will appear a lot of points very distant from the average curve and this will indicate an unusual behavior in this collection. Usually, the first step to take in this situation is to remove the irregular points and continue the processing with the rest of the dataset, but if we get another isolated dataset about the wind speed from the same NYC region and compare this exactly space of time, we will perceive few peaks of high speed indicating hurricane at the same time \cite{DBLP:journals/debu/FreireCVZ16} as presented in Figure \ref{fig:freire-paper-taxy-wind}. Analyses like this prove the importance of detect, study and interpret those outliers to increase the knowledge obtained from this dataset.
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{images/outlier-freire-figure-1}
+	\caption{Figure taken from \cite{DBLP:journals/debu/FreireCVZ16} showing  relationship between the number of taxi trips over time and wind speed}
+	\label{fig:freire-paper-taxy-wind}
+	\vspace{-10pt}
+\end{figure*}
 
 \section{Context}
 
-% TODO: grandes dados espaço temporal, mapas, google, geoloc
 Nowadays we are more and more connected with multiple applications that access a huge
 amount of our existing data and even generate more to improve their analyses about
 us for diverses proposals. Tools like Google Maps, Uber, Waze has a lot of realtime
 spatial data about our traffic behavior (private cars, public transportation, taxis,
 etc.), work place, travel location, etc.
 
-% TODO: usuário perdido em muitos dados e sem poucas opções
 When it comes to regular users, it is very common that he will be lost in such masses
 of spatial data and this will damage your possible analyse, even the simplest one.
 This commom problem still does not have an definitively solution, so existing researches
@@ -52,7 +32,6 @@ insights about these groups, filter the dataset to reduce the showing possibilit
 focus on specific data for a more detailed (but not wide) analysis, and a lot of others
 strategies to reduce the complexity of the analysis.
 
-% TODO: outliers existem ainda mais hoje em dia e não são estudados
 Together with those most commom problems, exists an important one that can happen before
 the first step of analysis that is: What do when parts of the dataset seems to be irregular
 or with corrupted data? There are techniques that helps to clean those parts and not compromise
@@ -61,7 +40,6 @@ the analysis,
 but recently studies points the importance of these \textit{"abnormal"} data and how much
 the analyst can learn just studying more precisely this set. \cite{DBLP:journals/debu/FreireCVZ16}
 
-% TODO: detectar destaques baseados na preferência do usuário
 In this complex environment of spatial data analyses with a lot of variables and possibilities,
 an user can easily fail in some of these step compromising severely the results of his analysis.
 Combining all these details, we suggest an approach that take as relevant the user feedback
@@ -69,42 +47,42 @@ Combining all these details, we suggest an approach that take as relevant the us
 interest and inside this we can detect, study and propose actions to perform when an data considered
 outlier appears in this region of user interest.
 
-\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+% \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
 
-Aiming at this problem, several types of research and tools have appeared trying to
-solve or improve it in some way, either by proposing techniques to increase
-the performance of the analyzes or to perform the data cleaning or to improve the
-structure of how to save these data. Among these researches there is a part focused
-on how to visualize these large amounts of data and even more when it comes to
-spatial data, as it turns out to be a serious problem the more the amount of data
-grows, since the researcher could end up getting "lost "in the middle of so much
-information leaving their analysis greatly damaged.
+% Aiming at this problem, several types of research and tools have appeared trying to
+% solve or improve it in some way, either by proposing techniques to increase
+% the performance of the analyzes or to perform the data cleaning or to improve the
+% structure of how to save these data. Among these researches there is a part focused
+% on how to visualize these large amounts of data and even more when it comes to
+% spatial data, as it turns out to be a serious problem the more the amount of data
+% grows, since the researcher could end up getting "lost "in the middle of so much
+% information leaving their analysis greatly damaged.
 
-In this context, one of these researches produced a new proposal that aims to
-improve the visualization and analysis of huge amounts of spatial data, the
-GeoGuide: a tool in which it is possible to load a generic dataset with spatial
-data (latitude and longitude attributes) and metadata and then visualize it on a
-global map to better navigate between them. Along with this there is also the
-concept of diversity and similarity that serves for an approach in which the
-researcher expands its area of research through highlights of similar points in
-distinct areas of a single point chosen by him. for example: Joana is a culinary
-enthusiast and wants to find new restaurants in neighborhoods that serve Brazilian
-food at a price range from \$20 to \$100. In a few clicks, you can find these
-suggestions in GeoGuide.
+% In this context, one of these researches produced a new proposal that aims to
+% improve the visualization and analysis of huge amounts of spatial data, the
+% GeoGuide: a tool in which it is possible to load a generic dataset with spatial
+% data (latitude and longitude attributes) and metadata and then visualize it on a
+% global map to better navigate between them. Along with this there is also the
+% concept of diversity and similarity that serves for an approach in which the
+% researcher expands its area of research through highlights of similar points in
+% distinct areas of a single point chosen by him. for example: Joana is a culinary
+% enthusiast and wants to find new restaurants in neighborhoods that serve Brazilian
+% food at a price range from \$20 to \$100. In a few clicks, you can find these
+% suggestions in GeoGuide.
 
-However, a new problem arises that is the availability of Joana to be able to
-reach certain neighborhoods because she does not have a car and needs public
-transportation to transit in her city. Aiming at this new feature, GeoGuide is
-adding the concepts of regions of interest (neighborhoods, in the case of Joana)
-so that the researcher can, implicitly (using the mouse movement), demonstrate
-which region is more interesting for him and thus avoid one more step that would
-be the process to exclude the suggestions of the GeoGuide that would be in unavailable
-places for Joana to access. With this concept it is also possible to solve another
-problem that would be the case of Marcos, who is passionate about travel and wants
-to redo a trip to Italy, however, he decided that he does not want to visit the
-same sights. So to avoid a new process, Mark would get suggestions outside his
-region of interest (which would be his last places visited in Italy), and then
-enjoy his trip.
+% However, a new problem arises that is the availability of Joana to be able to
+% reach certain neighborhoods because she does not have a car and needs public
+% transportation to transit in her city. Aiming at this new feature, GeoGuide is
+% adding the concepts of regions of interest (neighborhoods, in the case of Joana)
+% so that the researcher can, implicitly (using the mouse movement), demonstrate
+% which region is more interesting for him and thus avoid one more step that would
+% be the process to exclude the suggestions of the GeoGuide that would be in unavailable
+% places for Joana to access. With this concept it is also possible to solve another
+% problem that would be the case of Marcos, who is passionate about travel and wants
+% to redo a trip to Italy, however, he decided that he does not want to visit the
+% same sights. So to avoid a new process, Mark would get suggestions outside his
+% region of interest (which would be his last places visited in Italy), and then
+% enjoy his trip.
 
 
 \section{Objectives}
@@ -152,13 +130,13 @@ In this section are defined the general and specific objectives of the work.
 
 \end{itemize}
 
-\section{Methodology}
+% \section{Methodology}
 
-TODO: Methodology
+% TODO: Methodology
 
 \section{Work Organization}
 
-The rest of the document is organized as follows. Section 2 summaries the existing researches
+The document is organized as follows. Section 2 summaries the existing researches
 in data analysis and visualization field comparing with our proposed tool. Section 3 describes
 the concepts of IDRs (Interesting Dense Region) and Outliers with the existing algorithms for
 their detection and our chosen algorithm to detect outliers in our platform. Section 4 explains
