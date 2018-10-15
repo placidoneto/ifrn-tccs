@@ -1,22 +1,35 @@
 \chapter{Background}
+% \chapter{Trabalhos Relacionados}
 
-In this chapter we will present the existing works about data analysis and
-outlier detection with algorithms and strategies of how to use this approach to
-improve the analysis of data and increase the amount and the quality of the
-information that we can retrieve from datasets.
+% In this chapter we will present the existing works about data analysis and
+% outlier detection with algorithms and strategies of how to use this approach to improve the analysis of data and increase the amount and the quality of the  information that we can retrieve from datasets.
 
-\section{Related Work}
+Nesse capítulo nós vamos apresentar os trabalhos existentes sobre análise de dados e detecção de outliers com algoritmos e estratégias de como usar essa abordagem para melhorar a análise dos dados e aumentar a quantidade e a qualidade das informações que podemos obter dos datasets.
+
+% \section{Related Work}
+\section{Trabalhos Relacionados}
 
 \subsection{GeoGuide}
 
-Pursuing improve the spatial data analysis and the guidance approach for this kind of data, the GeoGuide \cite{omidvarTehrani2017} is a interactive framework that aims to highlight to the analyst a subset of $k$ interesting spatial points, based on the analyst \textit{implicit} (e.g. mouse tracking) and \textit{explicit} (e.g. points clicked) feedbacks, that he may not seem because of the huge amount of information on his screen. This framework considers two metrics to give the subset highlight. The first one is the \textbf{relevance} of each point to the point selected by the analyst considering the attributes of those points. The second one is the geographically \textbf{diversity} to expand the analyst area in chase of possible new interesting regions.
+% Pursuing improve the spatial data analysis and the guidance approach for this kind of data, the GeoGuide \cite{omidvarTehrani2017} is a interactive framework that aims to highlight to the analyst a subset of $k$ interesting spatial points, based on the analyst \textit{implicit} (e.g. mouse tracking) and \textit{explicit} (e.g. points clicked) feedbacks, that he may not seem because of the huge amount of information on his screen. This framework considers two metrics to give the subset highlight. The first one is the \textbf{relevance} of each point to the point selected by the analyst considering the attributes of those points. The second one is the geographically \textbf{diversity} to expand the analyst area in chase of possible new interesting regions.
 
-All this process can be used in generic spatial datasets, as long as each point have two characteristics: geographical attributes (i.e. latitude and longitude) and metadata attributes about its own domain. For instance, the Airbnb\footnote{\it http://www.airbnb.com} platform has open datasets about the available home-stays to rent and each one has the geographical attributes and \textit{price, hostname, availability} as their metadata attributes that are specific for each dataset type as presented in Figure \ref{fig:geoguide-example-airbnb}. Using this approach, the GeoGuide is the first efficient interactive highlighting framework for spatial data, combining analyst feedbacks with relevance and diversity metrics to display to the analyst a set of interesting points that he may be not focused during his analysis.
+Visando melhorar a análise de dados espaciais e a abordagem por orientação para esse tipo de dado, o GeoGuide \cite{omidvarTehrani2017} é um framework interativo que visa destacar para o analista um subconjunto de $k$ pontos espaciais interesantes, baseado nos feedbacks \textit{implícito} (ex.: rastreamento do mouse) e \textit{explícito} (ex.: pontos clicados) do analista, que podem não terem sido vistos dado o montante de informação aparente na sua tela. Esse framework leva em consideração duas importantes métricas para poder destacar um subconjunto. A primeira é a \textbf{relevância} de cada ponto para o ponto selecionado pelo analista considerando os atributos não espaciais desses pontos. O segundo é a \textbf{diversidade} geográfica para que assim possa expandir a área de análise do usuário em busca de possíveis novas regiões de seu interesse.
 
+% All this process can be used in generic spatial datasets, as long as each point have two characteristics: geographical attributes (i.e. latitude and longitude) and metadata attributes about its own domain. For instance, the Airbnb\footnote{\it http://www.airbnb.com} platform has open datasets about the available home-stays to rent and each one has the geographical attributes and \textit{price, hostname, availability} as their metadata attributes that are specific for each dataset type as presented in Figure \ref{fig:geoguide-example-airbnb}. Using this approach, the GeoGuide is the first efficient interactive highlighting framework for spatial data, combining analyst feedbacks with relevance and diversity metrics to display to the analyst a set of interesting points that he may be not focused during his analysis.
+
+Todo esse processo pode ser utilizado em datasets espaciais genéricos, contanto que cada ponto do conjunto tenha duas características: atributos geográficos (ex.: latitude e longitude) e atributos \textit{metadados} de domínio do dataset. Por exemplo, a plataforma Airbnb\footnote{\it http://www.airbnb.com} tem datasets abertos sobre as casa disponíveis para alugar e cada uma delas tem atributos geográficos e \textit{preço, nome do hospedados e disponibilidade} como seus atributos metadados que são específicos para cada tipo de dataset como podemos ver na Figura \ref{fig:geoguide-example-airbnb}. Utilizando essa abordagem, o GeoGuide é o primeiro framework interativo eficiente para destaque de dados espaciais, combinando o feedback do analista com as métricas de relevância e diversidade para mostrar a ele um subconjunto de pontos interessantes que podem não ter sido deixado de lado durante sua análise.
+
+% \begin{figure*}[t]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{images/geoguide-example-airbnb}
+% 	\caption{GeoGuide Image on Airbnb Dataset - Paris City}
+% 	\label{fig:geoguide-example-airbnb}
+% 	\vspace{-10pt}
+% \end{figure*}
 \begin{figure*}[t]
 	\centering
 	\includegraphics[width=\textwidth]{images/geoguide-example-airbnb}
-	\caption{GeoGuide Image on Airbnb Dataset - Paris City}
+	\caption{Imagem do GeoGuide no dataset do Airbnb - Cidade de Pais}
 	\label{fig:geoguide-example-airbnb}
 	\vspace{-10pt}
 \end{figure*}
@@ -26,11 +39,17 @@ All this process can be used in generic spatial datasets, as long as each point 
 % TODO: usar definição de Hawkins (procurar slide dos algoritmos de detecção de outlier)
 % TODO: adicionar exemplos de outlier detection
 
-Outliers in the statistics area are when one finds ``aberrant values'' in a given series of data, that is when one finds an atypical value or with a great distance from the normal distribution in that set. For example, when a researcher wants to monitor the temperature of his CPU during a certain time interval and it has been realized that the temperature range is between 34 ºC and 45 ºC degrees being 48 ºC the maximum temperature and 27 ºC the minimum temperature and in the middle of this sample are some punctual registers of 0 ºC, this can be characterized as an outlier and, most likely, will be understood as a malfunction of the equipment that performed the collection of these CPU temperatures.
+% Outliers in the statistics area are when one finds ``aberrant values'' in a given series of data, that is when one finds an atypical value or with a great distance from the normal distribution in that set. For example, when a researcher wants to monitor the temperature of his CPU during a certain time interval and it has been realized that the temperature range is between 34 ºC and 45 ºC degrees being 48 ºC the maximum temperature and 27 ºC the minimum temperature and in the middle of this sample are some punctual registers of 0 ºC, this can be characterized as an outlier and, most likely, will be understood as a malfunction of the equipment that performed the collection of these CPU temperatures.
 
-However, there are several ways to interpret an Outlier (not only as a collection error), but also as: data that belong to a different population of the sample, a damaged data, areas in which a certain theory is not valid or even, when the sample is too large, it is normal to have some small amounts of outliers in that group. In cases where it is proven that it is not the fault of a collection equipment malfunction or that it was not a human mistake, it is extremely important to know the why of that outlier and try to understand it, because it is not interesting for a research simply remove it from the sample or re-signify it by assigning a new value. This change may compromise the validity of the research, and if this is done, it is extremely important to document and record those changes.
+No campo da estatística, Outliers são quando se encontram ``valores aberrantes'' num determinado conjunto de dados, ou seja, quando alguém acha um valor atípico ou muito fora da distribuição normal daquele conjunto. Por exemplo, quando um pesquisador quer montiorar a temperatura de sua CPU durante um certo intervalo de tempo e foi percebido que a variação de temperatura foi entre 34 ºC e 45 ºC com máxima de 48 ºC e mínima de 27 ºC e no meio dessa amostragem são encontrados registros pontuais de 0 ºC, isso é caracterizado como um outlier a, muito provavelmente, será interpretado como um defeito do equipamento que realizou a coleta da temperatura da CPU.
 
-As the information technologies improve and continuously increase their computational power, a great variety of algorithms for outlier detection has been surging and applied in different contexts with diverse characteristics and the choice for one of those algorithms is based on the problem domain. Next section will present some of those algorithms with a brief explanation about each one.
+% However, there are several ways to interpret an Outlier (not only as a collection error), but also as: data that belong to a different population of the sample, a damaged data, areas in which a certain theory is not valid or even, when the sample is too large, it is normal to have some small amounts of outliers in that group. In cases where it is proven that it is not the fault of a collection equipment malfunction or that it was not a human mistake, it is extremely important to know the why of that outlier and try to understand it, because it is not interesting for a research simply remove it from the sample or re-signify it by assigning a new value. This change may compromise the validity of the research, and if this is done, it is extremely important to document and record those changes.
+
+Entretanto, existem diversas formas de interpretar um Outlier além de um erro da coleta, como: um dado que pertença à uma população diferente da amostra, um dado defeituoso, um dado que esteja numa área em que certa teoria não é válida ou até, quando a amostra é muito grande, é normal haver pequenos quantidades de outliers naquele grupo. Em casos em que são provados que não é culpa de um equipamento defeituoso de coleta ou que não foi uma falha humana, é extremamente importante entender o porquê daquele outlier, pois não é interessante para o pesquisador simplesmente removê-lo ou ressignificá-lo definindo-lhe um novo valor, já que essa mudança pode comprometer a validade da pesquisa e, caso aconteça, é de extrema importância que tudo isso seja documentado para registro dessas alterações.
+
+% As the information technologies improve and continuously increase their computational power, a great variety of algorithms for outlier detection has been surging and applied in different contexts with diverse characteristics and the choice for one of those algorithms is based on the problem domain. Next section will present some of those algorithms with a brief explanation about each one.
+
+Assim como as tecnologias da informação melhoram e aumentam continuamente seu poder computacional, uma grande variedade de algoritmos para detecção de outliers tem surgido e vem sendo aplicado em diferentes contextos com diversas características, sendo que a escolha para um desses algoritmos é baseada no domínio do problema. Na próxima seção nós apresentaremos alguns desses algoritmos com uma breve explicação sobre cada um.
 
 \section{Algorithms}
 
@@ -119,26 +138,30 @@ It is an angle-based algorithm \cite{Kriegel:2008:AOD:1401890.1401946} for detec
 
 \vspace{25pt}
 
-Based on the algorithms presented, we organize each one according the answer of proposed questions about outlier detection algorithms in general. The proposed questions are: \textbf{I} \textit{Is it parametric?}; \textbf{II} \textit{Which is the approach?}; \textbf{III} \textit{Is it scalable in performance terms?}; \textbf{IV} \textit{Is it multidimensional scalable?} and \textbf{V} \textit{Does it receive any argument?}. The result is presented in the Table \ref{table:algorithms-comparison}.
+% Based on the algorithms presented, we organize each one according the answer of proposed questions about outlier detection algorithms in general. The proposed questions are: \textbf{I} \textit{Is it parametric?}; \textbf{II} \textit{Which is the approach?}; \textbf{III} \textit{Is it scalable in performance terms?}; \textbf{IV} \textit{Is it multidimensional scalable?} and \textbf{V} \textit{Does it receive any argument?}. The result is presented in the Table \ref{table:algorithms-comparison}.
+
+Baseado nos algoritmos apresentados, nós organizamos cada um de acordo com a resposta para nossas questões propostas sobre algoritmos de detecção de outliers no geral. As questões são: \textbf{I} \textit{É paramétrico?}; \textbf{II} \textit{Qual é a abordagem?}; \textbf{III} \textit{É escalável em termos de performace?}; \textbf{IV} \textit{É escalável em termos de múltiplas dimensões?} e \textbf{V} \textit{Ele recebe algum argumento?}. O resultado é apresentado na Tabela Table \ref{table:algorithms-comparison}.
 
 \begin{table}[]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|}
 		\hline
-		\textbf{Algorithms}               & \textbf{I} & \textbf{II}      & \textbf{III} & \textbf{IV} & \textbf{V} \\ \hline
-		\textbf{Z-Score}                  & Yes        & Model Based      & No           & No          & Yes        \\ \hline
-		\textbf{DBSCAN}                   & No         & Density Based    & No           & Yes         & Yes        \\ \hline
-		\textbf{Isolation Forests}        & No         & Depth Based      & No           & No          & No         \\ \hline
-		\textbf{FDC}                      & No         & Depth Based      & Yes          & No          & No         \\ \hline
-		\textbf{Hidden Outlier Detection} & No         & Distance Based   & Yes          & Yes         & Yes        \\ \hline
-		\textbf{ORCA}                     & No         & Distance Based   & No           & Yes         & Yes        \\ \hline
-		\textbf{Linearization}            & No         & Distance Based   & Yes          & Yes         & Yes        \\ \hline
-		\textbf{RBRP}                     & No         & Distance Based   & Yes          & Yes         & Yes        \\ \hline
-		\textbf{LOF}                      & No         & Density Based    & No           & Yes         & Yes        \\ \hline
-		\textbf{ABOD}                     & No         & High Dimensional & No           & Yes         & No         \\ \hline
+		\textbf{Algorithms}               & \textbf{I} & \textbf{II}             & \textbf{III} & \textbf{IV} & \textbf{V} \\ \hline
+		\textbf{Z-Score}                  & Sim        & Baseado em Modelo       & Não          & Não         & Sim        \\ \hline
+		\textbf{DBSCAN}                   & Não        & Baseado em Densidade    & Não          & Sim         & Sim        \\ \hline
+		\textbf{Isolation Forests}        & Não        & Baseado em Profundidade & Não          & Não         & Não        \\ \hline
+		\textbf{FDC}                      & Não        & Baseado em Profundidade & Sim          & Não         & Não        \\ \hline
+		\textbf{Hidden Outlier Detection} & Não        & Baseado em Distância    & Sim          & Sim         & Sim        \\ \hline
+		\textbf{ORCA}                     & Não        & Baseado em Distância    & Não          & Sim         & Sim        \\ \hline
+		\textbf{Linearization}            & Não        & Baseado em Distância    & Sim          & Sim         & Sim        \\ \hline
+		\textbf{RBRP}                     & Não        & Baseado em Distância    & Sim          & Sim         & Sim        \\ \hline
+		\textbf{LOF}                      & Não        & Baseado em Densidade    & Não          & Sim         & Sim        \\ \hline
+		\textbf{ABOD}                     & Não        & Altas Dimensões         & Não          & Sim         & Não        \\ \hline
 	\end{tabular}
-	\caption{Comparison of the presented Outlier Detection Algorithms}
+	\caption{Comparação dos Algoritmos de Detecção de Outlier apresentados}
 	\label{table:algorithms-comparison}
 \end{table}
 
-Each question has a specific reason to be in the Table \ref{table:algorithms-comparison}. The question \textbf{I} is about the probability distribution of the dataset. If the algorithm is parametric, so we can assume a probability distribution based on a fixed set of parameters. The question \textbf{II} serves to classify each algorithm based on his approach for detect a data as an outlier or not, the options are: \textit{Model Based}, \textit{Density Based}, \textit{Depth Based}, \textit{Distance Based}, \textit{High Dimensional}. The question \textbf{III} is relative to the performance of each algorithm, if the algorithm execution time is not compromised as the input data increase, it means the algorithm is scalable in perfomance terms. The question \textbf{IV} is about the performance of each algorithm too, but in this case is related to the perfomance when the dimension of the data increase. At least, the question \textbf{V} indicates if the algorithm require any input argument to process the dataset, this is important because if it requires many arguments, this can be a accuraccy problem when the dataset increase.
+% Each question has a specific reason to be in the Table \ref{table:algorithms-comparison}. The question \textbf{I} is about the probability distribution of the dataset. If the algorithm is parametric, so we can assume a probability distribution based on a fixed set of parameters. The question \textbf{II} serves to classify each algorithm based on his approach for detect a data as an outlier or not, the options are: \textit{Model Based}, \textit{Density Based}, \textit{Depth Based}, \textit{Distance Based}, \textit{High Dimensional}. The question \textbf{III} is relative to the performance of each algorithm, if the algorithm execution time is not compromised as the input data increase, it means the algorithm is scalable in perfomance terms. The question \textbf{IV} is about the performance of each algorithm too, but in this case is related to the perfomance when the dimension of the data increase. At least, the question \textbf{V} indicates if the algorithm require any input argument to process the dataset, this is important because if it requires many arguments, this can be a accuraccy problem when the dataset increase.
+
+Cada questão tem uma motivação específica para estar na Tabela \ref{table:algorithms-comparison}. A questão \textbf{I} é sobre a distribuição de probabilidade do dataset. Se o algoritmo é paramétrico, então nós podemos assumir a distribuição de probabilidade do dataset baseado em um conjunto fixo de parametros. A questão \textbf{II} serve para classificar cada algoritmo baseado na abordagem que ele utiliza para indicar se um dado é um outlier ou não, as opções são: textit{Baseado em Modelo}, \textit{Baseado em Densidade}, \textit{Baseado em Profundidade}, \textit{Baseado em Distância} e \textit{Altas Dimensões}. A questão \textbf{III} é relativa a performace computacional de cada algoritmo, se o tempo de execução do algoritmo não é comprometido de acordo com o crescimento do dataset, significa que ele é escalável em termos de perfomance. A questão \textbf{IV} é sobre a perfomance de cada algoritmo também, mas nesse caso é relacionado ao crescimento de dimensões do dataset. Por fim, a questão \textbf{V} indica se o algoritmo requer algum argumento de entrada para processar o dataset, isso é importante pois se o algoritmo requer muitos argumentos pode se tornar um problema de precisão quando o dataset aumentar.
