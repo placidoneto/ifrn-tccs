@@ -51,49 +51,55 @@ Entretanto, existem diversas formas de interpretar um Outlier além de um erro d
 
 Assim como as tecnologias da informação melhoram e aumentam continuamente seu poder computacional, uma grande variedade de algoritmos para detecção de outliers tem surgido e vem sendo aplicado em diferentes contextos com diversas características, sendo que a escolha para um desses algoritmos é baseada no domínio do problema. Na próxima seção nós apresentaremos alguns desses algoritmos com uma breve explicação sobre cada um.
 
-\section{Algorithms}
+% \section{Algorithms}
+\section{Algoritmos}
 
 \subsection{Z-Score}
 
-Z-Score is one of the simplest methods for detecting outliers in a dataset. It is a
-parametric method and takes into account only one attribute per execution. It is also
-necessary the input of a threshold (usually is a value between 2.5 to 3.5) to be able
-to define if a given data can be considered an outlier or not. This method is suitable
-for small datasets that follow the Gaussian distribution.
+% Z-Score is one of the simplest methods for detecting outliers in a dataset. It is a
+% parametric method and takes into account only one attribute per execution. It is also
+% necessary the input of a threshold (usually is a value between 2.5 to 3.5) to be able
+% to define if a given data can be considered an outlier or not. This method is suitable
+% for small datasets that follow the Gaussian distribution.
+
+Z-Score é um dos métodos mais simples para detecção de outliers em um dataset. É um método parametrico que leva em consideração somente um atributo por execução e é necessário a entrada de um valor limite (geralmente um valor entre 2,5 e 3,5) para poder definir se um determinado dado pode ser considerado como um outlier ou não. Esse método é adequado para pequenos datasets que seguem a distribuição Gaussiana.
 
 \subsection{DBSCAN}
 
-It is a density-based spatial clustering algorithm \cite{Ester:1996:DAD:3001460.3001507} that can be applied in datasets that cannot be presumed what their distribution. It accepts multidimensional datasets (with 3 or more dimensions). However, you need a parameter (MinPts) that defines how many minimum points are needed to form a cluster. Thus, if the size of the set change, this parameter will need to be updated, otherwise the DBSCAN can become inefficient.
+% It is a density-based spatial clustering algorithm \cite{Ester:1996:DAD:3001460.3001507} that can be applied in datasets that cannot be presumed what their distribution. It accepts multidimensional datasets (with 3 or more dimensions). However, you need a parameter (MinPts) that defines how many minimum points are needed to form a cluster. Thus, if the size of the set change, this parameter will need to be updated, otherwise the DBSCAN can become inefficient.
+
+É um algoritmo de clusterização de dados espaciais baseado em densidade \cite{Ester:1996:DAD:3001460.3001507} pode ser aplicado em datasets os quais não se pode presumir qual a sua distribuição e que aceita datasets multidimensionais (com 3 ou mais dimensões). Entretanto, é necessário a entrada de um parametro (MinPts) que definirá quantos pontos são minimamente necessários para se formar um \textit{cluster}. Portanto, se o tamanho do conjunto mudar, esse parâmetro terá que ser atualizado, caso contrário, o DBSCAN pode se tornar ineficiente.
 
 \subsection{Isolation Forests}
 
-It is an algorithm of detection of outliers \cite{IsolationForests} that uses a concept of machine learning that
-is the decision tree. It is one-dimensional (only takes one attribute at a time) and is
-required few parameters (this facilitates the configuration and use of the algorithm).
-No need to climb your values and a very robust algorithm for large datasets.
+% It is an algorithm of detection of outliers \cite{IsolationForests} that uses a concept of machine learning that
+% is the decision tree. It is one-dimensional (only takes one attribute at a time) and is
+% required few parameters (this facilitates the configuration and use of the algorithm).
+% No need to climb your values and a very robust algorithm for large datasets.
 
-% \subsection{ISODEPTH}
+É um algoritmo de detecção de outliers \cite{IsolationForests} que usa um dos conceitos de aprendizagem de máquina que são as chamadas árvores de decisão. É unidimensional (só leva em consideração um atributo por vez) e são necessários poucos parâmetros (isso facilita a configuração e uso do algoritmo). Por não precisar escalar seus valores para sua execução, isso o torna um algoritmo robusto para grandes datasets.
 
-% TODO: IDSODEPTH
 
 \subsection{FDC}
 
-It is a depth-based algorithm \cite{Johnson:1998:FCD:3000292.3000332} approach for detection of outliers in 2D datasets based on the concept of ISODEPTH algorithm. The FDC computes the first k 2D depth contours (the points that can be considered outliers) by restricting to a small part of the complete dataset. In this way, it is more efficient by not having to calculate in the complete dataset and thus scaling more easily for large datasets of two dimensions.
+% It is a depth-based algorithm \cite{Johnson:1998:FCD:3000292.3000332} approach for detection of outliers in 2D datasets based on the concept of ISODEPTH algorithm. The FDC computes the first k 2D depth contours (the points that can be considered outliers) by restricting to a small part of the complete dataset. In this way, it is more efficient by not having to calculate in the complete dataset and thus scaling more easily for large datasets of two dimensions.
+
+É uma abordagem de algoritmo baseado em profundidade \cite{Johnson:1998:FCD:3000292.3000332} para detecção de outliers em datasets 2D que se baseia no conceito do algoritmo ISODEPTH.
+% TODO: referência algoritmo isodepth.
+O FDC computa os primeiros $k$ contornos de profundidade (os pontos que podem ser considerados outliers) restrigindo a uma pequena parte do dataset completo. Dessa forma, é mais eficiente por não ter que calcular no dataset completo e, portanto, mais fácil de escalar para grandes datasets de duas dimensões.
 
 \subsection{HOD}
 
-It is a distance-based outlier detection method \cite{Xu2016} that emerges to overcome the statistics-based
-concept because in the vast majority of datasets the probability distribution is not known.
-In this way, the method search for outliers based on their distance from their neighbors
-and if that point has a distance greater than a predefined parameter, then that point is
-considered an outlier. However, if there is a cluster of outliers in the dataset, this
-can affect its detection by distance-based algorithms, with this comes the concept of HOD
-(Hidden Outlier Detection) algorithms that aim to find outliers even when they are grouped
-and in enough quantity to form a cluster.
+% It is a distance-based outlier detection method \cite{Xu2016} that emerges to overcome the statistics-based
+% concept because in the vast majority of datasets the probability distribution is not known.
+% In this way, the method search for outliers based on their distance from their neighbors
+% and if that point has a distance greater than a predefined parameter, then that point is
+% considered an outlier. However, if there is a cluster of outliers in the dataset, this
+% can affect its detection by distance-based algorithms, with this comes the concept of HOD
+% (Hidden Outlier Detection) algorithms that aim to find outliers even when they are grouped
+% and in enough quantity to form a cluster.
 
-% \subsection{Nested Loop}
-
-% TODO: Nested Loop
+É um método de detecção de outlier baseado em distância \cite{Xu2016} que surge para superar os métodos baseados em estatísticas já que na vasta maioria dos datasets a distribuição de probabilidade não é conhecida. Dessa forma, o método busca por outliers baseado na sua distância em relação aos seus vizinhos e se essa distância é maior que um parâmetro de entrada predefinido, então esse ponto é considerado um outlier. Entretanto, se já existe um cluster de outliers no dataset, isso pode afetar a detecção em algoritmos baseado em distância, para isso que serve o conceito HOD (\textit{Hidden Outlier Detection}) do algoritmo que visa encontrar outliers mesmo quando eles estão agrupados em quantidades suficiente para formação de um cluster.
 
 \subsection{ORCA}
 
@@ -120,21 +126,9 @@ approach is not to define whether a point is an outlier or not, but rather the `
 that point is in that dataset. The outlier factor is local in the sense that only a neighborhood
 of that point is taken into account to define its factor.
 
-% \subsection{INFLO}
-
-% TODO: INFLO
-
-% \subsection{LOCI}
-
-% TODO: LOCI
-
 \subsection{ABOD}
 
 It is an angle-based algorithm \cite{Kriegel:2008:AOD:1401890.1401946} for detection of outliers that is focused on high-dimensional datasets, different from other distance-based algorithms that end up damaged when one has many dimensions. Your approach is based on the calculation of a degree of angle between the different vectors of a point with its neighbors. With this, more centralized points within the cluster will have this degree calculated with a high value, the points more on the edge of the clusters will have this degree a little smaller and the possible outliers will have that degree with a very small value, since they will generally be far from the cluster in a particular direction.
-
-% \subsection{SOD}
-
-% TODO: SOD
 
 \vspace{25pt}
 
