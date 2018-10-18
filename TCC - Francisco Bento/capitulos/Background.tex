@@ -103,32 +103,36 @@ O FDC computa os primeiros $k$ contornos de profundidade (os pontos que podem se
 
 \subsection{ORCA}
 
-It is a distance-based algorithm \cite{Bay:2003:MDO:956750.956758} that optimizes a simple nested loop algorithm (which are logarithmic algorithms and extremely inefficient when dealing with large datasets) by removing possible non-outliers during their execution. This way, instead of processing the complete dataset by calculating all possible distances, it removes unnecessary calculations that would be executed if a non-outlier point were taken to the end. From him, new researches have emerged further refining this concept.
+% It is a distance-based algorithm \cite{Bay:2003:MDO:956750.956758} that optimizes a simple nested loop algorithm (which are logarithmic algorithms and extremely inefficient when dealing with large datasets) by removing possible non-outliers during their execution. This way, instead of processing the complete dataset by calculating all possible distances, it removes unnecessary calculations that would be executed if a non-outlier point were taken to the end. From him, new researches have emerged further refining this concept.
+
+É um algoritmo baseado em distância \cite{Bay:2003:MDO:956750.956758} que otimiza um algoritmo simples de loop aninhado 
+% TODO: pegar referência de nested loop
+(que são algoritmos de complexidade exponencial os quais são extremamente ineficientes quando utilizados em grandes datasets) pela remoção de possíveis \textit{non-outliers} durante sua execução. Dessa forma, ao invés de processar o dataset por completo, ele vai removendo cálculos que serão desnecessários, já que o ponto não vai ser considerado um outlier. A partir dele, novas pesquisas têm surgido para refinar mais esse conceito. 
 
 \subsection{Linearization}
 
-It is a distance-based algorithm \cite{10.1007/3-540-45681-3_2} that detects outliers by calculating the sum of the distances
-of a point in relation to its neighbor, calling it weight, and setting an outlier as the points
-with the greatest weights in the dataset. In this way, it is an efficient algorithm and it is
-linearly scaled both in the number of points and in the number of dimensions. To calculate these
-outliers more efficiently the algorithm uses the concept of the Hilbert space-filling curve.
+% It is a distance-based algorithm \cite{10.1007/3-540-45681-3_2} that detects outliers by calculating the sum of the distances of a point in relation to its neighbor, calling it weight, and setting an outlier as the points with the greatest weights in the dataset. In this way, it is an efficient algorithm and it is linearly scaled both in the number of points and in the number of dimensions. To calculate these outliers more efficiently the algorithm uses the concept of the Hilbert space-filling curve.
+
+É um algoritmo baseado em distância \cite{10.1007/3-540-45681-3_2} que detecta outliers calculando a soma das distâncias de um ponto em relação aos seus vizinhos, chamando isso de \textit{peso}, e definindo os outliers como os pontos com os maiores pesos no dataset. Dessa forma, é um algoritmo eficiente de complexidade linear tanto em relação ao número de pontos como ao número de dimensões. Para ajudar a calcular esses outliers mais eficientemente, o algoritmo utiliza o conceito da \textit{curva de Hilbert}
+% TODO: adicionar referência à curva de Hilbert 
 
 \subsection{RBRP}
 
-It is an algorithm for high-performance multidimensional datasets that is based on distances between the points to be able to define what the outliers are \cite{Ghoting2006}. Its difference to the other distance-based algorithms is that it is more efficient for datasets with multiple dimensions and in comparisons with others, its scalability is approximately linear for the number of dimensions and logarithmic for the number of points in the dataset.
+% It is an algorithm for high-performance multidimensional datasets that is based on distances between the points to be able to define what the outliers are \cite{Ghoting2006}. Its difference to the other distance-based algorithms is that it is more efficient for datasets with multiple dimensions and in comparisons with others, its scalability is approximately linear for the number of dimensions and logarithmic for the number of points in the dataset.
+
+É um algoritmo de alta perfomance para datasets multidimensionais que é baseado nas distâncias entre os pontos para poder definir quais são os outliers no dataset \cite{Ghoting2006}. Sua diferença para os outros algoritmos baseado em distância é que ele se torna mais eficiente quando executado em dataset com múltiplas dimensões, sua escalabilidade é aproximadamente linear para o número de dimensões e logarítmica para o número de pontos no dataset.
 
 \subsection{LOF}
 
-It is a density-based algorithm that adds a new concept in the search for outliers: the
-Local Outlier Factor (LOF) \cite{Breunig:2000:LID:335191.335388}, which is a degree of propensity to be an outlier so that the
-process of outlier definition is not more binary, but something gradual. With this, the
-approach is not to define whether a point is an outlier or not, but rather the ``how outlier''
-that point is in that dataset. The outlier factor is local in the sense that only a neighborhood
-of that point is taken into account to define its factor.
+% It is a density-based algorithm that adds a new concept in the search for outliers: the Local Outlier Factor (LOF) \cite{Breunig:2000:LID:335191.335388}, which is a degree of propensity to be an outlier so that the process of outlier definition is not more binary, but something gradual. With this, the approach is not to define whether a point is an outlier or not, but rather the ``how outlier'' that point is in that dataset. The outlier factor is local in the sense that only a neighborhood of that point is taken into account to define its factor.
+
+É um algoritmo baseado em densidade que adiciona um novo conceito na busca por outliers: o \textit{Local Outlier Factor (LOF)} \cite{Breunig:2000:LID:335191.335388}, que é um grau de propensidade que aquele ponto tem de ser um outlier e dessa forma o processo de definição de outlier não é mais binário, mas sim algo gradual. Com isto, a abordagem não é mais sobre um ponto ser outlier ou não, mas sim o ``quão outlier'' esse ponto é em relação ao dataset. O \textit{outlier factor} é local no sentido que somente os vizinhos daquele ponto é levado em consideração para definir seu fator.
 
 \subsection{ABOD}
 
-It is an angle-based algorithm \cite{Kriegel:2008:AOD:1401890.1401946} for detection of outliers that is focused on high-dimensional datasets, different from other distance-based algorithms that end up damaged when one has many dimensions. Your approach is based on the calculation of a degree of angle between the different vectors of a point with its neighbors. With this, more centralized points within the cluster will have this degree calculated with a high value, the points more on the edge of the clusters will have this degree a little smaller and the possible outliers will have that degree with a very small value, since they will generally be far from the cluster in a particular direction.
+% It is an angle-based algorithm \cite{Kriegel:2008:AOD:1401890.1401946} for detection of outliers that is focused on high-dimensional datasets, different from other distance-based algorithms that end up damaged when one has many dimensions. Your approach is based on the calculation of a degree of angle between the different vectors of a point with its neighbors. With this, more centralized points within the cluster will have this degree calculated with a high value, the points more on the edge of the clusters will have this degree a little smaller and the possible outliers will have that degree with a very small value, since they will generally be far from the cluster in a particular direction.
+
+É um algoritmo de detecção de outlier baseado em ângulo \cite{Kriegel:2008:AOD:1401890.1401946} que é focado em datasets de altas dimensões, diferente de outros algoritmos baseado em distãncia que acabam prejudicados quando o dataset tem muitas dimensões. Sua abordagem é baseado no cálculo do grau do ângulo entre os diferentes vetores de um ponto com os seus vizinhos. Com isto, pontos mais centralizados dentro do cluster terão esse grau calculado com um valor maior, já os pontos mais próximos da borda terão esse valor um pouco menor e o possíveis outliers terão esse grau com valores muito pequenos, já que eles geralmente estarão distantes do cluster em uma direção particular. 
 
 \vspace{25pt}
 
