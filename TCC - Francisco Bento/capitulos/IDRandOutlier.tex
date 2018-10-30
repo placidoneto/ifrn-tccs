@@ -1,4 +1,38 @@
-\chapter{IDRs and Outliers}
+\chapter{Outliers e IDRs}
+
+\section{Outliers}
+
+Nesta seção nós iremos abordar mais detalhadamente as características dos pontos que são considerados \textit{discrepantes} em um determinado conjunto de dados e quais as influências que isso pode trazer para uma pesquisa. Além disso, vamos falar do tratamento que propomos para o GeoGuide e qual a utilidade disso e também sobre o algoritmo escolhido e as motivações que levaram à essa escolha.
+
+\subsection{Dados espaciais discrepantes}
+
+Quando tratamos de temas como a captura e análise de dados no nosso cotidiano, o cenário atual se encontra numa situação nunca antes vista na história, já que nunca tivemos tanto volume de dados sendo gerado a todo segundo e das mais diversas formas e fontes. Caso a gente se aprofunde ainda mais nesse meio e foque nos dados espaciais, encontraremos uma variedade de características específicas desse nicho e também problemas específicos os quais buscamos solução.
+
+Por exemplo, podemos destacar aqui 3 exemplos distintos de datasets que estão disponíveis atualmente na internet e são referentes a dados espaciais, cada um com sua particularidade:
+
+% TODO: adicionar referências
+\subsubsection{Táxis de Nova Iorque}
+
+Desde de 2011 que as empresas de táxis de Nova Iorque, visando entender melhor seu funcionamento, conhecer mais sobre seu mercado e evitar as ocorrências de fraudes, investem em uma estrutura para coleta e armazenamento dos dados referentes a cada corrida de táxi que acontece na cidade. O resultado disso é que anualmente são armazenados e disponibilizados gigabytes de dados referentes a cada uma dessas corridas e que podem ser utilizados para análises de qualquer natureza e finalidade.
+
+Entretanto, não é tão simples o processo de análise de volumes desse porte e antes de mesmo dessa análise começar, vários fatores tem que serem levados em consideração, como, por exemplo, a estrutura desses dados e a confiabilidade dele. No caso desse dataset, falhas podem ocorrer nos equipamentos responsáveis pela coleta, na próprio gerenciamento e organização desses dados, pois nesse processo necessita de intervenção humana e isso por si só é um fator de risco em qualquer análise.
+
+Imagine que num determinado táxi em um certo dia e horário, todas as corridas tiveram o dado referente a distância percorrida pelo táxi com um valor negativo, o que fazer nessa situação? Ou então que a data início de uma corrida seja superior à data de término da mesma? Ou até sejam valores próximos, mas sua distância seja extremamente alta para esse tempo? Todos esses problemas podem acontecer nesse contexto e cada um deles devem ser tratados propriamente e com o devido cuidado. Esses tipos de problemas são os problemas no processo de \textit{limpeza dos dados} e é de uma importância crucial que eles sejam mitigados, pois nessas circustâncias as futuras análises estariam todas comprometidas com a presença de \textit{ruídos} que afetam diretamente uma boa análise.
+
+% airbnb
+\subsubsection{Hospedagens de Paris}
+% yelp
+\subsubsection{Restaurantes}
+
+TODO: explain about the existing process to capture spatial data and its different sources. show the existing spatial datasets with brief descriptions about each one with references. summaries the problems of cleaning datasets and the bad analysis with \textit{noise points}
+
+\subsection{Outliers in GeoGuide}
+
+TODO: explain the utility of detect outliers in GeoGuide and its advantages. describe a practical usage with real datasets examples
+
+\subsection{Algorithm}
+
+TODO: show the selected outlier detection algorithm. use image and explain step by step. explain about its complexity. present its pros and cons.
 
 \section{IDRs}
 
@@ -16,18 +50,3 @@ TODO: describe about Interesting Dense Regions and its usability and advantages 
 
 TODO: Show the used algorithm for IDR detection and explain how it works. present its complexity with pros and cons
 
-\section{Outliers}
-
-TODO: brief description about the next subsections
-
-\subsection{Atypical spatial data}
-
-TODO: explain about the existing process to capture spatial data and its different sources. show the existing spatial datasets with brief descriptions about each one with references. summaries the problems of cleaning datasets and the bad analysis with \textit{noise points}
-
-\subsection{Outliers in GeoGuide}
-
-TODO: explain the utility of detect outliers in GeoGuide and its advantages. describe a practical usage with real datasets examples
-
-\subsection{Algorithm}
-
-TODO: show the selected outlier detection algorithm. use image and explain step by step. explain about its complexity. present its pros and cons.
