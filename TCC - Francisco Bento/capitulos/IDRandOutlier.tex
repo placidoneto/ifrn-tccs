@@ -43,25 +43,32 @@ Incentivos como esse mostram o quão importante é o investimento nas áreas de 
 
 \subsection{Outliers no GeoGuide}
 
-TODO: explain the utility of detect outliers in GeoGuide and its advantages. describe a practical usage with real datasets examples
+Como dito anteriormente, o GeoGuide visa melhorar a experiência do analista frente à grandes montantes de dados espaciais que possam o deixar perdido durante sua análise, e isso, na maioria dos casos, prejudicará sua análise fazendo com que ele não leve em informações que podem ser relevantes para sua pesquisa. Além disso, a existência de Outliers num dataset pode ser uma fonte de novas informações sobre aquele conjunto de dados. Por exemplo, em um conjunto de dados referente aos gastos do cartão de crédito de uma pessoa, caso tenha outliers, é um indicador muito forte de uma fraude nesse cartão, com isso, as empresas financeiras podem tomar medidas de segurança para evitar esses problemas.
 
-\subsection{Algorithm}
+No caso de datasets espaciais, as aplicações podem ser ainda maiores, pois além dos atributos referentes aos próprios pontos do conjunto, os próprios atributos referentes a localização do ponto (latitude e longitude) podem, por si só, caracterizar determinado ponto como um outlier. Dessa forma, a identificação desses pontos durante a análise do pesquisador pode trazer novas informações que estimule a criação de novas abordagens e decisões sobre aquele conjunto.
 
-TODO: show the selected outlier detection algorithm. use image and explain step by step. explain about its complexity. present its pros and cons.
+A título de exemplo, se pegarmos o dataset referente aos táxis de Nova Iorque e selecionarmos um conjunto de corridas de uma parte de Manhattan do mesmo dia e mesmo horário e com uma margem próxima de preço entre elas, podemos buscar por pontos considerados outliers em relação ao seu preço e o do conjunto, com isso, podemos detectar possíveis fraudes no serviço de táxi (caso esse ponto seja um outlier por um preço “abaixo do normal”) ou então abuso de cobrança por parte do motorista (caso esse ponto seja um outlier por um preço “acima do normal”).
+
+Sabendo disso, podemos aplicar essa detecção de outliers no GeoGuide enquanto o analista está no processo de descobrimento do dataset. Dessa forma, enquanto ele vai percorrendo pelo conjunto de dados e selecionando quais os pontos são de seu interesse, a ferramenta vai procurando, de forma assíncrona e implícita, pontos que podem ser outliers em relação aos pontos já previamentes definidos como interessantes para o usuário e assim, de forma totalmente transparente e sem precisar de nenhuma nova ação do analista, novas informações sobre o dataset podem ser destacadas para quem está analisando e abrir um leque maior de opções e ideias sobre aquele conjunto de dados, ampliando sua análise mais facilmente e lhe mostrando o quê mais pode ser importante naquele ambiente.
+
+
+\subsection{Algoritmo}
+
+TODO: Mostrar o algoritmo de detecção selecionado. Usar uma imagem dele e explicar passo a passo, além de falar sobre sua complexidade, mostrando os prós e contras do seu uso.
 
 \section{IDRs}
 
-TODO: brief description about the next subsections
+TODO: Uma breve descrição sobre as próximas sub seções
 
-\subsection{User feedback}
+\subsection{Feedback do usuário}
 
-TODO: describe about user feedback and its benefit, \textit{implicit and explicit} feedback with examples: gaze track, mouse click, mouse tracking, mouse track polygons, polygons intersections. use some image to demonstrate the idea
+TODO: Escrever sobre o feedback do usuário e seus benefícios, feedback implícito e explícito com exemplos: rastreamento do olho, clique do mouse, rastreamento do mouse. Falar sobre os polígonos gerados a partir do rastreamento do mouse, as interseções dos polígonos. Utilizar alguma imagem para demonstrar a ideia.
 
-\subsection{Interesting Dense Regions}
+\subsection{Regiões Densamente Interessantes}
 
-TODO: describe about Interesting Dense Regions and its usability and advantages based on mouse track polygons. Use the figure from the IDR paper with description.
+TODO: Escrever sobre os IDRs e sua usabilidade com suas vantagens baseadas nos polígonos gerados a partir do rastreamento do mouse. Usar a figura do paper sobre IDR com uma descrição sobre o que está acontecendo na imagem.
 
-\subsection{Algorithm}
+\subsection{Algoritmo}
 
-TODO: Show the used algorithm for IDR detection and explain how it works. present its complexity with pros and cons
+TODO: Mostrar o algoritmo utilizado para detecção do IDR e explicar seu funcionamento. Apresentar sua complexidade com seus prós e contras.
 
