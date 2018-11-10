@@ -1,0 +1,31 @@
+\chapter{IDRs}
+
+\section{IDRs}
+
+Nesta seção nós iremos explanar mais profundamente o conceito de Regiões Densamente Interessantes e qual a sua utilidade em uma análise de dados espaciais. Também detalharemos o passo a passo para a criação de uma Região desse tipo, qual a função do feedback do usuário nessa construção, qual o algoritmo usado para esse processo, qual sua utilização no GeoGuide e quais as vantagens que podemos obter quando utilizamos Regiões Densamente Interessantes para fazer análise de dados espaciais com uma abordagem de orientação do usuário através da ferramenta.
+
+\subsection{Feedback do usuário}
+
+Para poder explicar melhor o conceito de IDR, precisamos começar falando sobre o \textit{feedback} do usuário, como funciona e como isso pode ser utilizado na criação das Regiões. Durante a utilização de um sistema, o usuário vai interagindo com suas funcionalidades e o sistema vai respondendo aos seus comandos e ações, isso faz com que um sistema seja interativo e dinâmico, podendo ser atualizado conforme o usuário e as características de cada um. Em sistemas de análise de dados espaciais, é muito comum que seja utilizado um mapa, um gráfico ou qualquer recuso visual que facilite a interpretação do usuário e dê uma noção sobre o que se trata o dataset em si.
+
+A partir disso, o usuário pode ir ``caminhando'' pelo mapa (ou figura) para ir conhecendo mais afundo os dados e as particularidades de cada ponto. Esse ``caminhar'' pode se tornar interessante para o sistema de forma que isso ajude a conhecer os interesses do usuário. Essa resposta que o usuário concede ao sistema enquanto o estar utlizando, é o que caracteriza o \textit{feedback} e isso pode trazer muitas utilizações para diversos tipos de sistemas.
+
+O feedback pode ser dividido em duas categorias sobre a abordagem utilizada para sua coleta: o \textit{explícito} e o \textit{implícito}. O primeiro se refere a quando o usuário define como interessante de forma consciente utilizando meios que o próprio sistema indica como funciona e para que serve. Por exemplo: quando o usuário indica se gostou de determinada indicação, quando ele vota de 0 a 5 estrelas num filme de sua preferência, quando ele indica algum restaurante para alguém utilizando o sistema, quando ele clica num ponto no mapa para obter mais informações e de várias outras formas pode se obter um feedback explícito.
+
+Já no caso da segunda categoria de feedback, o usuário não precisa dizer diretamente qual o seu interesse no sistema, do contrário, o sistema vai detectando progressivamente o que o usuário vai fazendo na plataforma e vai registrando isso para, a partir de uma determinada quantidade de informação, conseguir caracterizar algo como interessante para o usuário. Por exemplo, o sistema pode rastrear o movimento do mouse ou dos olhos para conseguir definir onde o usuário mais foca no sistema durante sua utilização, para isso ele precisa registrar os pontos rastreados do usuário e ir salvando isso. Então, com uma grande coleção de pontos, o sistema pode utilizar algoritmos de clusterização para encontrar as áreas mais marcantes desse conjunto e classificar elas como de interesse do usuário.
+
+Esse tipo de feedback implícito é utilizado no GeoGuide para a captura de interesse do usuário através do rastreamento do mouse e utilizando algoritmos de clusterização para construir essas áreas que consideramos de interesse do usuário durante sua exploração pelo mapa da plataforma. Tudo isso de forma que o usuário não saiba e não precisa gastar nenhum esforço para indicar o que lhe é interessante, somente usando a plataforma já podemos detectar essa informação.
+
+\subsection{Regiões Densamente Interessantes}
+
+Como dito anteriormente, o feedback que o usuário entrega ao sistema é de extremo valor para o aprimoramento da ferramenta e das análises que ela performar. Isso faz com que a ferramenta tenha a característica de se adequar a cada usuário e trazer o melhor resultado para cada um em específico. Também foi abordado que no GeoGuide utilizamos o feedback implícito do rastreamento do mouse para detectar as áreas de interesse do usuário.
+
+Entretanto, adicionamos o conceito de IDR para ir mais além nessa detecção e aprimorar a análise do usuário reforçando alguns aspectos que somente com áreas isoladas não iríamos conseguir. Esse conceito de Regiões Densamente Interessantes é baseado na detecção de áreas de interesse do usuário construídas a partir do rastreamento do seu mouse.
+
+No GeoGuide, a partir da coleta dos pontos de rastreamento do mouse, registramos isso periodicamente e clusterizamos esses conjuntos para a formação das áreas de interesse. Cada área é representada por um conjunto de pontos agrupados por sua proximidade em relação de um aos outros. A partir desse conjunto, construímos um polígono convexo utilizando os pontos mais distantes do centro. Cada polígono é a representação da área de interesse do usuário. Isto posto, para a formação de uma IDR, nós dividimos uma quantidade de momentos de coleta dos polígonos e definimos como IDR a interseção desses polígonos entre si. Ou seja, na nossa ferramenta, decidimos que a cada 20 segundos de rastreamento do mouse, o sistema vai construir uma pequena série de polígonos formados a partir do cluster desses pontos de rastreio e registrar para o próximo passo. A cada 3 momentos de construção de clusters, nós selecionamos todos os polígonos resultantes e calculamos novos polígonos formados pela interseção das áreas de cada momento.
+
+O resultado dessas interseções são o que chamamos de Regiões Densamente Interessantes, e isso torna a formação da área de interesse do usuário mais reforçada e precisa, pois cada IDR vai demonstrar uma região que o usuário focou em mais de um momento em tempos diferentes, tornando aquela área interessante para o usuário e podendo ser utilizada tanto para um foco mais preciso naquela região, caso queira restringir mais o escopo da análise, quanto para diminuir as sugestões naquela região e assim abrir mais o leque de opções do analista e expandir sua área de pesquisa, incrementando novas possibilidades para sua análise.
+
+\subsection{Algoritmo}
+
+TODO: Mostrar o algoritmo utilizado para detecção do IDR e explicar seu funcionamento. Apresentar sua complexidade com seus prós e contras.
