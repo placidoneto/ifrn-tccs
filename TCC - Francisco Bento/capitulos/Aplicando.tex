@@ -1,0 +1,47 @@
+\chapter{Aplicando IDRs e Outliers no GeoGuide}
+
+Neste capítulo iremos mostrar como utilizamos os conceitos de IDRs e a abordagem de detecção de outliers no GeoGuide. Mostraremos o passo a passo de como utilizar a plataforma do GeoGuide, desde o passo da autenticação, passando pelo processo \textit{upload} de um dataset no formato \textit{csv}, mostrando como o GeoGuide trata esse conjunto de dados e então exemplificando a criação de IDRs na plataforma e a abordagem de detecção de outliers nesse conjunto.
+
+\section{Carregando um dataset}
+
+O primeiro passo para começar a utilizar o GeoGuide é realizar um cadastro básico do usuário que está acessando a plataforma, caso o usuário já possua conta na plataforma, então ele só precisará informar seu email e senha que usou durante o cadastro.
+
+TODO: mostrar prints de registro e autenticação no GeoGuide
+
+Esse cadastro é importante para que o usuário possa registrar os datasets carregados e não precisar ficar fazendo o mesmo carregamento desses dados várias vezes, todas as suas configurações vão ficar registradas na plataforma e ligadas diretamente à sua conta de usuário.
+
+TODO: mostrar imagens da tela de datasets carregados
+
+Após escolher o dataset e realizar o processo de carregamento do arquivo .csv, o usuário precisa informar alguns dados básicos sobre aquele conjunto de dados que vai estar registrando na sua conta, como por exemplo, qual o nome que ele vai atribuir àquele conjunto, quantas linhas do .csv vai levar em consideração no carregamento (isso é importante para caso o usuário deseje analisar somente uma parte do dataset), quais os campos que ele quer levar em consideração para o cálculo das métricas de \textit{similaridade} \textit{diversidade} e entre outras informações.
+
+Quando finalizar o preenchimento do formulário referente ao dataset, então o GeoGuide passará para o próximo passo que é a visualização desses dados espaciais num mapa global centralizado na localização do dataset, de forma que o usuário já possa interagir com os pontos no mapa, podendo realizar algumas filtragens e também clicando em cada ponto específico para mostrar seus atributos referentes ao seu domínio específico.
+
+\section{Pré-processamento do GeoGuide}
+
+Logo após o primeiro instante de plotagem do mapa global na tela do usuário, o servidor da plataforma do GeoGuide inicia, em paralelo e sem a intervenção do usuário, um processo para o calculo das métricas de similaridade e diversidade de todos os pares de pontos possíveis no dataset. Esse cálculo é demorado, pois tem a complexidade de O(n2) e isso vira um problema em datasets gigantes. Então durante esse cálculo o usuário pode ir navegando pelo seu conjunto de dados e ir conhecendo mais sobre os pontos daquele grupo e, por fim, quando todas as métricas forem calculadas, o GeoGuide normaliza esses valores num intervalo de 0.0 a 1.0 e libera a opção de explorar cada ponto do dataset em busca de novas orientações sobre o quê analisar em seguida.
+
+\section{Criação de IDRs}
+
+No mesmo momento que o servidor da plataforma é disparado para realizar o pré-processamento do dataset para gerar os indíces normalizados das métricas principais do GeoGuide, a aplicação do usuário, quando concluir a plotagem do mapa, começará o processo de rastreamento do movimento do mouse.
+
+Como dito anteriormente, essa coleta dos pontos do mouse usuário navegando a plataforma é importante para a criação dos IDRs e sua utilização nas orientações que o GeoGuide vai propor baseado num ponto escolhido pelo usuário. Essa criação de IDRs obedece os intervalos de $20$ segundos para o processo de clusterização dos pontos, utilizando o algoritmo \textit{k-means} para a criação desses clusters, e também o intervalo definido previamente de que, após $3$ momentos de clusterização, serão selecionados os polígonos resultantes da intersecção dos clusters de cada momento e isso resultará nas áreas definidas como IDRs.
+
+Esse processo de construção das IDRs acontece todo o tempo em que o usuário esteja utilizando a plataforma e, a cada geração de IDR, essas regiões serão enviadas para o servidor registrando de qual usuário é essa IDR e qual a seção dele no momento de construção. Com essas informações é então possível ter um histórico das regiões de interesse do usuário e usar esses dados para um outro tipo de análise de preferência do usuário levando em consideração outros fatores.
+
+Todo essa operação mostra a importância das criações das IDRs e também demonstra que as aplicações desses dados podem se expandir, dependendo somente de qual a necessidade que se quer suprir com essas informações.
+
+\section{Detectando Outliers}
+
+Com a construção das IDRs acontecendo durante a utilização do GeoGuide pelo usuário, um outro processo também é executado após cada momento de criação dessas regiões. Com cada região encontrada, nós selecionamos os pontos que estão inseridos em cada região e para cada grupo desse efetuamos uma detecção de outliers nessa região levando em consideração os atributos definidos pelo usuário durante o carregamento desse dataset.
+
+Dessa forma, além de registrar a cada minuto quais são as áreas que o usuário tem mais interesse baseado no seu movimento de mouse, nós também gravamos quais são os pontos considerados discrepantes de cada região dessa e, com isso, temos os dados suficientes para o processo final das orientações que o GeoGuide performará quando requerido pelo usuário.
+
+\section{Processamento final}
+
+Desde o momento que o usuário é imerso no mapa global com os pontos de seus datasets plotados, as ações que acontecem são desconhecidas pelo usuário e acontecem sem sua menor interferência ou sem ele conseguir notar seu processamento.
+
+Porém, o momento mais importante para o usuário e que é finalidade de todo esse processo executado em \textit{background}, é quando ele seleciona um ponto de seu interesse e então pede $k$ novos pontos como sugestões do GeoGuide baseado nos atributos do ponto escolhido pelo usuário. Nesse momento é que será levado em consideração as IDRs registradas na sua seção e os outliers detectados em cada região.
+
+Agora, nessa nova proposta do GeoGuide, os pontos que se encontrarem dentro das regiões definidas como IDRs pelo usuário serão priorizados para serem sugeridos, pois assim o usuário conseguirá obter mais informações dentro de uma região que já é previamente definida como interessante para ele e não irá perder seu foco em outras possíveis regiões.
+
+E também, no momento em que o GeoGuide propõe novos pontos para serem analisados, os pontos registrados como outliers dentro das IDRs também serão privilegiados nessa proposta do GeoGuide, pois, como visto em outra pesquisa \cite{DBLP:journals/debu/FreireCVZ16}, esses pontos ``aberrantes'' podem indicar novas características desse dataset e um começo de por onde procurar particularidades desse dataset escolhido pelo usuário.
