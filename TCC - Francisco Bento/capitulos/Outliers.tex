@@ -1,28 +1,25 @@
 \chapter{Outliers}
 
-\section{Outliers}
+Nesta seção nós iremos abordar mais detalhadamente as características dos pontos que são considerados \textit{discrepantes (Outliers)}  em um determinado conjunto de dados e quais as influências que isso pode trazer para uma pesquisa. Além disso, vamos falar do tratamento que propomos para o GeoGuide e qual sua utilização. Também descreveremos sobre o algoritmo escolhido e as motivações que levaram à essa escolha.
 
-Nesta seção nós iremos abordar mais detalhadamente as características dos pontos que são considerados \textit{discrepantes} em um determinado conjunto de dados e quais as influências que isso pode trazer para uma pesquisa. Além disso, vamos falar do tratamento que propomos para o GeoGuide e qual a utilidade disso e também sobre o algoritmo escolhido e as motivações que levaram à essa escolha.
+\section{Dados espaciais discrepantes}
 
-\subsection{Dados espaciais discrepantes}
-
-Quando tratamos de temas como a captura e análise de dados no nosso cotidiano, o cenário atual se encontra numa situação nunca antes vista na história, já que nunca tivemos tanto volume de dados sendo gerado a todo segundo e das mais diversas formas e fontes. Caso a gente se aprofunde ainda mais nesse meio e foque nos dados espaciais, encontraremos uma variedade de características específicas desse nicho e também problemas específicos os quais buscamos solução.
+Quando tratamos de temas como a captura e análise de dados no nosso cotidiano, o cenário atual se encontra numa situação única em nossa história, já que nunca tivemos tanto volume de dados sendo gerado a todo segundo e das mais diversas formas e fontes. Caso a gente se aprofunde ainda mais nesse meio e foque nos dados espaciais, encontraremos uma variedade de características específicas desse nicho e também problemas específicos os quais buscamos solução.
 
 Por exemplo, podemos destacar aqui 3 exemplos distintos de datasets que estão disponíveis atualmente na internet e são referentes a dados espaciais, cada um com sua particularidade:
 
 % TODO: adicionar referências
-\subsubsection{Táxis de Nova Iorque}
+\subsection{Táxis de Nova Iorque}
 
 Desde de 2011 que as empresas de táxis de Nova Iorque, visando entender melhor seu funcionamento, conhecer mais sobre seu mercado e evitar as ocorrências de fraudes, investem em uma estrutura para coleta e armazenamento dos dados referentes a cada corrida de táxi que acontece na cidade. O resultado disso é que anualmente são armazenados e disponibilizados gigabytes de dados referentes a cada uma dessas corridas e que podem ser utilizados para análises de qualquer natureza e finalidade.
 
 Entretanto, não é tão simples o processo de análise de volumes desse porte e antes de mesmo dessa análise começar, vários fatores tem que serem levados em consideração, como, por exemplo, a estrutura desses dados e a confiabilidade dele. No caso desse dataset, falhas podem ocorrer nos equipamentos responsáveis pela coleta, na próprio gerenciamento e organização desses dados, pois nesse processo necessita de intervenção humana e isso por si só é um fator de risco em qualquer análise.
 
-Imagine que num determinado táxi em um certo dia e horário, todas as corridas tiveram o dado referente a distância percorrida pelo táxi com um valor negativo, o que fazer nessa situação? Ou então que a data iníc
+Imagine que num determinado táxi em um certo dia e horário, todas as corridas tiveram o dado referente a distância percorrida pelo táxi com um valor negativo, o que fazer nessa situação? Ou então que a data início de uma corrida seja superior à data de término da mesma? Ou até sejam valores próximos, mas sua distância seja extremamente alta para esse tempo? Todos esses problemas podem acontecer nesse contexto e cada um deles devem ser tratados propriamente e com o devido cuidado. Esses tipos de problemas são os problemas no processo de \textit{limpeza dos dados} e é de uma importância crucial que eles sejam mitigados, pois nessas circustâncias as futuras análises estariam todas comprometidas com a presença de \textit{ruídos} que afetam diretamente uma boa análise.
 
-io de uma corrida seja superior à data de término da mesma? Ou até sejam valores próximos, mas sua distância seja extremamente alta para esse tempo? Todos esses problemas podem acontecer nesse contexto e cada um deles devem ser tratados propriamente e com o devido cuidado. Esses tipos de problemas são os problemas no processo de \textit{limpeza dos dados} e é de uma importância crucial que eles sejam mitigados, pois nessas circustâncias as futuras análises estariam todas comprometidas com a presença de \textit{ruídos} que afetam diretamente uma boa análise.
+\subsection{Hospedagens de Paris}
+% TODO: "Nesta seção você não considera quais seriam as caraterísticas de discrepâncias nesse tipo de dataset."
 
-% airbnb
-\subsubsection{Hospedagens de Paris}
 
 De maneira similar aos datasets sobre viagens de táxis, existem também grandes volumes de dados espaciais sobre hospedagens ao redor do mundo disponíveis na internet através da plataforma Airbnb,
 % TODO: adicionar link de rodapé do airbnb
@@ -32,7 +29,6 @@ Esses datasets podem ser utilizados para as mais diversas análises e com os mai
 
 Por exemplo, existe uma plataforma online que utilizou esses datasets para entender mais sobre esse mercado de hospedagens e se realmente, como proposto pela empresa Airbnb, esse novo mercado é uma alternativa as industrias de hotéis que existem pelo mundo. Quando analisado os dados e os volumes são agrupados pelas cidades ao redor do mundo, se percebe que esse novo mercado não é tão disruptível assim e que, na realidade, a maioria dos locais disponíveis para hospedagens são imóveis completos, gerando assim uma nova indústria mais moderna de hospedagens. Mais informações sobre essa pesquisa podem ser encontradas na plataforma disponível online no link <http://insideairbnb.com/>.
 
-% yelp
 \subsubsection{Restaurantes em Las Vegas}
 
 Por fim, como mais um exemplo, existe outro conjunto de datasets espaciais referentes a restaurantes disponíveis em várias regiões pelo mundo. Esse conjunto é mantido pela empresa Yelp \footnote{https://www.yelp.com/} que oferece um serviço de pesquisa de restaurantes de forma personalizada que pode levar em consideração vários argumentos de acordo com sua necessidade, por exemplo: o local em que você queira encontrar os restaurantes próximos, o tipo de restaurante, a faixa de preço do seu interesse, enfim, uma porção de possibilidades para sua consulta.
@@ -44,12 +40,15 @@ Incentivos como esse mostram o quão importante é o investimento nas áreas de 
 \subsection{Outliers no GeoGuide}
 
 Como dito anteriormente, o GeoGuide visa melhorar a experiência do analista frente à grandes montantes de dados espaciais que possam o deixar perdido durante sua análise, e isso, na maioria dos casos, prejudicará sua análise fazendo com que ele não leve em informações que podem ser relevantes para sua pesquisa. Além disso, a existência de Outliers num dataset pode ser uma fonte de novas informações sobre aquele conjunto de dados. Por exemplo, em um conjunto de dados referente aos gastos do cartão de crédito de uma pessoa, caso tenha outliers, é um indicador muito forte de uma fraude nesse cartão, com isso, as empresas financeiras podem tomar medidas de segurança para evitar esses problemas.
+% TODO: "Mostrar em forma de exemplo e com figuras como os outliers são tratados no GeoGuide"
 
 No caso de datasets espaciais, as aplicações podem ser ainda maiores, pois além dos atributos referentes aos próprios pontos do conjunto, os próprios atributos referentes a localização do ponto (latitude e longitude) podem, por si só, caracterizar determinado ponto como um outlier. Dessa forma, a identificação desses pontos durante a análise do pesquisador pode trazer novas informações que estimule a criação de novas abordagens e decisões sobre aquele conjunto.
 
 A título de exemplo, se pegarmos o dataset referente aos táxis de Nova Iorque e selecionarmos um conjunto de corridas de uma parte de Manhattan do mesmo dia e mesmo horário e com uma margem próxima de preço entre elas, podemos buscar por pontos considerados outliers em relação ao seu preço e o do conjunto, com isso, podemos detectar possíveis fraudes no serviço de táxi (caso esse ponto seja um outlier por um preço “abaixo do normal”) ou então abuso de cobrança por parte do motorista (caso esse ponto seja um outlier por um preço “acima do normal”).
+% TODO: "MOSTRAR EXEMPLO COM FIGURA"
 
 Sabendo disso, podemos aplicar essa detecção de outliers no GeoGuide enquanto o analista está no processo de descobrimento do dataset. Dessa forma, enquanto ele vai percorrendo pelo conjunto de dados e selecionando quais os pontos são de seu interesse, a ferramenta vai procurando, de forma assíncrona e implícita, pontos que podem ser outliers em relação aos pontos já previamentes definidos como interessantes para o usuário e assim, de forma totalmente transparente e sem precisar de nenhuma nova ação do analista, novas informações sobre o dataset podem ser destacadas para quem está analisando e abrir um leque maior de opções e ideias sobre aquele conjunto de dados, ampliando sua análise mais facilmente e lhe mostrando o quê mais pode ser importante naquele ambiente.
+% TODO: "A Banca pode perguntar, pq usar outliers no GeoGuidem quais as vantagens???"
 
 
 \subsection{Algoritmo}
