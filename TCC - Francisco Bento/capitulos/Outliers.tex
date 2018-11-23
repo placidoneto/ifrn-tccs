@@ -29,7 +29,7 @@ Esses datasets podem ser utilizados para as mais diversas análises e com os mai
 
 Por exemplo, existe uma plataforma online que utilizou esses datasets para entender mais sobre esse mercado de hospedagens e se realmente, como proposto pela empresa Airbnb, esse novo mercado é uma alternativa as industrias de hotéis que existem pelo mundo. Quando analisado os dados e os volumes são agrupados pelas cidades ao redor do mundo, se percebe que esse novo mercado não é tão disruptível assim e que, na realidade, a maioria dos locais disponíveis para hospedagens são imóveis completos, gerando assim uma nova indústria mais moderna de hospedagens. Mais informações sobre essa pesquisa podem ser encontradas na plataforma disponível online no link <http://insideairbnb.com/>.
 
-\subsubsection{Restaurantes em Las Vegas}
+\subsection{Restaurantes em Las Vegas}
 
 Por fim, como mais um exemplo, existe outro conjunto de datasets espaciais referentes a restaurantes disponíveis em várias regiões pelo mundo. Esse conjunto é mantido pela empresa Yelp \footnote{https://www.yelp.com/} que oferece um serviço de pesquisa de restaurantes de forma personalizada que pode levar em consideração vários argumentos de acordo com sua necessidade, por exemplo: o local em que você queira encontrar os restaurantes próximos, o tipo de restaurante, a faixa de preço do seu interesse, enfim, uma porção de possibilidades para sua consulta.
 
@@ -53,4 +53,10 @@ Sabendo disso, podemos aplicar essa detecção de outliers no GeoGuide enquanto 
 
 \subsection{Algoritmo}
 
-TODO: Mostrar o algoritmo de detecção selecionado. Usar uma imagem dele e explicar passo a passo, além de falar sobre sua complexidade, mostrando os prós e contras do seu uso.
+% TODO: adicionar imagem/descrição com o algoritmo
+
+O algoritmo proposto para ser utilizado nessa abordagem de deteccção de outliers no GeoGuide \cite{omidvarTehrani2017} é o \textbf{LOF} \cite{Breunig:2000:LID:335191.335388}, pois ele tem as características que se melhor se enquadra na nossa abordagem com as respectivas limitações que temos no nosso uso. Uma importante propriedade desse algoritmo é que sua forma de considerar se um determinado ponto $p$ do conjunto $\mathcal{S}$ é um outlier leva em consideração não o conjunto completo, mas somente a relação do ponto $p$ com seus vizinhos. Isso torna o algoritmo LOF apropriado para conjuntos em que o que importa é o contexto de uma determinada região, e não todas caraterísticas do dataset.
+
+Outra particularidade importante desse algoritmo é que seu foco não é definir ``binariamente'' se um determinado ponto é um outlier ou não, mas sim ``o quão'' outlier é esse ponto em relação aos seus vizinhos e o contexto daquela região. Isso faz com que ele consiga detectar pontos com nuances de um outlier de uma forma que outros algoritmos não conseguem, pois essas nuances não cruzariam o limite de definição de outlier, mas já poderia destacar aquele ponto como um possível foco de observação para conhecer melhor o dataset.
+
+Uma terceira caraterística desse método é que o valor resultante do algoritmo é um grau de ``anormalidade'' do ponto de entrada em relação aos seus vizinhos. Dessa forma, para o GeoGuide poder sugerir novos pontos visando orientar o analista, levar em consideração um atributo numérico (o grau resultante do algoritmo LOF) no cálculo dessa orientação é melhor do que receber um atributo binário indicando se um ponto é outlier ou não, pois o atributo numérico trará mais gradatividade pros seus resultados, evitando uma possível arbitrariedade que um atributo binário possa trazer pros resultados.
