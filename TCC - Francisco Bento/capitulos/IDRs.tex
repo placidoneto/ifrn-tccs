@@ -1,8 +1,5 @@
 \chapter{Regiões Densas Interessantes (IDRs)}
 
-% TODO: "ESSE CAPÍTULO DEVE TER MUITAS IMAGENS. FALAR DE IDRs sem mostrar exemplos e imagens não adianta."
-TODO: Adicionar exemplos e imagens dos IDRs. Isso tem nos artigos do GitHub.
-
 Nesta seção nós iremos explanar mais profundamente o conceito de Regiões Densamente Interessantes e qual a sua utilidade em uma análise de dados espaciais. Também detalharemos o passo a passo para a criação de uma Região desse tipo, qual a função do feedback do usuário nessa construção, qual o algoritmo usado para esse processo, qual sua utilização no GeoGuide e quais as vantagens que podemos obter quando utilizamos Regiões Densamente Interessantes para fazer análise de dados espaciais com uma abordagem de orientação do usuário através da ferramenta.
 
 \section{Feedback do usuário}
@@ -23,9 +20,31 @@ Como dito anteriormente, o feedback que o usuário entrega ao sistema é de extr
 
 Entretanto, adicionamos o conceito de IDR para ir mais além nessa detecção e aprimorar a análise do usuário reforçando alguns aspectos que somente com áreas isoladas não iríamos conseguir. Esse conceito de Regiões Densamente Interessantes é baseado na detecção de áreas de interesse do usuário construídas a partir do rastreamento do seu mouse.
 
-No GeoGuide, a partir da coleta dos pontos de rastreamento do mouse, registramos isso periodicamente e clusterizamos esses conjuntos para a formação das áreas de interesse. Cada área é representada por um conjunto de pontos agrupados por sua proximidade em relação de um aos outros. A partir desse conjunto, construímos um polígono convexo utilizando os pontos mais distantes do centro. Cada polígono é a representação da área de interesse do usuário. Isto posto, para a formação de uma IDR, nós dividimos uma quantidade de momentos de coleta dos polígonos e definimos como IDR a interseção desses polígonos entre si. Ou seja, na nossa ferramenta, decidimos que a cada 20 segundos de rastreamento do mouse, o sistema vai construir uma pequena série de polígonos formados a partir do cluster desses pontos de rastreio e registrar para o próximo passo. A cada 3 momentos de construção de clusters, nós selecionamos todos os polígonos resultantes e calculamos novos polígonos formados pela interseção das áreas de cada momento.
+No GeoGuide, registramos o movimento do mouse do analista durante um determinado intervalo de tempo e os separamos em diferentes conjuntos (na Figura \ref{fig:idrs}.A podemos ver o registro de 3 momentos diferentes do movimento do mouse). Para cada conjunto, nós realizamos a clusterização desses pontos para a formação das áreas de interesse. Cada área é representada por um conjunto de pontos agrupados por sua proximidade em relação de um aos outros.
 
-O resultado dessas interseções são o que chamamos de Regiões Densamente Interessantes, e isso torna a formação da área de interesse do usuário mais reforçada e precisa, pois cada IDR vai demonstrar uma região que o usuário focou em mais de um momento em tempos diferentes, tornando aquela área interessante para o usuário e podendo ser utilizada tanto para um foco mais preciso naquela região, caso queira restringir mais o escopo da análise, quanto para diminuir as sugestões naquela região e assim abrir mais o leque de opções do analista e expandir sua área de pesquisa, incrementando novas possibilidades para sua análise.
+A partir desse conjunto, construímos um polígono convexo utilizando os pontos mais distantes do centro (podemos ver um exemplo disso na Figura \ref{fig:idrs}.B). Cada polígono é a representação da área de interesse do usuário. Isto posto, para a formação de uma IDR, nós dividimos uma quantidade de momentos de formação dos polígonos (as Figuras \ref{fig:idrs}.B, \ref{fig:idrs} C e \ref{fig:idrs}.D representam as formações de áreas de interesse em 3 momentos diferentes consecutivos) e definimos como IDR a interseção desses polígonos entre si (podemos ver um exemplo na Figura \ref{fig:idrs}.E marcado pela área de fundo preto quadriculado). Ou seja, na nossa ferramenta, decidimos que a cada 20 segundos de rastreamento do mouse, o sistema vai construir uma pequena série de polígonos formados a partir do cluster desses pontos de rastreio e registrar para o próximo passo. Após 3 momentos de construção de clusters, nós selecionamos todos os polígonos resultantes e calculamos novos polígonos formados pela interseção das áreas de cada momento (na Figura \ref{fig:idrs}.F podemos ver a formação de 4 IDRs a partir das interseções das áreas da Figura \ref{fig:idrs}.E). Este processo se repete enquanto o analista estiver utilizando a ferramenta.
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{images/idrs}
+	\caption{Imagem do processo de construção de IDRs}
+	\label{fig:idrs-geoguide}
+	\vspace{-10pt}
+\end{figure*}
+
+O resultado dessas interseções são o que chamamos de Regiões Densamente Interessantes, e isso torna a formação da área de interesse do usuário mais reforçada e precisa, pois cada IDR vai demonstrar uma região que o usuário focou em mais de um momento em tempos diferentes.
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{images/idrs-matching.pdf}
+	\caption{Imagem das sugestões do GeoGuide relacionadas com as IDRs do analista}
+	\label{fig:idrs}
+	\vspace{-10pt}
+\end{figure*}
+
+Por exemplo, um analista está explorando o dataset do Airbnb e deseja encontrar novas sugestões de residências. Durante sua exploração foram geradas 4 IDRs e então ele requisitou ao GeoGuide o \textit{highlight} de novos pontos e para o resultado foi levado em consideração as IDRs resultantes de sua exploração. Os pontos sugeridos pelo GeoGuide estavam em 3 das 4 regiões do analista e isso reforça o interesse dele naquelas regiões.
+
+Com isso, cada IDR pode ser utilizada tanto para um foco mais preciso na região,caso queira restringir mais o escopo da análise, quanto para diminuir as sugestões nessa região e assim abrir mais o leque de opções do analista e expandir sua área de pesquisa, incrementando novas possibilidades para sua análise.
 
 \section{Algoritmo}
 
@@ -33,30 +52,29 @@ Nós consideramos duas camadas diferentes no mapa geográfico: a ``camada espaci
 
 TODO: adicionar o algoritmo no formato do artigo do GeoGuide
 
-O algoritmo \ref{algo:dense} resume nossa abordagem para encontrar as IDRs. Nós adicionamos pontos para o conjunto $\mathcal{M}$ somente a cada $200ms$ para evitar a adição de pontos repetidos. Seguindo a ideia de que o analista tem mais interesse naquela região se ele movimentar o mouse nela mais vezes e afim de minerar o comportamento recorrente do analista, o algoritmo começa pelo particionamento do conjunto $\mathcal{M}$ em $g$ segmentos consecutivos de tamanho fixo do $\mathcal{M}_0$ até o $\mathcal{M}_g$. O primeiro segmento inicia no tempo zero (quando o usuário abre o mapa) e o último segmento termina em $t_c$, ou seja, o momento atual. Baseado na ideia de que o analista pode percorrer o mapa completamente, mas isso não indicará seu real interesse por todo o mapa, nós buscamos encontrar os clusters mais densos de cada segmento do conjunto $\mathcal{M}$ utilizando um algoritmo variante do DBSCAN \cite{Ester:1996:DAD:3001460.3001507}. Por fim, nós retornamos as interseções entre esses clusters como os IDRs.
-
-
 % \begin{algorithm}[t]
-% \DontPrintSemicolon
-% \KwIn{Current time $t_c$, mouse move points $\mathcal{M}$, $k$}
-% \KwOut{$k$ highlights $\mathcal{H}$}
-% $\mathcal{S} \gets \emptyset$\;
-% $g \gets ${\em number of time segments}\;
-% \For{$i \in [0,g]$}
-% {
-%        $\mathcal{M}_i \gets \{m = \langle x,y,t \rangle | (\frac{t_c}{g} \times i) \leq t \leq (\frac{t_c}{g} \times (i+1))\}$\;
-%        $\mathcal{C}_i \gets \mathit{mine\_clusters}(\mathcal{M}_i)$\label{ln:mine}\;
-%        $\mathcal{O}_i \gets \mathit{find\_ploygons}(\mathcal{C}_i)$\label{ln:poly}\;
-% }
-% \lFor{$\mathcal{O}_i, \mathcal{O}_j$ where $i,j \in [0,g]$ and $i \neq j$}
-% {
-%        $\mathcal{S}.\mathit{append}(\mathit{intersect}(\mathcal{O}_i, \mathcal{O}_j))$
-% }
-% $\mathcal{H} \gets \mathit{discover\_highlights}(\mathcal{S},k)$\label{ln:geoguide}\;
-% \Return{$\mathcal{H}$}\; 
+%     \DontPrintSemicolon
+%     \KwIn{Current time $t_c$, mouse move points $\mathcal{M}$, $k$}
+%     \KwOut{$k$ highlights $\mathcal{H}$}
+%     $\mathcal{S} \gets \emptyset$\;
+%     $g \gets ${\em number of time segments}\;
+%     \For{$i \in [0,g]$}
+%     {
+%            $\mathcal{M}_i \gets \{m = \langle x,y,t \rangle | (\frac{t_c}{g} \times i) \leq t \leq (\frac{t_c}{g} \times (i+1))\}$\;
+%            $\mathcal{C}_i \gets \mathit{mine\_clusters}(\mathcal{M}_i)$\label{ln:mine}\;
+%            $\mathcal{O}_i \gets \mathit{find\_ploygons}(\mathcal{C}_i)$\label{ln:poly}\;
+%     }
+%     \lFor{$\mathcal{O}_i, \mathcal{O}_j$ where $i,j \in [0,g]$ and $i \neq j$}
+%     {
+%            $\mathcal{S}.\mathit{append}(\mathit{intersect}(\mathcal{O}_i, \mathcal{O}_j))$
+%     }
+%     $\mathcal{H} \gets \mathit{discover\_highlights}(\mathcal{S},k)$\label{ln:geoguide}\;
+%     \Return{$\mathcal{H}$}\; 
 % \caption{Information Highlighting}
 % \label{algo:dense}
 % \end{algorithm}
+
+O algoritmo \ref{algo:dense} resume nossa abordagem para encontrar as IDRs. Nós adicionamos pontos para o conjunto $\mathcal{M}$ somente a cada $200ms$ para evitar a adição de pontos repetidos. Seguindo a ideia de que o analista tem mais interesse naquela região se ele movimentar o mouse nela mais vezes e afim de minerar o comportamento recorrente do analista, o algoritmo começa pelo particionamento do conjunto $\mathcal{M}$ em $g$ segmentos consecutivos de tamanho fixo do $\mathcal{M}_0$ até o $\mathcal{M}_g$. O primeiro segmento inicia no tempo zero (quando o usuário abre o mapa) e o último segmento termina em $t_c$, ou seja, o momento atual. Baseado na ideia de que o analista pode percorrer o mapa completamente, mas isso não indicará seu real interesse por todo o mapa, nós buscamos encontrar os clusters mais densos de cada segmento do conjunto $\mathcal{M}$ utilizando um algoritmo variante do DBSCAN \cite{Ester:1996:DAD:3001460.3001507}. Por fim, nós retornamos as interseções entre esses clusters como os IDRs.
 
 TODO: adicionar referência ao ST-DBSCAN
 
