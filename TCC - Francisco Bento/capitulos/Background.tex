@@ -46,24 +46,25 @@ Z-Score \cite{doi:10.1111/j.1540-6261.1968.tb00843.x} é um dos métodos mais si
 
 \subsection{FDC}
 
-É uma abordagem de algoritmo baseado em profundidade \cite{Johnson:1998:FCD:3000292.3000332} para detecção de outliers em datasets 2D que se baseia no conceito do algoritmo ISODEPTH.
-% TODO: referência algoritmo isodepth.
-O FDC computa os primeiros $k$ contornos de profundidade (os pontos que podem ser considerados outliers) restrigindo a uma pequena parte do dataset completo. Dessa forma, é mais eficiente por não ter que calcular no dataset completo e, portanto, mais fácil de escalar para grandes datasets de duas dimensões.
+TODO: adicionar referência algoritmo ISODEPTH.
+
+É uma abordagem de algoritmo baseado em profundidade \cite{Johnson:1998:FCD:3000292.3000332} para detecção de outliers em datasets 2D que se baseia no conceito do algoritmo ISODEPTH. O FDC computa os primeiros $k$ contornos de profundidade (os pontos que podem ser considerados outliers) restrigindo a uma pequena parte do dataset completo. Dessa forma, é mais eficiente por não ter que calcular no dataset completo e, portanto, mais fácil de escalar para grandes datasets de duas dimensões.
 
 \subsection{HOD}
 
 É um método de detecção de outlier baseado em distância \cite{Xu2016} que surge para superar os métodos baseados em estatísticas já que na vasta maioria dos datasets a distribuição de probabilidade não é conhecida. Dessa forma, o método busca por outliers baseado na sua distância em relação aos seus vizinhos e se essa distância é maior que um parâmetro de entrada predefinido, então esse ponto é considerado um outlier. Entretanto, se já existe um cluster de outliers no dataset, isso pode afetar a detecção em algoritmos baseado em distância, para isso que serve o conceito HOD (\textit{Hidden Outlier Detection}) do algoritmo que visa encontrar outliers mesmo quando eles estão agrupados em quantidades suficiente para formação de um cluster.
 
 \subsection{ORCA}
+TODO: adicionar referência do nested loop
 
 É um algoritmo baseado em distância \cite{Bay:2003:MDO:956750.956758} que otimiza um algoritmo simples de loop aninhado 
-% TODO: pegar referência de nested loop
 (que são algoritmos de complexidade exponencial os quais são extremamente ineficientes quando utilizados em grandes datasets) pela remoção de possíveis \textit{non-outliers} durante sua execução. Dessa forma, ao invés de processar o dataset por completo, ele vai removendo cálculos que serão desnecessários, já que o ponto não vai ser considerado um outlier. A partir dele, novas pesquisas têm surgido para refinar mais esse conceito. 
 
 \subsection{Linearization}
 
+TODO: adicionar referência à curva de Hilbert 
+
 É um algoritmo baseado em distância \cite{10.1007/3-540-45681-3_2} que detecta outliers calculando a soma das distâncias de um ponto em relação aos seus vizinhos, chamando isso de \textit{peso}, e definindo os outliers como os pontos com os maiores pesos no dataset. Dessa forma, é um algoritmo eficiente de complexidade linear tanto em relação ao número de pontos como ao número de dimensões. Para ajudar a calcular esses outliers mais eficientemente, o algoritmo utiliza o conceito da \textit{curva de Hilbert}
-% TODO: adicionar referência à curva de Hilbert 
 
 \subsection{RBRP}
 
@@ -101,6 +102,7 @@ Baseado nos algoritmos apresentados, nós organizamos cada um de acordo com a re
 	\label{table:algorithms-comparison}
 \end{table}
 
-% TODO: "É importante você criar uma seção para a análise dos algoritmos. É importante você explicar cada linha da tabela, os resultados em si. Com texto.
+% TODO: "É importante você criar uma seção para a análise dos algoritmos. É importante você explicar cada linha da tabela, os resultados em si. Com texto."
+TODO: Explicar cada linha da tabela analisando os algoritmos.
 
 Cada questão tem uma motivação específica para estar na Tabela \ref{table:algorithms-comparison}. A questão \textbf{I} é sobre a distribuição de probabilidade do dataset. Se o algoritmo é paramétrico, então nós podemos assumir a distribuição de probabilidade do dataset baseado em um conjunto fixo de parâmetros. A questão \textbf{II} serve para classificar cada algoritmo baseado na abordagem que ele utiliza para indicar se um dado é um outlier ou não, as opções são: textit{Baseado em Modelo}, \textit{Baseado em Densidade}, \textit{Baseado em Profundidade}, \textit{Baseado em Distância} e \textit{Altas Dimensões}. A questão \textbf{III} é relativa a performance computacional de cada algoritmo, se o tempo de execução do algoritmo não é comprometido de acordo com o crescimento do dataset, significa que ele é escalável em termos de performance. A questão \textbf{IV} é sobre a performance de cada algoritmo também, mas nesse caso é relacionado ao crescimento de dimensões do dataset. Por fim, a questão \textbf{V} indica se o algoritmo requer algum argumento de entrada para processar o dataset, isso é importante pois se o algoritmo requer muitos argumentos pode se tornar um problema de precisão quando o dataset aumentar.

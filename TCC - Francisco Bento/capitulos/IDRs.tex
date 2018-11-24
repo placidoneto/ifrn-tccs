@@ -1,6 +1,7 @@
 \chapter{Regiões Densas Interessantes (IDRs)}
 
 % TODO: "ESSE CAPÍTULO DEVE TER MUITAS IMAGENS. FALAR DE IDRs sem mostrar exemplos e imagens não adianta."
+TODO: Adicionar exemplos e imagens dos IDRs. Isso tem nos artigos do GitHub.
 
 Nesta seção nós iremos explanar mais profundamente o conceito de Regiões Densamente Interessantes e qual a sua utilidade em uma análise de dados espaciais. Também detalharemos o passo a passo para a criação de uma Região desse tipo, qual a função do feedback do usuário nessa construção, qual o algoritmo usado para esse processo, qual sua utilização no GeoGuide e quais as vantagens que podemos obter quando utilizamos Regiões Densamente Interessantes para fazer análise de dados espaciais com uma abordagem de orientação do usuário através da ferramenta.
 
@@ -30,6 +31,8 @@ O resultado dessas interseções são o que chamamos de Regiões Densamente Inte
 
 Nós consideramos duas camadas diferentes no mapa geográfico: a ``camada espacial'' e a ``camada de interação''. A camada espacial contém os pontos espaciais $\mathcal{P}$ do dataset em análise. A camada de interação  contém os pontos $\mathcal{M}$ referente aos pontos de movimento do mouse. Nossa abordagem proposta foca um conjunto dos pontos $\mathcal{M}$ na camada de interação para descobrir uma ou mais IDRs, na qual a maioria das interações do analista ocorre. Então alinhamos os pontos espaciais $\mathcal{P}$ com as IDRs visando encontrar os pontos que estão dentro de cada região. 
 
+TODO: adicionar o algoritmo no formato do artigo do GeoGuide
+
 O algoritmo \ref{algo:dense} resume nossa abordagem para encontrar as IDRs. Nós adicionamos pontos para o conjunto $\mathcal{M}$ somente a cada $200ms$ para evitar a adição de pontos repetidos. Seguindo a ideia de que o analista tem mais interesse naquela região se ele movimentar o mouse nela mais vezes e afim de minerar o comportamento recorrente do analista, o algoritmo começa pelo particionamento do conjunto $\mathcal{M}$ em $g$ segmentos consecutivos de tamanho fixo do $\mathcal{M}_0$ até o $\mathcal{M}_g$. O primeiro segmento inicia no tempo zero (quando o usuário abre o mapa) e o último segmento termina em $t_c$, ou seja, o momento atual. Baseado na ideia de que o analista pode percorrer o mapa completamente, mas isso não indicará seu real interesse por todo o mapa, nós buscamos encontrar os clusters mais densos de cada segmento do conjunto $\mathcal{M}$ utilizando um algoritmo variante do DBSCAN \cite{Ester:1996:DAD:3001460.3001507}. Por fim, nós retornamos as interseções entre esses clusters como os IDRs.
 
 
@@ -55,14 +58,19 @@ O algoritmo \ref{algo:dense} resume nossa abordagem para encontrar as IDRs. Nós
 % \label{algo:dense}
 % \end{algorithm}
 
-% TODO: adicionar referência ao ST-DBSCAN
-% TODO: adicionar referência a Distancia Euclidiana
+TODO: adicionar referência ao ST-DBSCAN
+
+TODO: adicionar referência a Distancia Euclidiana
+
 Para clusterizar os pontos em cada segmento de tempo (linha \ref{ln:mine} do Algoritmo~\ref{algo:dense}), nós usamos o ST-DBSCAN, um variante do DBSCAN para clusterizar pontos baseado na sua densidade. Para cada subconjunto dos pontos do movimento do mouse $\mathcal{M}_i$, $i \in [0,g]$, o ST-DBSCAN inicia com um ponto aleatório $m_0 \in \mathcal{M}_i$ e coleciona todos os pontos ``densamente alcansáveis'' de $m_0$ usando uma métrica de distância. Como os pontos do movimento do mouse estão numa tela de 2 dimensões (isto é, o monitor), nós escolhemos a distância euclidiana como nossa métrica. Se $m_0$ for considerado um ponto central,  um cluster será gerado. Do contrário, se o $m_0$ for um ``ponto de borda'', nenhum ponto é alcançado por ele e o algoritmo escolherá outro ponto aleatório em $\mathcal{M}_i$. O processo é repetido até que todos os pontos tenham sido processados e categorizados.
 
 
-% TODO: adicionar referência ao algoritmo Quickhull
+TODO: adicionar referência ao algoritmo Quickhull
+
 Uma vez que encontramos os clusters de todos os subconjuntos de $\mathcal{M}$, nós encontramos suas interseções para encontrar regiões recorrentes (linha \ref{ln:poly}). Para obter as interseções, nós precisamos definir claramente os limites espaciais de cada cluster. Por isso, para cada cluster nós definimos um polígono correspondente que cubra todos os pontos dentro. Para conseguir isso, nós utilizamos o algoritmo Quickhull, um método parecido com o \textit{quicksort} que calcula um polígono convexo para um determinado conjunto de pontos num plano 2D.
 
-% TODO: citar referências do artigo de IDR
-% TODO: citar referências do artigo de Quickhull
+TODO: citar referências do artigo de IDR
+
+TODO: citar referências do artigo de Quickhull
+
 Já existem diversas formas de inferir uma região espacial para um determinado conjunto de pontos. A abordagem comum é agrupar os pontos em forma de polígonos concavos e convexos. Nos casos em que um polígono côncavo é construído, os ``dentes'' desse polígono podem vincular pontos que não necessariamente estariam em $\mathcal{M}$. No algoritmo de IDR, entretanto, nós adaptamos o Quickhull devido a sua simplicidade, eficiência e implementação padrão para polígonos convexos.
