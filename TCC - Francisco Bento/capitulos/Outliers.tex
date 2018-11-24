@@ -41,17 +41,23 @@ Incentivos como esse mostram o quão importante é o investimento nas áreas de 
 
 \section{Outliers no GeoGuide}
 
-TODO: Adicionar exemplos com figuras no GeoGuide
-
 Como dito anteriormente, o GeoGuide visa melhorar a experiência do analista frente à grandes montantes de dados espaciais que possam o deixar perdido durante sua análise, e isso, na maioria dos casos, prejudicará sua análise fazendo com que ele não leve em informações que podem ser relevantes para sua pesquisa. Além disso, a existência de Outliers num dataset pode ser uma fonte de novas informações sobre aquele conjunto de dados. Por exemplo, em um conjunto de dados referente aos gastos do cartão de crédito de uma pessoa, caso tenha outliers, é um indicador muito forte de uma fraude nesse cartão, com isso, as empresas financeiras podem tomar medidas de segurança para evitar esses problemas.
-% TODO: "Mostrar em forma de exemplo e com figuras como os outliers são tratados no GeoGuide"
 
 No caso de datasets espaciais, as aplicações podem ser ainda maiores, pois além dos atributos referentes aos próprios pontos do conjunto, os próprios atributos referentes a localização do ponto (latitude e longitude) podem, por si só, caracterizar determinado ponto como um outlier. Dessa forma, a identificação desses pontos durante a análise do pesquisador pode trazer novas informações que estimule a criação de novas abordagens e decisões sobre aquele conjunto.
 
-A título de exemplo, se pegarmos o dataset referente aos táxis de Nova Iorque e selecionarmos um conjunto de corridas de uma parte de Manhattan do mesmo dia e mesmo horário e com uma margem próxima de preço entre elas, podemos buscar por pontos considerados outliers em relação ao seu preço e o do conjunto, com isso, podemos detectar possíveis fraudes no serviço de táxi (caso esse ponto seja um outlier por um preço “abaixo do normal”) ou então abuso de cobrança por parte do motorista (caso esse ponto seja um outlier por um preço “acima do normal”).
-% TODO: "MOSTRAR EXEMPLO COM FIGURA"
-
 Sabendo disso, podemos aplicar essa detecção de outliers no GeoGuide enquanto o analista está no processo de descobrimento do dataset. Dessa forma, enquanto ele vai percorrendo pelo conjunto de dados e selecionando quais os pontos são de seu interesse, a ferramenta vai procurando, de forma assíncrona e implícita, pontos que podem ser outliers em relação aos pontos já previamentes definidos como interessantes para o usuário e assim, de forma totalmente transparente e sem precisar de nenhuma nova ação do analista, novas informações sobre o dataset podem ser destacadas para quem está analisando e abrir um leque maior de opções e ideias sobre aquele conjunto de dados, ampliando sua análise mais facilmente e lhe mostrando o quê mais pode ser importante naquele ambiente.
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{images/outliers-geoguide.png}
+	\caption{Imagem de um exemplo de uso de outliers no GeoGuide}
+	\label{fig:outliers-geoguide}
+	\vspace{-10pt}
+\end{figure*}
+
+A título de exemplo, se pegarmos o dataset referente aos táxis de Nova Iorque e selecionarmos um conjunto de corridas de uma parte de Manhattan do mesmo dia e mesmo horário e com uma margem próxima de preço entre elas (na Figura \ref{fig:outliers-geoguide}.A o analista está explorando o dataset e seleciona um determinado ponto, no caso da imagem o ponto marcado em amarelo), podemos buscar por pontos considerados outliers em relação ao seu preço e o do conjunto, com isso, podemos detectar possíveis fraudes no serviço de táxi, caso esse ponto seja um outlier por um preço ``abaixo do normal'' ou então abuso de cobrança por parte do motorista se esse ponto for um outlier por um preço ``acima do normal''.
+
+Na Figura \ref{fig:outliers-geoguide}.B o analista ver os atributos do ponto, marcado com a cor amarela, de sua escolha tais como distância (\textit{trip distance}) de $5,9km$ e preço de \$28,12  (\textit{total amount}) e um ponto considerado um outlier marcado pela cor laranja. Já na Figura \ref{fig:outliers-geoguide}.C podemos ver mais detalhes sobre o outlier e percebemos que ele tem distância de $5,8km$ e o preço de \$8,4 doláres, sendo assim um outlier com um preço muito inferior ao padrão. Essa caraterística pode indicar uma viagem fraudosa e essa informação pode ser obtida de forma simples e interativa na plataforma, sem precisar de muita análise, o analista pode ir descobrindo novas particularidades que possa agregar muito ao seu conhecimento sobre aquele dataset.
 
 % TODO: "A Banca pode perguntar, pq usar outliers no GeoGuidem quais as vantagens???"
 TODO: Indicar as vantagens de usar outliers no GeoGuide
