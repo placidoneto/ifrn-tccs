@@ -41,12 +41,11 @@ Z-Score \cite{doi:10.1111/j.1540-6261.1968.tb00843.x} é um dos métodos mais si
 
 \subsection{Isolation Forests}
 
-É um algoritmo de detecção de outliers \cite{IsolationForests} que usa um dos conceitos de aprendizagem de máquina que são as chamadas árvores de decisão. É unidimensional (só leva em consideração um atributo por vez) e são necessários poucos parâmetros (isso facilita a configuração e uso do algoritmo). Por não precisar escalar seus valores para sua execução, isso o torna um algoritmo robusto para grandes datasets.
-
+É um algoritmo de detecção de outliers \cite{IsolationForests} que usa um dos conceitos de aprendizagem de máquina que são as chamadas árvores de decisão. Ele leva em consideração a distribuição de probabilidade do dataset, seu foco é na busca de outliers, ao invés de categorizar os atributos considerados normais, e são necessários poucos parâmetros de entrada (isso facilita a configuração e uso do algoritmo). Porém, é mais conveniente utilizá-lo em datasets de médio porte.
 
 \subsection{FDC}
 
-É uma abordagem de algoritmo baseado em profundidade \cite{Johnson:1998:FCD:3000292.3000332} para detecção de outliers em datasets 2D que se baseia no conceito do algoritmo ISODEPTH \cite{RUTS1996} . O FDC computa os primeiros $k$ contornos de profundidade (os pontos que podem ser considerados outliers) restrigindo a uma pequena parte do dataset completo. Dessa forma, é mais eficiente por não ter que calcular no dataset completo e, portanto, mais fácil de escalar para grandes datasets de duas dimensões.
+É uma abordagem de algoritmo baseado em profundidade \cite{Johnson:1998:FCD:3000292.3000332} para detecção de outliers em datasets 2D que se baseia no conceito do algoritmo ISODEPTH \cite{RUTS1996}. O FDC computa os primeiros $k$ contornos de profundidade (os pontos que podem ser considerados outliers) restrigindo a uma pequena parte do dataset completo. Dessa forma, é mais eficiente por não ter que calcular no dataset completo e, portanto, mais fácil de escalar para grandes datasets de duas dimensões.
 
 \subsection{HOD}
 
@@ -74,7 +73,7 @@ Z-Score \cite{doi:10.1111/j.1540-6261.1968.tb00843.x} é um dos métodos mais si
 
 \vspace{25pt}
 
-Baseado nos algoritmos apresentados, nós organizamos cada um de acordo com a resposta para nossas questões propostas sobre algoritmos de detecção de outliers no geral. As questões são: \textbf{I} \textit{É paramétrico?}; \textbf{II} \textit{Qual é a abordagem?}; \textbf{III} \textit{É escalável em termos de performance?}; \textbf{IV} \textit{É escalável em termos de múltiplas dimensões?} e \textbf{V} \textit{Ele recebe algum argumento?}. O resultado é apresentado na Tabela Table \ref{table:algorithms-comparison}.
+Baseado nos algoritmos apresentados, nós organizamos cada um de acordo com a resposta para nossas questões propostas sobre algoritmos de detecção de outliers no geral. As questões são: \textbf{I} \textit{É paramétrico?}; \textbf{II} \textit{Qual é a abordagem?}; \textbf{III} \textit{É escalável em termos de performance?}; \textbf{IV} \textit{É escalável em termos de múltiplas dimensões?} e \textbf{V} \textit{Ele recebe algum argumento?}. O resultado é apresentado na Tabela \ref{table:algorithms-comparison}.
 
 \begin{table}[]
 	\centering
@@ -83,7 +82,7 @@ Baseado nos algoritmos apresentados, nós organizamos cada um de acordo com a re
 		\textbf{Algorithms}               & \textbf{I} & \textbf{II}             & \textbf{III} & \textbf{IV} & \textbf{V} \\ \hline
 		\textbf{Z-Score}                  & Sim        & Baseado em Modelo       & Não          & Não         & Sim        \\ \hline
 		\textbf{DBSCAN}                   & Não        & Baseado em Densidade    & Não          & Sim         & Sim        \\ \hline
-		\textbf{Isolation Forests}        & Não        & Baseado em Profundidade & Não          & Não         & Não        \\ \hline
+		\textbf{Isolation Forests}        & Sim        & Baseado em Profundidade & Não          & Sim         & Não        \\ \hline
 		\textbf{FDC}                      & Não        & Baseado em Profundidade & Sim          & Não         & Não        \\ \hline
 		\textbf{Hidden Outlier Detection} & Não        & Baseado em Distância    & Sim          & Sim         & Sim        \\ \hline
 		\textbf{ORCA}                     & Não        & Baseado em Distância    & Não          & Sim         & Sim        \\ \hline
@@ -96,7 +95,22 @@ Baseado nos algoritmos apresentados, nós organizamos cada um de acordo com a re
 	\label{table:algorithms-comparison}
 \end{table}
 
-% TODO: "É importante você criar uma seção para a análise dos algoritmos. É importante você explicar cada linha da tabela, os resultados em si. Com texto."
-TODO: Explicar cada linha da tabela analisando os algoritmos.
+Cada questão tem uma motivação específica para estar na Tabela \ref{table:algorithms-comparison}. A questão \textbf{I} é sobre a distribuição de probabilidade do dataset. Se o algoritmo é paramétrico, então nós podemos assumir a distribuição de probabilidade do dataset baseado em um conjunto fixo de parâmetros. A questão \textbf{II} serve para classificar cada algoritmo baseado na abordagem que ele utiliza para indicar se um dado é um outlier ou não, as opções são: \textit{Baseado em Modelo}, \textit{Baseado em Densidade}, \textit{Baseado em Profundidade}, \textit{Baseado em Distância} e \textit{Altas Dimensões}. A questão \textbf{III} é relativa a performance computacional de cada algoritmo, se o tempo de execução do algoritmo não é comprometido de acordo com o crescimento do dataset, significa que ele é escalável em termos de performance. A questão \textbf{IV} é sobre a performance de cada algoritmo também, mas nesse caso é relacionado ao crescimento de dimensões do dataset. Por fim, a questão \textbf{V} indica se o algoritmo requer algum argumento de entrada para processar o dataset, isso é importante pois se o algoritmo requer muitos argumentos pode se tornar um problema de precisão quando o dataset aumentar.
 
-Cada questão tem uma motivação específica para estar na Tabela \ref{table:algorithms-comparison}. A questão \textbf{I} é sobre a distribuição de probabilidade do dataset. Se o algoritmo é paramétrico, então nós podemos assumir a distribuição de probabilidade do dataset baseado em um conjunto fixo de parâmetros. A questão \textbf{II} serve para classificar cada algoritmo baseado na abordagem que ele utiliza para indicar se um dado é um outlier ou não, as opções são: textit{Baseado em Modelo}, \textit{Baseado em Densidade}, \textit{Baseado em Profundidade}, \textit{Baseado em Distância} e \textit{Altas Dimensões}. A questão \textbf{III} é relativa a performance computacional de cada algoritmo, se o tempo de execução do algoritmo não é comprometido de acordo com o crescimento do dataset, significa que ele é escalável em termos de performance. A questão \textbf{IV} é sobre a performance de cada algoritmo também, mas nesse caso é relacionado ao crescimento de dimensões do dataset. Por fim, a questão \textbf{V} indica se o algoritmo requer algum argumento de entrada para processar o dataset, isso é importante pois se o algoritmo requer muitos argumentos pode se tornar um problema de precisão quando o dataset aumentar.
+\section{Análise dos algoritmos}
+
+Após a categorização e o agrupamento dos algoritmos analisados baseado nas questões propostas, nós analisamos cada algoritmo e como ele se encaixaria com nossa proposta de trabalho.
+
+O algoritmo Z-Score é de uma complexidade muito simples comparado ao outros analisados, porém sua abordagem serve somente para os datasets em que podemos inferir qual seria sua distribuição de probabilidade e nossa proposta é trabalhar com datasets genéricos e pouco conhecido. Junto dele também temos o algoritmo FDC que não funciona para múltiplas dimensões (3D ou mais), mas a nossa proposta pretende atingir datasets sem limites de atributos.
+
+O DBSCAN tem uma abordagem interessante, mas precisa ser calibrado de acordo com a mudança do dataset e isso é muito sensitivo, podendo influenciar muito os resultados com pequenas alterações nos parâmetros de entrada. Além disso seus atributos precisam escalados antes da sua execução.
+
+O algoritmo Isolation Forests é recomendado somente em datasets que conhecemos sua distribuição, dessa forma, assim como o Z-Score, não é recomendado para a nossa proposta com datasets genéricos.
+
+O método Hidden Outlier Detection é mais elaborado e complexo, sendo o mais indicado em casos em que existem muitos outliers a ponto de formar uma espécie de cluster com eles, porém, é como se ele fosse ``um passo a mais'' no processo de detecção e não podemos indicar que os datasets terão essa estrutura.
+
+O ORCA é um algoritmo que foca em melhorar a performance dos algoritmos que utilizam loops aninhados para encontrar outliers, o Linearization é um algoritmo que utiliza o conceito da \textit{curva de Hilbert} para ajudar no seu processo e o RBRP é um algoritmo que tem eficiência muito boa em datasets de múltiplas dimensões, mas esses 3 algoritmos são de abordagens baseadas em \textit{Distância}, de forma que isso possa não ser o mais indicado nas regiões de pequenas áreas que queremos utilizar no nosso trabalho.
+
+O algoritmo LOF é de uma abordagem de \textit{Densidade} que propõe um conceito de ``não-binariedade'' na definição de um outlier com a atribuição de um grau para cada ponto indicando o ``quão outlier'' ele pode ser naquele conjunto. Isso nos chama atenção para poder trabalhar com nuances de outliers.
+
+Por fim, o algoritmo ABOD é focado em datasets com múltiplas dimensões e com uma abordagem única no nosso grupo analisado que é justamente ser muito específico para datasets com essas características. Entendemos que ele é um pouco mais complexo para a nossa proposta e que não podemos predizer se essa característica prevalecerá no uso da nossa ferramenta.
