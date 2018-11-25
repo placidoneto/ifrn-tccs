@@ -27,7 +27,7 @@ A partir desse conjunto, construímos um polígono convexo utilizando os pontos 
 \begin{figure*}[t]
 	\centering
 	\includegraphics[width=\textwidth]{images/idrs}
-	\caption{Imagem do processo de construção de IDRs}
+	\caption{Figura do processo de construção de IDRs}
 	\label{fig:idrs-geoguide}
 	\vspace{-10pt}
 \end{figure*}
@@ -37,7 +37,7 @@ O resultado dessas interseções são o que chamamos de Regiões Densamente Inte
 \begin{figure*}[t]
 	\centering
 	\includegraphics[width=\textwidth]{images/idrs-matching.pdf}
-	\caption{Imagem das sugestões do GeoGuide relacionadas com as IDRs do analista}
+	\caption{Figura das sugestões do GeoGuide relacionadas com as IDRs do analista}
 	\label{fig:idrs}
 	\vspace{-10pt}
 \end{figure*}
@@ -50,29 +50,22 @@ Com isso, cada IDR pode ser utilizada tanto para um foco mais preciso na região
 
 Nós consideramos duas camadas diferentes no mapa geográfico: a ``camada espacial'' e a ``camada de interação''. A camada espacial contém os pontos espaciais $\mathcal{P}$ do dataset em análise. A camada de interação  contém os pontos $\mathcal{M}$ referente aos pontos de movimento do mouse. Nossa abordagem proposta foca um conjunto dos pontos $\mathcal{M}$ na camada de interação para descobrir uma ou mais IDRs, na qual a maioria das interações do analista ocorre. Então alinhamos os pontos espaciais $\mathcal{P}$ com as IDRs visando encontrar os pontos que estão dentro de cada região. 
 
-TODO: adicionar o algoritmo no formato do artigo do GeoGuide
-
-% \begin{algorithm}[t]
-%     \DontPrintSemicolon
-%     \KwIn{Current time $t_c$, mouse move points $\mathcal{M}$, $k$}
-%     \KwOut{$k$ highlights $\mathcal{H}$}
-%     $\mathcal{S} \gets \emptyset$\;
-%     $g \gets ${\em number of time segments}\;
-%     \For{$i \in [0,g]$}
-%     {
-%            $\mathcal{M}_i \gets \{m = \langle x,y,t \rangle | (\frac{t_c}{g} \times i) \leq t \leq (\frac{t_c}{g} \times (i+1))\}$\;
-%            $\mathcal{C}_i \gets \mathit{mine\_clusters}(\mathcal{M}_i)$\label{ln:mine}\;
-%            $\mathcal{O}_i \gets \mathit{find\_ploygons}(\mathcal{C}_i)$\label{ln:poly}\;
-%     }
-%     \lFor{$\mathcal{O}_i, \mathcal{O}_j$ where $i,j \in [0,g]$ and $i \neq j$}
-%     {
-%            $\mathcal{S}.\mathit{append}(\mathit{intersect}(\mathcal{O}_i, \mathcal{O}_j))$
-%     }
-%     $\mathcal{H} \gets \mathit{discover\_highlights}(\mathcal{S},k)$\label{ln:geoguide}\;
-%     \Return{$\mathcal{H}$}\; 
-% \caption{Information Highlighting}
-% \label{algo:dense}
-% \end{algorithm}
+\begin{algorithm}[t]
+    \DontPrintSemicolon
+    \KwIn{Tempo atual $t_c$, pontos dos movimentos do mouse $\mathcal{M}$}
+    \KwOut{IDRs encontradas $\mathcal{S}$}
+    $\mathcal{S} \gets \emptyset$\;
+    $g \gets ${\em número de intervalos}\;
+    \For{$i \in [0,g]$}
+    {
+           $\mathcal{M}_i \gets \{m = \langle x,y,t \rangle | (\frac{t_c}{g} \times i) \leq t \leq (\frac{t_c}{g} \times (i+1))\}$\;
+           $\mathcal{C}_i \gets \mathit{minerar\_clusters}(\mathcal{M}_i)$\label{ln:mine}\;
+           $\mathcal{O}_i \gets \mathit{encontrar\_poligonos}(\mathcal{C}_i)$\label{ln:poly}\;
+    }
+	\Return{$\mathcal{S}$}\; 
+\caption{Algoritmo para criação de IDRs}
+\label{algo:dense}
+\end{algorithm}
 
 O algoritmo \ref{algo:dense} resume nossa abordagem para encontrar as IDRs. Nós adicionamos pontos para o conjunto $\mathcal{M}$ somente a cada $200ms$ para evitar a adição de pontos repetidos. Seguindo a ideia de que o analista tem mais interesse naquela região se ele movimentar o mouse nela mais vezes e afim de minerar o comportamento recorrente do analista, o algoritmo começa pelo particionamento do conjunto $\mathcal{M}$ em $g$ segmentos consecutivos de tamanho fixo do $\mathcal{M}_0$ até o $\mathcal{M}_g$. O primeiro segmento inicia no tempo zero (quando o usuário abre o mapa) e o último segmento termina em $t_c$, ou seja, o momento atual. Baseado na ideia de que o analista pode percorrer o mapa completamente, mas isso não indicará seu real interesse por todo o mapa, nós buscamos encontrar os clusters mais densos de cada segmento do conjunto $\mathcal{M}$ utilizando um algoritmo variante do DBSCAN \cite{Ester:1996:DAD:3001460.3001507}. Por fim, nós retornamos as interseções entre esses clusters como os IDRs.
 
