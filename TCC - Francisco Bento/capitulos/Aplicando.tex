@@ -1,5 +1,7 @@
 \chapter{Aplicando IDRs e Outliers no GeoGuide}
 
+% TODO: "Esse capítulo ainda está bem inconsistente. É necessário analisar qual o real foco dele. Se ele não é um capítulo de experimentos, mas sim de uso, seria interessante vários prints do sistema para explicar o real uso desses conceitos."
+
 Neste capítulo iremos mostrar como utilizamos os conceitos de IDRs e a abordagem de detecção de outliers no GeoGuide. Mostraremos o passo a passo de como utilizar a plataforma do GeoGuide, desde o passo da autenticação, passando pelo processo \textit{upload} de um dataset no formato \textit{csv}, mostrando como o GeoGuide trata esse conjunto de dados e então exemplificando a criação de IDRs na plataforma e a abordagem de detecção de outliers nesse conjunto.
 
 \section{Carregando um dataset}
@@ -38,7 +40,9 @@ Quando finalizar o preenchimento do formulário referente ao dataset, então o a
 
 \section{Pré-processamento do GeoGuide}
 
-Logo após o primeiro instante de plotagem do mapa global na tela do usuário, o servidor da plataforma do GeoGuide inicia, em paralelo e sem a intervenção do usuário, um processo para o calculo das métricas de similaridade e diversidade de todos os pares de pontos possíveis no dataset. Esse cálculo é demorado, pois tem a complexidade de O(n2) e isso vira um problema em datasets gigantes. Então durante esse cálculo o usuário pode ir navegando pelo seu conjunto de dados e ir conhecendo mais sobre os pontos daquele grupo e, por fim, quando todas as métricas forem calculadas, o GeoGuide normaliza esses valores num intervalo de 0.0 a 1.0 e libera a opção de explorar cada ponto do dataset em busca de novas orientações sobre o quê analisar em seguida.
+Logo após o primeiro instante de plotagem do mapa global na tela do usuário, o servidor da plataforma do GeoGuide inicia, em paralelo e sem a intervenção do usuário, um processo para o calculo das métricas de similaridade e diversidade de todos os pares de pontos possíveis no dataset. Esse cálculo é demorado, pois tem a complexidade de $\mathcal{O}(n^{2})$ e isso vira um problema em datasets gigantes. Então durante esse cálculo o usuário pode ir navegando pelo seu conjunto de dados e ir conhecendo mais sobre os pontos daquele grupo e, por fim, quando todas as métricas forem calculadas, o GeoGuide normaliza esses valores num intervalo de 0.0 a 1.0 e libera a opção de explorar cada ponto do dataset em busca de novas orientações sobre o quê analisar em seguida.
+
+% TODO: Considerar utilizar a imagem do artigo de behrooz explicando o geoguide no geral.
 
 \section{Criação de IDRs}
 

@@ -1,17 +1,19 @@
 \chapter{Background}
 
+% TODO: "Por favor, evite utilizar o texto em 1a pessoa, do singular ou plural. Não irei corrigir esse tipo uso daqui pra frente. Significa que é necessário modificar o texto para se adaptar a 3a pessoa."
 
-Neste capítulo nós vamos apresentar os trabalhos existentes sobre análise de dados e detecção de outliers com algoritmos e estratégias de como usar essa abordagem para melhorar a análise dos dados e aumentar a quantidade e a qualidade das informações que podemos obter dos datasets.
 
-\section{Trabalhos Relacionados}
+Neste capítulo será apresentado os trabalhos existentes sobre análise de dados e detecção de outliers com algoritmos e estratégias de como usar essa abordagem para melhorar a análise dos dados e aumentar a quantidade e a qualidade das informações que podemos obter dos datasets.
 
-\subsection{GeoGuide}
+\section{GeoGuide}
 
 Visando melhorar a análise de dados espaciais e a abordagem por orientação para esse tipo de dado, o GeoGuide \cite{omidvarTehrani2017} é um framework interativo que visa destacar para o analista um subconjunto de $k$ pontos espaciais interessantes, baseado nos feedbacks \textit{implícito} (ex.: rastreamento do mouse) e \textit{explícito} (ex.: pontos clicados) do analista, que podem não terem sido vistos dado o montante de informação aparente na sua tela. Esse framework leva em consideração duas importantes métricas para poder destacar um subconjunto. A primeira é a \textbf{relevância} de cada ponto para o ponto selecionado pelo analista considerando os atributos não espaciais desses pontos. O segundo é a \textbf{diversidade} geográfica para que assim possa expandir a área de análise do usuário em busca de possíveis novas regiões de seu interesse.
 
 Todo esse processo pode ser utilizado em datasets espaciais genéricos, contanto que cada ponto do conjunto tenha duas características: atributos geográficos (ex.: latitude e longitude) e atributos \textit{metadados} de domínio do dataset. Por exemplo, a plataforma Airbnb\footnote{\it http://www.airbnb.com} tem datasets abertos sobre as casa disponíveis para alugar e cada uma delas tem atributos geográficos e \textit{preço, nome do hospedados e disponibilidade} como seus atributos metadados que são específicos para cada tipo de dataset como podemos ver na Figura \ref{fig:geoguide-example-airbnb}. Utilizando essa abordagem, o GeoGuide é o primeiro framework interativo eficiente para destaque de dados espaciais, combinando o feedback do analista com as métricas de relevância e diversidade para mostrar a ele um subconjunto de pontos interessantes que podem não ter sido deixado de lado durante sua análise.
 
-Esse ferramenta construída foi fruto de um projeto de pesquisa realizado no Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN) em parceria com a Universidade de Grenoble realizado por alunos do curso superior de Tecnologia em Análise e Desenvolvimento de Sistemas (TADS), dentre os quais me incluo, e serviu de base para a construção deste trabalho visando melhorias na abordagem já existente.
+Essa ferramenta construída foi fruto de um projeto de pesquisa realizado no Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN) em parceria com a Universidade de Grenoble realizado por alunos do curso superior de Tecnologia em Análise e Desenvolvimento de Sistemas (TADS), dentre os quais me incluo, e serviu de base para a construção deste trabalho visando melhorias na abordagem já existente.
+
+% TODO: "Paragrafo importante para contextualizar seu trabalho."
 
 \begin{figure*}[t]
 	\centering
@@ -21,15 +23,13 @@ Esse ferramenta construída foi fruto de um projeto de pesquisa realizado no Ins
 	\vspace{-10pt}
 \end{figure*}
 
-\subsection{Outliers}
+\section{Outliers}
 
-No campo da estatística, Outliers são quando se encontram ``valores aberrantes'' num determinado conjunto de dados, ou seja, quando alguém acha um valor atípico ou muito fora da distribuição normal daquele conjunto. Por exemplo, quando um pesquisador quer monitorar a temperatura de sua CPU durante um certo intervalo de tempo e foi percebido que a variação de temperatura foi entre 34 ºC e 45 ºC com máxima de 48 ºC e mínima de 27 ºC e no meio dessa amostragem são encontrados registros pontuais de 0 ºC, isso é caracterizado como um outlier a, muito provavelmente, será interpretado como um defeito do equipamento que realizou a coleta da temperatura da CPU.
+No campo da estatística, Outliers são quando se encontram ``discrepâncias'' num determinado conjunto de dados, ou seja, quando alguém acha um valor atípico ou muito fora da distribuição normal daquele conjunto. Por exemplo, quando um pesquisador quer monitorar a temperatura de sua CPU durante um certo intervalo de tempo e foi percebido que a variação de temperatura foi entre 34 ºC e 45 ºC com máxima de 48 ºC e mínima de 27 ºC e no meio dessa amostragem são encontrados registros pontuais de 0 ºC, isso é caracterizado como um outlier a, muito provavelmente, será interpretado como um defeito do equipamento que realizou a coleta da temperatura da CPU.
 
 Entretanto, existem diversas formas de interpretar um Outlier além de um erro da coleta, como: um dado que pertença à uma população diferente da amostra, um dado defeituoso, um dado que esteja numa área em que certa teoria não é válida ou até, quando a amostra é muito grande, é normal haver pequenos quantidades de outliers naquele grupo. Em casos em que são provados que não é culpa de um equipamento defeituoso de coleta ou que não foi uma falha humana, é extremamente importante entender o porquê daquele outlier, pois não é interessante para o pesquisador simplesmente removê-lo ou ressignificá-lo definindo-lhe um novo valor, já que essa mudança pode comprometer a validade da pesquisa e, caso aconteça, é de extrema importância que tudo isso seja documentado para registro dessas alterações.
 
-Assim como as tecnologias da informação melhoram e aumentam continuamente seu poder computacional, uma grande variedade de algoritmos para detecção de outliers tem surgido e vem sendo aplicado em diferentes contextos com diversas características, sendo que a escolha para um desses algoritmos é baseada no domínio do problema. Na próxima seção nós apresentaremos alguns desses algoritmos com uma breve explicação sobre cada um.
-
-\section{Algoritmos de Detecção de Outliers}
+Assim como as tecnologias da informação melhoram e aumentam continuamente seu poder computacional, uma grande variedade de algoritmos para detecção de outliers tem surgido e vem sendo aplicado em diferentes contextos com diversas características, sendo que a escolha para um desses algoritmos é baseada no domínio do problema. A seguir será apresentado alguns desses algoritmos com uma breve explicação sobre cada um.
 
 \subsection{Z-Score}
 

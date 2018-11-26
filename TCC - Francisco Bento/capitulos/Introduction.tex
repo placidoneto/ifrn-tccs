@@ -11,9 +11,7 @@ Nos últimos oito anos, a busca por termos como \textit{big data} (como podemos 
 	\vspace{-10pt}
 \end{figure*}
 
-No que se refere ao campo da análise de dados, é muito comum que o analista, ao lidar com \textit{datasets} de grandes volumes, encontre, durante sua exploração pelo conjunto de dados, vários pontos com atributos de valores muito distantes da média do dataset no geral, seja distante no sentido de valores muito superiores ou muito inferiores. Isto acontece porque quanto maior é o \text{dataset}, mais facilmente se pode encontrar pontos atípicos que serão mais distantes da distribuição normal. Esse comportamento é importante ser estudado pelo analista para que seja descoberto mais informações sobre o dataset em si e com isso possam ser tomadas decisões mais precisas e afirmações mais claras possam ser propostas. Geralmente, essa preocupação sobre dados anômalos não era tão relevante para a maioria das pesquisas, mas isso vem mudando a partir de que informações importantes podem ser descobertas com essa análise de pontos incomuns.
-
-Esse tipo específico de dado com essas características é chamado de Outliers e é muito importante que os atuais analistas de dados deem mais atenção para esses dados, pois informações importantes podem estar escondidas entre esses conjuntos particulares.
+No que se refere ao campo da análise de dados, é muito comum que o analista, ao lidar com \textit{datasets} de grandes volumes, encontre, durante sua exploração pelo conjunto de dados, vários pontos com atributos de valores muito distantes da média do dataset no geral, seja distante no sentido de valores muito superiores ou muito inferiores. Isto acontece porque quanto maior é o \text{dataset}, mais facilmente se pode encontrar pontos atípicos que serão mais distantes da distribuição normal. Esse comportamento é importante ser estudado pelo analista para que seja descoberto mais informações sobre o dataset em si e com isso possam ser tomadas decisões mais precisas e afirmações mais claras possam ser propostas. Geralmente, essa preocupação sobre dados anômalos não era tão relevante para a maioria das pesquisas, mas isso vem mudando a partir de que informações importantes podem ser descobertas com essa análise de pontos incomuns. Esse tipo específico de dado com essas características é chamado de Outlier e é muito importante que os atuais analistas de dados deem mais atenção para esses dados, pois informações importantes podem estar escondidas entre esses conjuntos particulares.
 
 Por exemplo, se pegarmos um conjunto de dados isolado sobre os fluxo de táxis de Nova Iorque de 2011 e analisarmos a frequência de corridas no ano inteiro, irão aparecer muitos pontos fora dessa curva média e isso indicaria um comportamento anômalo nessa coleção.
 
@@ -33,7 +31,7 @@ Hoje em dia nós estamos mais e mais conectados com múltiplas aplicações que 
 
 Quando tratamos usuários comuns, é muito comum que ele se perca frente à tanta massa de dados espaciais e isso vai prejudicar sua possível análise sobre o conjunto, mesmo a mais simples. Esse problema ainda não tem uma solução definitiva, então pesquisas atuais tentam indicar possíveis estratégias para mitigar esse problema e se aproximar de uma solução funcional. Essas abordagens são baseada em: agrupar um grande conjunto de dados por um ou mais atributos específicos e resumir esses grupos baseado nesses atributos para conseguir simples \textit{insights} sobre esses conjuntos, filtrar o dataset para reduzir os dados visíveis e focar em dados específicos para uma análise mais precisa (mas não vasta), e muitas outras estratégias para reduzir a complexidade da análise.
 
-Junto desses problemas, existe um importante que acontece antes do primeiro passo da análise que é: \textit{O que fazer quando partes do dataset parecem irregular ou com dados corrompidos?}. Existem técnicas que ajudam na limpeza dessas partes de forma que não prejudique a análise \cite{10.1007/978-3-319-11116-2_2}, mas estudos recentes demonstram a importância desses dados \textit{``anormais''} e o quanto um analista pode aprender estudando mais precisamente esse conjunto \cite{DBLP:journals/debu/FreireCVZ16}.
+Junto desses problemas, existe um importante que acontece antes do primeiro passo da análise que é: \textit{O que fazer quando partes do dataset parecem irregular ou com dados corrompidos?} Existem técnicas que ajudam na limpeza dessas partes de forma que não prejudique a análise \cite{10.1007/978-3-319-11116-2_2}, mas estudos recentes demonstram a importância desses dados \textit{``anormais''} e o quanto um analista pode aprender estudando mais precisamente esse conjunto \cite{DBLP:journals/debu/FreireCVZ16}.
 
 Nesse ambiente complexo de análise de dados espaciais com bastante variáveis e possibilidades, um usuário pode facilmente falhar numa dessas tarefas e comprometer seriamente o resultado de suas análises. Combinando todos esses detalhes, nós sugerimos uma abordagem que leve em consideração o \textit{feedback} do usuário (capturando o movimento do mouse) e, baseado nesse feedback, nós nos tornaremos apto a analisar o interesse do usuário e dentro disso nós podemos detectar, estudar e propor ações para serem tomadas quando um dado considerado um outlier apareça nessa região de interesse do usuário.
 
@@ -45,11 +43,11 @@ Nesta seção estão definidos os objetivos gerais e específicos do trabalho.
 
 \begin{itemize}
 	\item
-	      Introduzir o problema da análise e visualização em grandes conjuntos de dados espaço temporal atualmente.
+	      Introduzir o problema da análise e visualização em grandes conjuntos de dados espaciais atualmente.
 	\item
-	      Explicar nossa abordagem proposta para detecção de outliers espaciais em grandes datasets utilizando a captura do feedback do usuário e as regiões de sua preferência.
+	      Explicar a abordagem proposta para detecção de outliers espaciais em grandes datasets utilizando a captura do feedback do usuário e as regiões de sua preferência.
 	\item
-	      Apresentar nossos resultados utilizando a proposta para detecção de outliers no nosso ambiente espaço-temporal e os benefícios desse experimento.
+	      Apresentar os resultados utilizando a proposta para detecção de outliers no nosso ambiente espaço-temporal e os benefícios desse experimento.
 
 \end{itemize}
 
@@ -67,11 +65,11 @@ Nesta seção estão definidos os objetivos gerais e específicos do trabalho.
 	\item
 	      Resumir os algoritmos de detecção de outliers mais conhecidos para dados genéricos e espaciais.
 	\item
-	      Mostrar o nosso algoritmo escolhido explicando as razões dessa escolha.
+	      Mostrar o algoritmo escolhido explicando as razões dessa escolha.
 	\item
-	      Aplicar nosso conceito de IDR e nosso algoritmo de detecção de outlier escolhido num ambiente de dados espaço-temporal.
+	      Aplicar o conceito de IDR e nosso algoritmo de detecção de outlier escolhido num ambiente de dados espaço-temporal.
 	\item
-	      Apresentar os resultados de nossa aplicação e indicar nossos trabalhos futuros.
+	      Apresentar os resultados da aplicação e indicar trabalhos futuros.
 
 \end{itemize}
 
