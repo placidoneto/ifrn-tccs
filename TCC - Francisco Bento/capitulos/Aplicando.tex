@@ -40,9 +40,21 @@ Quando finalizar o preenchimento do formulário referente ao dataset, então o a
 
 \section{Pré-processamento do GeoGuide}
 
-Logo após o primeiro instante de plotagem do mapa global na tela do usuário, o servidor da plataforma do GeoGuide inicia, em paralelo e sem a intervenção do usuário, um processo para o cálculo das métricas de similaridade e diversidade de todos os pares de pontos possíveis no dataset. Esse cálculo é demorado, pois tem a complexidade de $\mathcal{O}(n^{2})$ e isso vira um problema em datasets gigantes. Então durante esse cálculo o usuário pode ir navegando pelo seu conjunto de dados e ir conhecendo mais sobre os pontos daquele grupo e, por fim, quando todas as métricas forem calculadas, o GeoGuide normaliza esses valores num intervalo de 0.0 a 1.0 e libera a opção de explorar cada ponto do dataset em busca de novas orientações sobre o quê analisar em seguida.
+Logo após o primeiro instante de plotagem do mapa global na tela do usuário, o servidor da plataforma do GeoGuide inicia, em paralelo e sem a intervenção do usuário, um processo para o cálculo das métricas de similaridade e diversidade de todos os pares de pontos possíveis no dataset.
 
-% TODO: Considerar utilizar a imagem do artigo de behrooz explicando o geoguide no geral.
+Primeiro a ferramenta seleciona um ponto $a$ do dataset espacial e o compara com um ponto $b$ sendo seu sucessor no conjunto. A comparação leva em consideração os atributos ``não espaciais'' dos pontos e tem como resultado a métrica de \textit{similaridade} entre esses dois pontos. Então, é realizado uma segunda comparação para gerar a métrica de \textit{diversidade} entre os pontos. Para essa métrica, é levado em consideração os atributos geográficos desses pontos (\textit{latitude} e \textit{longitude}), de forma que, quanto mais distante um ponto $a$ é do ponto $b$, mais diverso eles serão.  
+
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/geoguide-pre-processamento.pdf}
+	\caption{Visão geral do funcionamento do GeoGuide}
+	\label{fig:geoguide-pre-processamento}
+	\vspace{-10pt}
+\end{figure*}
+
+Após o processamento dessas métricas, o framework vai normalizar esses valores num intervalo de $0,0$ a $1,0$ e orderná-los em sentido decrescente. Esses valores normalizados são os indíces (ver Figura \ref{fig:geoguide-pre-processamento}) que o GeoGuide utilizará nas sugestões de novos pontos para o analista.
+
+Esse processo é demorado, pois tem a complexidade de $\mathcal{O}(n^{2})$ e isso vira um problema com o aumento do volume desses datasets. Então durante esse cálculo o usuário pode ir navegando pelo seu conjunto de dados e ir conhecendo mais sobre os pontos daquele grupo (gerando \textit{feedback} para a ferramenta, como podemos ver na Figura \ref{fig:geoguide-pre-processamento}). Quando for de seu interesse, o analista pode selecionar um ponto e pedir novas sugestões relacionadas com sua escolha, logo, o GeoGuide irá consultar os indíces resultantes do seu processamento inicial e retornará os pontos mais relevantes com a escolha do usuário. Esse processo pode ser realizado diversas vezes para que o analista sempre possa descobrir o que explorar em seguida.
 
 \section{Criação de IDRs}
 
