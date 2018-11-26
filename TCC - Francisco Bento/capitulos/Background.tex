@@ -14,8 +14,6 @@ Todo esse processo pode ser utilizado em datasets espaciais genéricos, contanto
 
 Essa ferramenta construída foi fruto de um projeto de pesquisa realizado no Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN) em parceria com a Universidade de Grenoble realizado por alunos do curso superior de Tecnologia em Análise e Desenvolvimento de Sistemas (TADS), dentre os quais me incluo, e serviu de base para a construção deste trabalho visando melhorias na abordagem já existente.
 
-% TODO: "Paragrafo importante para contextualizar seu trabalho."
-
 \begin{figure*}[t]
 	\centering
 	\includegraphics[width=\textwidth]{images/geoguide-example-airbnb}
@@ -100,7 +98,7 @@ Cada questão tem uma motivação específica para estar na Tabela \ref{table:al
 
 \section{Análise dos algoritmos}
 
-Após a categorização e o agrupamento dos algoritmos analisados baseado nas questões propostas, nós analisamos cada algoritmo e como ele se encaixaria com nossa proposta de trabalho.
+Após a categorização e o agrupamento dos algoritmos analisados baseado nas questões propostas, nós analisamos cada algoritmo (ver Tabela \ref{table:algorithms-comparison}) e como ele se encaixaria com nossa proposta de trabalho.
 
 O algoritmo Z-Score é de uma complexidade muito simples comparado ao outros analisados, porém sua abordagem serve somente para os datasets em que podemos inferir qual seria sua distribuição de probabilidade e nossa proposta é trabalhar com datasets genéricos e pouco conhecido. Junto dele também temos o algoritmo FDC que não funciona para múltiplas dimensões (3D ou mais), mas a nossa proposta pretende atingir datasets sem limites de atributos.
 
@@ -110,8 +108,8 @@ O algoritmo Isolation Forests é recomendado somente em datasets que conhecemos 
 
 O método Hidden Outlier Detection é mais elaborado e complexo, sendo o mais indicado em casos em que existem muitos outliers a ponto de formar uma espécie de cluster com eles, porém, é como se ele fosse ``um passo a mais'' no processo de detecção e não podemos indicar que os datasets terão essa estrutura.
 
-O ORCA é um algoritmo que foca em melhorar a performance dos algoritmos que utilizam loops aninhados para encontrar outliers, o Linearization é um algoritmo que utiliza o conceito da \textit{curva de Hilbert} para ajudar no seu processo e o RBRP é um algoritmo que tem eficiência muito boa em datasets de múltiplas dimensões, mas esses 3 algoritmos são de abordagens baseadas em \textit{Distância}, de forma que isso possa não ser o mais indicado nas regiões de pequenas áreas que queremos utilizar no nosso trabalho.
+O ORCA é um algoritmo que foca em melhorar a performance dos algoritmos que utilizam loops aninhados para encontrar outliers, o Linearization é um algoritmo que utiliza o conceito da \textit{curva de Hilbert} para ajudar no seu processo e o RBRP é um algoritmo que tem eficiência muito boa em datasets de múltiplas dimensões, mas esses 3 algoritmos são de abordagens baseadas em \textit{Distância} (ver Tabela \ref{table:algorithms-comparison}), de forma que isso possa não ser o mais indicado nas regiões de pequenas áreas que queremos utilizar no nosso trabalho.
 
-O algoritmo LOF é de uma abordagem de \textit{Densidade} que propõe um conceito de ``não-binariedade'' na definição de um outlier com a atribuição de um grau para cada ponto indicando o ``quão outlier'' ele pode ser naquele conjunto. Isso nos chama atenção para poder trabalhar com nuances de outliers.
+O algoritmo LOF é de uma abordagem de \textit{Densidade} (ver Tabela \ref{table:algorithms-comparison}) que propõe um conceito de ``não-binariedade'' na definição de um outlier com a atribuição de um grau para cada ponto indicando o ``quão outlier'' ele pode ser naquele conjunto. Isso nos chama atenção para poder trabalhar com nuances de outliers.
 
-Por fim, o algoritmo ABOD é focado em datasets com múltiplas dimensões e com uma abordagem única no nosso grupo analisado que é justamente ser muito específico para datasets com essas características. Entendemos que ele é um pouco mais complexo para a nossa proposta e que não podemos predizer se essa característica prevalecerá no uso da nossa ferramenta.
+Por fim, o algoritmo ABOD é focado em datasets com múltiplas dimensões (ver Tabela \ref{table:algorithms-comparison}) e com uma abordagem única no nosso grupo analisado que é justamente ser muito específico para datasets com essas características. Entendemos que ele é um pouco mais complexo para a nossa proposta e que não podemos predizer se essa característica prevalecerá no uso da nossa ferramenta.
