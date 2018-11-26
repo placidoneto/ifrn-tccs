@@ -4,17 +4,37 @@ Neste capítulo iremos mostrar como utilizamos os conceitos de IDRs e a abordage
 
 \section{Carregando um dataset}
 
-O primeiro passo para começar a utilizar o GeoGuide é realizar um cadastro básico do usuário que está acessando a plataforma, caso o usuário já possua conta na plataforma, então ele só precisará informar seu email e senha que usou durante o cadastro.
+O primeiro passo para começar a utilizar o GeoGuide é realizar um cadastro básico do usuário (informando os campos \textit{e-mail}, \textit{senha} e \textit{confirmação de senha}) que está acessando a plataforma (ver Figura \ref{fig:geoguide-register}). Caso o usuário já possua conta na plataforma, então ele só precisará informar seu email e senha que usou durante o cadastro para poder ter acesso ao GeoGuide (ver Figura \ref{fig:geoguide-login}).
 
-TODO: mostrar prints de registro e autenticação no GeoGuide
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/geoguide-register.png}
+	\caption{Tela de registro de usuário do GeoGuide}
+	\label{fig:geoguide-register}
+	\vspace{-10pt}
+\end{figure*}
 
-Esse cadastro é importante para que o usuário possa registrar os datasets carregados e não precisar ficar fazendo o mesmo carregamento desses dados várias vezes, todas as suas configurações vão ficar registradas na plataforma e ligadas diretamente à sua conta de usuário.
+Esse cadastro é importante para que o usuário possa registrar os datasets carregados e não precisar ficar fazendo o mesmo carregamento desses dados várias vezes, pois todas as suas configurações vão ficar registradas na plataforma e ligadas diretamente à sua conta de usuário.
 
-TODO: mostrar imagens da tela de datasets carregados
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/geoguide-login.png}
+	\caption{Tela de login do usuário do GeoGuide}
+	\label{fig:geoguide-login}
+	\vspace{-10pt}
+\end{figure*}
 
-Após escolher o dataset e realizar o processo de carregamento do arquivo .csv, o usuário precisa informar alguns dados básicos sobre aquele conjunto de dados que vai estar registrando na sua conta, como por exemplo, qual o nome que ele vai atribuir àquele conjunto, quantas linhas do .csv vai levar em consideração no carregamento (isso é importante para caso o usuário deseje analisar somente uma parte do dataset), quais os campos que ele quer levar em consideração para o cálculo das métricas de \textit{similaridade} \textit{diversidade} e entre outras informações.
+Após escolher qual conjunto de dados ele vai querer trabalhar, é preciso que ele realize o processo de carregamento de um arquivo .csv e então informar alguns dados básicos sobre aquele conjunto que vai estar registrando na sua conta, como por exemplo: qual o nome que ele vai atribuir àquele conjunto, quantas linhas do .csv vai levar em consideração no carregamento (isso é importante para caso o usuário deseje analisar somente uma parte do dataset), quais os campos que ele quer levar em consideração para o cálculo das métricas de \textit{similaridade} \textit{diversidade} e entre outras informações.
 
-Quando finalizar o preenchimento do formulário referente ao dataset, então o GeoGuide passará para o próximo passo que é a visualização desses dados espaciais num mapa global centralizado na localização do dataset, de forma que o usuário já possa interagir com os pontos no mapa, podendo realizar algumas filtragens e também clicando em cada ponto específico para mostrar seus atributos referentes ao seu domínio específico.
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/geoguide-datasets.png}
+	\caption{Tela de datasets do usuário no GeoGuide}
+	\label{fig:geoguide-datasets}
+	\vspace{-10pt}
+\end{figure*}
+
+Quando finalizar o preenchimento do formulário referente ao dataset, então o analista poderá visualizar quais os datasets que já estão registrados na sua conta e selecionar qual ele irá querer trabalhar no momento. Após isso, o GeoGuide passará para o próximo passo que é a visualização desses dados espaciais num mapa global centralizado na localização do dataset, de forma que o usuário já possa interagir com os pontos no mapa, podendo realizar algumas filtragens e também clicando em cada ponto específico para mostrar seus atributos referentes ao seu domínio específico.
 
 \section{Pré-processamento do GeoGuide}
 
