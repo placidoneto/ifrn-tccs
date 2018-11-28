@@ -7,10 +7,12 @@ Nos últimos oito anos, a busca por termos como \textit{big data} (como pode-se 
 \begin{figure*}[!h]
 	\centering
 	\includegraphics[width=\textwidth]{images/google-trend-big-data.png}
-	\caption{Figura retirada do \textit{https://trends.google.com.br} com o resultado do termo \textit{big data}}
+	\caption[Quadro do Google Trends com o resultado do assunto \textit{``Big Data''}]{Quadro do Google Trends\footnotemark \text{ }com o resultado do assunto \textit{``Big Data''}}
 	\label{fig:google-trend}
 	\vspace{-10pt}
 \end{figure*}
+
+\footnotetext{\textit{https://trends.google.com.br}}
 
 No que se refere ao campo da análise de dados, é muito comum que o analista, ao lidar com \textit{datasets} de grandes volumes, encontre, durante sua exploração pelo conjunto de dados, vários pontos com atributos de valores muito distantes da média do dataset no geral, seja distante no sentido de valores muito superiores ou muito inferiores. Isto acontece porque quanto maior é o \text{dataset}, mais facilmente se pode encontrar pontos atípicos que serão mais distantes da distribuição normal. Esse comportamento é importante ser estudado pelo analista para que seja descoberto mais informações sobre o dataset em si e com isso possam ser tomadas decisões mais precisas e afirmações mais claras possam ser propostas. Geralmente, essa preocupação sobre dados anômalos não era tão relevante para a maioria das pesquisas, mas isso vem mudando a partir de que informações importantes podem ser descobertas com essa análise de pontos incomuns. Esse tipo específico de dado com essas características é chamado de Outlier e é muito importante que os atuais analistas de dados deem mais atenção para esses dados, pois informações importantes podem estar escondidas entre esses conjuntos particulares.
 
@@ -21,7 +23,7 @@ Geralmente, a primeira tarefa a se fazer nessa situação é a remoção desses 
 \begin{figure*}[t]
 	\centering
 	\includegraphics[width=\textwidth]{images/outlier-freire-figure-1}
-	\caption{Figura tirada do \cite{DBLP:journals/debu/FreireCVZ16} mostrando a relação entre o número de corridas de táxis e a velocidade do vento}
+	\caption{Relação entre o número de corridas de táxis e a velocidade do vento em Nova Iorque \cite{DBLP:journals/debu/FreireCVZ16}}
 	\label{fig:freire-paper-taxi-wind}
 	\vspace{-10pt}
 \end{figure*}
@@ -44,11 +46,11 @@ Nesta seção estão definidos os objetivos gerais e específicos do trabalho.
 
 \begin{itemize}
 	\item
-	      Introduzir o problema da análise e visualização em grandes conjuntos de dados espaciais atualmente.
+		Introduzir o problema da análise e visualização em grandes conjuntos de dados espaciais atualmente.
+	\item 
+		Detalhar a finalidade da detecção de discrepâncias em dados espaciais e a criação de regiões densas interessantes
 	\item
 	      Explicar a abordagem proposta para detecção de outliers espaciais em grandes datasets utilizando a captura do feedback do usuário e as regiões de sua preferência.
-	\item
-	      Apresentar os resultados utilizando a proposta para detecção de outliers em um ambiente espaço e os benefícios desse experimento.
 
 \end{itemize}
 
@@ -60,7 +62,7 @@ Nesta seção estão definidos os objetivos gerais e específicos do trabalho.
 	\item
 	      Apresentar uma proposta de ferramenta para análise e visualização de dados espaciais.
 	\item
-	      Comparar as pesquisas apresentadas destacando os prós e contras de cada pesquisa.
+	      Comparar as pesquisas apresentadas destacando os prós e contras de cada uma.
 	\item
 	      Descrever o conceito de uma região densa interessante utilizado na proposta de ferramenta para mapear a preferência do usuário em um ambiente espacial.
 	\item
@@ -68,9 +70,9 @@ Nesta seção estão definidos os objetivos gerais e específicos do trabalho.
 	\item
 	      Mostrar o algoritmo escolhido explicando as razões dessa escolha.
 	\item
-	      Aplicar o conceito de IDR e nosso algoritmo de detecção de outlier escolhido num ambiente de dados espaço-temporal.
+		Apresentar uma proposta que utiliza as regiões densas interessantes e os outliers num ambiente de dados espaciais
 	\item
-	      Apresentar os resultados da aplicação e indicar trabalhos futuros.
+		Indicar trabalhos futuros baseado nessa proposta de abordagem
 
 \end{itemize}
 
