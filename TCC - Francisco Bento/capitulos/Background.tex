@@ -25,7 +25,7 @@ No campo da estatística, Outliers são quando se encontram ``discrepâncias'' n
 
 Entretanto, existem diversas formas de interpretar um Outlier além de um erro da coleta, como: um dado que pertença à uma população diferente da amostra, um dado defeituoso, um dado que esteja numa área em que certa teoria não é válida ou até, quando a amostra é muito grande, é normal haver pequenas quantidades de outliers naquele grupo. Em casos em que são provados que não é culpa de um equipamento defeituoso de coleta ou que não foi uma falha humana, é extremamente importante entender o porquê daquele outlier, pois não é interessante para o pesquisador simplesmente removê-lo ou ressignificá-lo definindo-lhe um novo valor, já que essa mudança pode comprometer a validade da pesquisa e, caso aconteça, é de extrema importância que tudo isso seja documentado para registro dessas alterações.
 
-Assim como as tecnologias da informação melhoram e aumentam continuamente seu poder computacional, uma grande variedade de algoritmos para detecção de outliers tem surgido e vem sendo aplicado em diferentes contextos com diversas características, sendo que a escolha para um desses algoritmos é baseada no domínio do problema. A seguir será apresentado alguns desses algoritmos com uma breve explicação sobre cada um.
+Assim como as tecnologias da informação melhoram e aumentam continuamente seu poder computacional, uma grande variedade de algoritmos para detecção de outliers têm surgido e vem sendo aplicado em diferentes contextos com diversas características, sendo que a escolha para um desses algoritmos é baseada no domínio do problema. A seguir será apresentado alguns desses algoritmos com uma breve explicação sobre cada um.
 
 \subsection{Z-Score}
 
@@ -41,7 +41,7 @@ Z-Score \cite{doi:10.1111/j.1540-6261.1968.tb00843.x} é um dos métodos mais si
 
 \subsection{FDC}
 
-É uma abordagem de algoritmo baseado em profundidade \cite{Johnson:1998:FCD:3000292.3000332} para detecção de outliers em datasets 2D que se baseia no conceito do algoritmo ISODEPTH \cite{RUTS1996}. O FDC computa os primeiros $k$ contornos de profundidade (os pontos que podem ser considerados outliers) restrigindo a uma pequena parte do dataset completo. Dessa forma, é mais eficiente por não ter que calcular no dataset completo e, portanto, mais fácil de escalar para grandes datasets de duas dimensões.
+É uma abordagem de algoritmo baseado em profundidade \cite{Johnson:1998:FCD:3000292.3000332} para detecção de outliers em datasets 2D que se baseia no conceito do algoritmo ISODEPTH \cite{RUTS1996}. O FDC computa os primeiros $k$ contornos de profundidade (os pontos que podem ser considerados outliers) restringindo a uma pequena parte do dataset completo. Dessa forma, é mais eficiente por não ter que calcular no dataset completo e, portanto, mais fácil de escalar para grandes datasets de duas dimensões.
 
 \subsection{HOD}
 
@@ -57,7 +57,7 @@ Z-Score \cite{doi:10.1111/j.1540-6261.1968.tb00843.x} é um dos métodos mais si
 
 \subsection{RBRP}
 
-É um algoritmo de alta perfomance para datasets multidimensionais que é baseado nas distâncias entre os pontos para poder definir quais são os outliers no dataset \cite{Ghoting2006}. Sua diferença para os outros algoritmos baseado em distância é que ele se torna mais eficiente quando executado em dataset com múltiplas dimensões, sua escalabilidade é aproximadamente linear para o número de dimensões e logarítmica para o número de pontos no dataset.
+É um algoritmo de alta performance para datasets multidimensionais que é baseado nas distâncias entre os pontos para poder definir quais são os outliers no dataset \cite{Ghoting2006}. Sua diferença para os outros algoritmos baseado em distância é que ele se torna mais eficiente quando executado em dataset com múltiplas dimensões, sua escalabilidade é aproximadamente linear para o número de dimensões e logarítmica para o número de pontos no dataset.
 
 \subsection{LOF}
 
