@@ -5,7 +5,7 @@ Neste capítulo explana-se mais profundamente o conceito de Regiões Densas Inte
 
 \section{Feedback do usuário}
 
-Para poder explicar melhor o conceito de IDR, é necessário explicar previamente sobre o \textit{feedback} do usuário, como funciona e como isso pode ser utilizado na criação das Regiões. Durante a utilização de um sistema, o usuário vai interagindo com suas funcionalidades e o sistema vai respondendo aos seus comandos e ações, isso faz com que um sistema seja interativo e dinâmico, podendo ser atualizado conforme o usuário e as características de cada um. Em sistemas de análise de dados espaciais, é muito comum que seja utilizado um mapa, um gráfico ou qualquer recurso visual que facilite a interpretação do usuário e dê uma noção sobre o que se trata o dataset em si.
+Durante a utilização de um sistema, o usuário vai interagindo com suas funcionalidades e o sistema vai respondendo aos seus comandos e ações, isso faz com que um sistema seja interativo e dinâmico, podendo ser atualizado conforme o usuário e as características de cada um. Em sistemas de análise de dados espaciais, é muito comum que seja utilizado um mapa, um gráfico ou qualquer recurso visual que facilite a interpretação do usuário e dê uma noção sobre o que se trata o dataset em si.
 
 A partir disso, o usuário pode ir ``caminhando'' pelo mapa (ou figura) para ir conhecendo mais minuciosamente os dados e as particularidades de cada ponto. Esse ``caminhar'' pode se tornar interessante para o sistema de forma que isso ajude a conhecer os interesses do usuário. Essa resposta que o usuário concede ao sistema enquanto o está utilizando, é o que caracteriza o \textit{feedback} e isso pode trazer muitas utilizações para diversos tipos de sistemas.
 
@@ -72,7 +72,7 @@ Na construção de uma IDR são consideradas duas camadas diferentes no mapa geo
         \label{algo:dense}
 \end{algorithm}
 
-O algoritmo \ref{algo:dense} resume a abordagem para encontrar as IDRs. São adicionados pontos para o conjunto $\mathcal{M}$ somente a cada $200ms$ para evitar a adição de pontos repetidos. Seguindo a ideia de que o analista tem mais interesse naquela região se ele movimentar o mouse nela mais vezes e afim de minerar o comportamento recorrente do analista, o algoritmo começa pelo particionamento do conjunto $\mathcal{M}$ em $g$ segmentos consecutivos de tamanho fixo do $\mathcal{M}_0$ até o $\mathcal{M}_g$. O primeiro segmento inicia no tempo zero (quando o usuário abre o mapa) e o último segmento termina em $t_c$, ou seja, o momento atual. Baseado na ideia de que o analista pode percorrer o mapa completamente, mas isso não indicará seu real interesse por todo o mapa, busca-se encontrar os clusters mais densos de cada segmento do conjunto $\mathcal{M}$ utilizando um algoritmo variante do DBSCAN \cite{Ester:1996:DAD:3001460.3001507}. Por fim, são retornados as interseções entre esses clusters como os IDRs.
+O algoritmo \ref{algo:dense} resume a abordagem para encontrar as IDRs. São adicionados pontos para o conjunto $\mathcal{M}$ somente a cada $200ms$ (podendo esse valor ser ajustado) para evitar a adição de pontos repetidos. Seguindo a ideia de que o analista tem mais interesse naquela região se ele movimentar o mouse nela mais vezes e afim de minerar o comportamento recorrente do analista, o algoritmo começa pelo particionamento do conjunto $\mathcal{M}$ em $g$ segmentos consecutivos de tamanho fixo do $\mathcal{M}_0$ até o $\mathcal{M}_g$. O primeiro segmento inicia no tempo zero (quando o usuário abre o mapa) e o último segmento termina em $t_c$, ou seja, o momento atual. Baseado na ideia de que o analista pode percorrer o mapa completamente, mas isso não indicará seu real interesse por todo o mapa, busca-se encontrar os clusters mais densos de cada segmento do conjunto $\mathcal{M}$ utilizando um algoritmo variante do DBSCAN \cite{Ester:1996:DAD:3001460.3001507}. Por fim, são retornados as interseções entre esses clusters como os IDRs.
 
 Para clusterizar os pontos em cada segmento de tempo (linha \ref{ln:mine} do Algoritmo \ref{algo:dense}), é utilizado o algoritmo ST-DBSCAN, um variante do DBSCAN para clusterizar pontos baseado na sua densidade \cite{Birant:2007}. Para cada subconjunto dos pontos do movimento do mouse $\mathcal{M}_i$, $i \in [0,g]$, o ST-DBSCAN inicia com um ponto aleatório $m_0 \in \mathcal{M}_i$ e coleciona todos os pontos ``densamente alcançáveis'' de $m_0$ usando uma métrica de distância. Como os pontos do movimento do mouse estão numa tela de 2 dimensões (isto é, o monitor), é escolhido a distância euclidiana como métrica. Se $m_0$ for considerado um ponto central,  um cluster será gerado. Do contrário, se o $m_0$ for um ``ponto de borda'', nenhum ponto é alcançado por ele e o algoritmo escolherá outro ponto aleatório em $\mathcal{M}_i$. O processo é repetido até que todos os pontos tenham sido processados e categorizados.
 
@@ -86,29 +86,13 @@ Nesta seção será mostrado como utilizar os conceitos de IDRs e a abordagem de
 
 \subsection{Carregando um dataset}
 
-O primeiro passo para começar a utilizar o GeoGuide é realizar um cadastro básico do usuário (informando os campos \textit{e-mail}, \textit{senha} e \textit{confirmação de senha}) que está acessando a plataforma (ver Figura \ref{fig:geoguide-register}). Caso o usuário já possua conta na plataforma, então ele só precisará informar seu email e senha que usou durante o cadastro para poder ter acesso ao GeoGuide (ver Figura \ref{fig:geoguide-login}).
+O primeiro passo para começar a utilizar o GeoGuide é realizar um cadastro básico do usuário (informando os campos \textit{e-mail}, \textit{senha} e \textit{confirmação de senha}) que está acessando a plataforma. Caso o usuário já possua conta na plataforma, então ele só precisará informar seu email e senha que usou durante o cadastro para poder ter acesso ao GeoGuide.
 
-\begin{figure*}[h]
-	\centering
-	\includegraphics[width=\textwidth]{images/geoguide-register.png}
-	\caption{Tela de registro de usuário do GeoGuide}
-	\label{fig:geoguide-register}
-	\vspace{-10pt}
-\end{figure*}
+Esse cadastro é importante para que o usuário possa registrar os datasets carregados (ver Figura \ref{fig:geoguide-datasets}) e não precisar ficar fazendo o mesmo carregamento desses dados várias vezes, pois todas as suas configurações vão ficar registradas na plataforma e ligadas diretamente à sua conta de usuário.
 
-Esse cadastro é importante para que o usuário possa registrar os datasets carregados e não precisar ficar fazendo o mesmo carregamento desses dados várias vezes, pois todas as suas configurações vão ficar registradas na plataforma e ligadas diretamente à sua conta de usuário.
+Após escolher qual conjunto de dados ele vai querer trabalhar, é preciso que ele realize o processo de carregamento de um arquivo .csv e então informar alguns dados básicos sobre aquele conjunto que vai estar registrando na sua conta, como por exemplo: qual o nome que ele vai atribuir àquele conjunto, quantas linhas do .csv vai levar em consideração no carregamento (isso é importante caso o usuário deseje analisar somente uma parte do dataset), quais os campos que ele quer levar em consideração para o cálculo das métricas de \textit{similaridade} e \textit{diversidade} entre outras informações.
 
-\begin{figure*}[h]
-	\centering
-	\includegraphics[width=\textwidth]{images/geoguide-login.png}
-	\caption{Tela de login do usuário do GeoGuide}
-	\label{fig:geoguide-login}
-	\vspace{-10pt}
-\end{figure*}
-
-Após escolher qual conjunto de dados ele vai querer trabalhar, é preciso que ele realize o processo de carregamento de um arquivo .csv e então informar alguns dados básicos sobre aquele conjunto que vai estar registrando na sua conta, como por exemplo: qual o nome que ele vai atribuir àquele conjunto, quantas linhas do .csv vai levar em consideração no carregamento (isso é importante para caso o usuário deseje analisar somente uma parte do dataset), quais os campos que ele quer levar em consideração para o cálculo das métricas de \textit{similaridade} \textit{diversidade} e entre outras informações.
-
-\begin{figure*}[h]
+\begin{figure*}[]
 	\centering
 	\includegraphics[width=\textwidth]{images/geoguide-datasets.png}
 	\caption{Tela de datasets do usuário no GeoGuide}
@@ -116,7 +100,7 @@ Após escolher qual conjunto de dados ele vai querer trabalhar, é preciso que e
 	\vspace{-10pt}
 \end{figure*}
 
-Quando finalizar o preenchimento do formulário referente ao dataset, então o analista poderá visualizar quais os datasets que já estão registrados na sua conta e selecionar qual ele irá querer trabalhar no momento. Após isso, o GeoGuide passará para o próximo passo que é a visualização desses dados espaciais num mapa global centralizado na localização do dataset, de forma que o usuário já possa interagir com os pontos no mapa, podendo realizar algumas filtragens e também clicando em cada ponto específico para mostrar seus atributos referentes ao seu domínio específico.
+Quando finalizar o preenchimento do formulário referente ao dataset, então o analista poderá visualizar quais os datasets que já estão registrados na sua conta e selecionar qual ele irá trabalhar no momento. Após isso, o GeoGuide passará para o próximo passo que é a visualização desses dados espaciais num mapa global centralizado na localização do dataset, de forma que o usuário já possa interagir com os pontos no mapa, podendo realizar algumas filtragens e também clicando em cada ponto específico para mostrar seus atributos referentes ao seu domínio específico.
 
 \subsection{Pré-processamento do GeoGuide}
 
@@ -140,7 +124,7 @@ Esse processo é demorado, pois tem a complexidade de $\mathcal{O}(n^{2})$ e iss
 
 No mesmo momento que o servidor da plataforma é disparado para realizar o pré-processamento do dataset para gerar os índices normalizados das métricas principais do GeoGuide, a aplicação do usuário, quando concluir a plotagem do mapa, começará o processo de rastreamento do movimento do mouse.
 
-Como dito anteriormente, essa coleta dos pontos do mouse usuário navegando a plataforma é importante para a criação dos IDRs e sua utilização nas orientações que o GeoGuide vai propor baseado num ponto escolhido pelo usuário. Essa criação de IDRs obedece os intervalos de $20$ segundos para o processo de clusterização dos pontos, utilizando o algoritmo \textit{k-means} para a criação desses clusters, e também o intervalo definido previamente de que, após $3$ momentos de clusterização, serão selecionados os polígonos resultantes da interseção dos clusters de cada momento e isso resultará nas áreas definidas como IDRs.
+Como dito anteriormente, essa coleta dos pontos do mouse do usuário navegando a plataforma é importante para a criação dos IDRs e sua utilização nas orientações que o GeoGuide vai propor baseado num ponto escolhido pelo usuário. Essa criação de IDRs obedece os intervalos de $20$ segundos para o processo de clusterização dos pontos, utilizando o algoritmo \textit{k-means} para a criação desses clusters, e também o intervalo definido previamente de que, após $3$ momentos de clusterização, serão selecionados os polígonos resultantes da interseção dos clusters de cada momento e isso resultará nas áreas definidas como IDRs.
 
 Esse processo de construção das IDRs acontece todo o tempo em que o usuário esteja utilizando a plataforma e, a cada geração de IDR, essas regiões serão enviadas para o servidor registrando de qual usuário é essa IDR e qual a seção dele no momento de construção. Com essas informações é então possível ter um histórico das regiões de interesse do usuário e usar esses dados para um outro tipo de análise de preferência do usuário levando em consideração outros fatores.
 
@@ -148,7 +132,7 @@ Todo essa operação mostra a importância das criações das IDRs e também dem
 
 \subsection{Detectando Outliers}
 
-Com a construção das IDRs acontecendo durante a utilização do GeoGuide pelo usuário, um outro processo também é executado após cada momento de criação dessas regiões. Com cada região encontrada, são selecionados os pontos que estão inseridos em cada região e para cada grupo desse efetuado uma detecção de outliers nessa região levando em consideração os atributos definidos pelo usuário durante o carregamento deste dataset.
+Com a construção das IDRs acontecendo durante a utilização do GeoGuide pelo usuário, um outro processo também é executado após cada momento de criação dessas regiões. Com cada região encontrada, são selecionados os pontos que estão inseridos em cada região e para cada grupo desse efetuado uma detecção de outliers nessa região levando em consideração os atributos definidos como relevantes pelo usuário durante o carregamento deste dataset.
 
 Dessa forma, além de registrar a cada minuto quais são as áreas que o usuário tem mais interesse baseado no seu movimento de mouse, também são gravados quais são os pontos considerados discrepantes de cada região dessa e, com isso, têm-se os dados suficientes para o processo final das orientações que o GeoGuide performará quando requerido pelo usuário.
 
@@ -156,8 +140,8 @@ Dessa forma, além de registrar a cada minuto quais são as áreas que o usuári
 
 Desde o momento que o usuário é imerso no mapa global com os pontos de seus datasets plotados, as ações que acontecem são desconhecidas pelo usuário e acontecem sem sua menor interferência ou sem ele conseguir notar seu processamento.
 
-Porém, o momento mais importante para o usuário e que é finalidade de todo esse processo executado em \textit{background}, é quando ele seleciona um ponto de seu interesse e então pede $k$ novos pontos como sugestões do GeoGuide baseado nos atributos do ponto escolhido pelo usuário. Nesse momento é que será levado em consideração as IDRs registradas na sua seção e os outliers detectados em cada região.
+Porém, o momento mais importante para o usuário e que é a finalidade de todo esse processo executado em \textit{background}, é quando ele seleciona um ponto de seu interesse e então pede $k$ novos pontos como sugestões do GeoGuide baseado nos atributos do ponto escolhido. Nesse momento é que será levado em consideração as IDRs registradas na sua seção e os outliers detectados em cada região.
 
-Agora, nessa nova proposta do GeoGuide, os pontos que se encontrarem dentro das regiões definidas como IDRs pelo usuário serão priorizados para serem sugeridos, pois assim o usuário conseguirá obter mais informações dentro de uma região que já é previamente definida como interessante para ele e não irá perder seu foco em outras possíveis regiões.
+Agora, nessa nova proposta do GeoGuide, os pontos que se encontrarem dentro das regiões definidas como IDRs pelo usuário serão priorizados como sugestão, pois assim o usuário conseguirá obter mais informações dentro de uma região que já é previamente definida como interessante para ele e não irá perder seu foco em outras possíveis regiões.
 
-E também, no momento em que o GeoGuide propõe novos pontos para serem analisados, os pontos registrados como outliers dentro das IDRs também serão privilegiados nessa proposta do GeoGuide, pois, como visto em outra pesquisa \cite{DBLP:journals/debu/FreireCVZ16}, esses pontos ``discrepantes'' podem indicar novas características desse dataset e um começo de por onde procurar particularidades do mesmo.
+E também, no momento em que o GeoGuide propõe novos pontos para análise, os pontos registrados como outliers dentro das IDRs também serão privilegiados nessa proposta do GeoGuide, pois, como visto em outra pesquisa \cite{DBLP:journals/debu/FreireCVZ16}, esses pontos ``discrepantes'' podem indicar novas características desse dataset e um começo de por onde procurar particularidades do mesmo.
